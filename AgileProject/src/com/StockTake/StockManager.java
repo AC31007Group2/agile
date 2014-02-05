@@ -6,15 +6,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
-
 import org.json.JSONException;
-
 import android.app.Activity;
 import android.app.Application;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.text.Html;
-import android.util.Log;
 import android.view.Gravity;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -30,48 +27,53 @@ public class StockManager extends Application
 
 	private String myState;
 
-	public String getState()
-	{
-		return myState;
-	}
+	//gets or sets the state
+	public String getState(){
+		System.out.println("stockmanager - getstate");
+		return myState;}
+	public void setState(String s){
+		System.out.println("stockmanager - setstate");
+		myState = s;}
 
-	public void setState(String s)
-	{
-		myState = s;
-	}
-
-	public void clearPortfolio()
-	{
+	//clear the portfolio hashmap - doesn't delete but keep overall structure without content
+	public void clearPortfolio(){
+		System.out.println("stockmanager - clearportfolio");
 		portfolio.clear();
 		stockNames.clear();
 		stockNamesLong.clear();
 	}
 
-	public Finance createFinanceObject(String stockCode) throws IOException, JSONException
-	{
-
+	//create a new finance object
+	public Finance createFinanceObject(String stockCode) throws IOException, JSONException{
+		System.out.println("stockmanager - createfinance");
 		Finance newStock = new Finance();
-
+		System.out.println("stockmanager - createfinance - finance created");
+		//create a new parser with the new Finance Object
 		newParse.parseJSON(newStock, stockCode);
 		newParse.getHistoric(newStock, stockCode);
+		//initialise newStock
+		System.out.println("stockmanager - createfinance - end JSON");
+		
 		newStock.calcRun();
 		newStock.calcRocketPlummet();
-
+		System.out.println("stockmanager - createfinance - before return");
 		return newStock;
-
 	}
 
-	public boolean addPortfolioEntry(String stockCode, String stockNameLong, int numberOfShares)
-			throws IOException, JSONException
-	{
-
+	//add entry to portfolio hashmap
+	public boolean addPortfolioEntry(String stockCode, String stockNameLong, int numberOfShares) throws IOException, JSONException{
+		System.out.println("stockmanager - addportfolio");
 		float shareQuantity = (float) numberOfShares;
-		Finance stockObj = createFinanceObject(stockCode);
+		System.out.println("addportfolio");
+		System.out.println("The Stockcode is: " + stockCode);
+		Finance stockObj = createFinanceObject(stockCode); //doesnt work!
+		System.out.println("finance object created");
 		if (portfolio.containsKey(stockObj))
 		{
 			return false;
 		}
-		portfolio.put(stockObj, shareQuantity);
+		System.out.println("portfolio contains key");
+		portfolio.put(stockObj, shareQuantity); //add new Finance object to portfolio hashmap
 		stockNames.add(stockObj.getName());
 		stockNamesLong.put(stockCode.substring(stockCode.indexOf(":") + 1), stockNameLong);
 		return true;
@@ -79,6 +81,7 @@ public class StockManager extends Application
 
 	public float getPortfolioTotal()
 	{
+		System.out.println("stockmanager - getprotfolio");
 		float value = 0;
 		if (portfolio.isEmpty())
 		{
@@ -93,7 +96,7 @@ public class StockManager extends Application
 
 	public void summaryTable(Activity contextActivity)
 	{
-
+		System.out.println("Stockmanager - summarytable");
 		TableLayout table = (TableLayout) contextActivity.findViewById(R.id.tableLayout1); // Find
 																							// TableLayout
 																							// defined
@@ -115,22 +118,23 @@ public class StockManager extends Application
 
 		TableRow rowTotal = new TableRow(contextActivity);
 		TextView portfolioTotal = new TextView(contextActivity);
-
+System.out.println("1");
 		// Now sort...
 		Collections.sort(stockNames);
 		for (String currStockName : stockNames) // Sorted list of names
 		{
-
+			System.out.println("2");
 			Finance stockObj = null;
 			for (Finance thisObj : portfolio.keySet())
 			{
 				if (thisObj.getName().equals(currStockName))
 				{
+					System.out.println("4");
 					stockObj = thisObj;
 					break; // fail fast
 				}
 			}
-
+			System.out.println("3");
 			rowStock[stockCounter] = new TableRow(contextActivity);
 			stockName[stockCounter] = new TextView(contextActivity);
 			stockShares[stockCounter] = new TextView(contextActivity);
@@ -177,7 +181,7 @@ public class StockManager extends Application
 			table.addView(rowStock[stockCounter]);
 
 			stockCounter++;
-
+			System.out.println("6");
 		}
 
 		String totalVal = "Total Portfolio Value:     £" + String.format("%,.0f", getPortfolioTotal());
@@ -191,12 +195,12 @@ public class StockManager extends Application
 
 		rowTotal.addView(portfolioTotal, params);
 		table.addView(rowTotal);
-
+		System.out.println("7");
 	}
 
 	public int volumeTable(Activity contextActivity)
 	{
-
+		System.out.println("stockmanager - volumnetable");
 		TableLayout table = (TableLayout) contextActivity.findViewById(R.id.tableLayout2); // Find
 																							// TableLayout
 																							// defined
@@ -260,7 +264,7 @@ public class StockManager extends Application
 
 	public int rocketTable(Activity contextActivity)
 	{
-
+		System.out.println("stockmanager - rockettable");
 		TableLayout table = (TableLayout) contextActivity.findViewById(R.id.tableLayout3); // Find
 																							// TableLayout
 																							// defined

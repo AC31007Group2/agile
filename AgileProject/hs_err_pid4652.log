@@ -1,0 +1,125 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  Internal Error (javaClasses.cpp:136), pid=4652, tid=1576
+#  fatal error: Invalid layout of preloaded class
+#
+# JRE version:  (7.0_51-b13) (build )
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (24.51-b03 mixed mode windows-amd64 compressed oops)
+# Failed to write core dump. Minidumps are not enabled by default on client versions of Windows
+#
+# If you would like to submit a bug report, please visit:
+#   http://bugreport.sun.com/bugreport/crash.jsp
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x0000000002e00800):  JavaThread "Unknown thread" [_thread_in_vm, id=1576, stack(0x0000000002c40000,0x0000000002d40000)]
+
+Stack: [0x0000000002c40000,0x0000000002d40000]
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+
+Other Threads:
+
+=>0x0000000002e00800 (exited) JavaThread "Unknown thread" [_thread_in_vm, id=1576, stack(0x0000000002c40000,0x0000000002d40000)]
+
+VM state:not at safepoint (not fully initialized)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+GC Heap History (0 events):
+No events
+
+Deoptimization events (0 events):
+No events
+
+Internal exceptions (0 events):
+No events
+
+Events (10 events):
+Event: 0.010 loading class 0x0000000002e4e7f0 done
+Event: 0.010 loading class 0x0000000002e4e210 done
+Event: 0.010 loading class 0x0000000002e4e1f0
+Event: 0.010 loading class 0x0000000002e562f0
+Event: 0.010 loading class 0x0000000002e562f0 done
+Event: 0.010 loading class 0x0000000002e56320
+Event: 0.010 loading class 0x0000000002e56320 done
+Event: 0.010 loading class 0x0000000002e56350
+Event: 0.010 loading class 0x0000000002e56350 done
+Event: 0.010 loading class 0x0000000002e4e1f0 done
+
+
+Dynamic libraries:
+0x00007ff616a50000 - 0x00007ff616a83000 	C:\Program Files\Java\jre7\bin\javaw.exe
+0x00007ff8b0cf0000 - 0x00007ff8b0e99000 	C:\Windows\SYSTEM32\ntdll.dll
+0x00007ff8af050000 - 0x00007ff8af189000 	C:\Windows\system32\KERNEL32.DLL
+0x00007ff8ae190000 - 0x00007ff8ae29e000 	C:\Windows\system32\KERNELBASE.dll
+0x00007ff8acc50000 - 0x00007ff8accdb000 	C:\Windows\system32\apphelp.dll
+0x00007ff891b50000 - 0x00007ff891b9f000 	C:\Windows\AppPatch\AppPatch64\AcGenral.DLL
+0x00007ff8af5d0000 - 0x00007ff8af677000 	C:\Windows\system32\msvcrt.dll
+0x00007ff8ade80000 - 0x00007ff8adeab000 	C:\Windows\SYSTEM32\SspiCli.dll
+0x00007ff8ae7c0000 - 0x00007ff8ae811000 	C:\Windows\system32\SHLWAPI.dll
+0x00007ff8ae590000 - 0x00007ff8ae701000 	C:\Windows\system32\USER32.dll
+0x00007ff8ae980000 - 0x00007ff8aeaf6000 	C:\Windows\system32\ole32.dll
+0x00007ff8af690000 - 0x00007ff8b0a9f000 	C:\Windows\system32\SHELL32.dll
+0x00007ff8ad650000 - 0x00007ff8ad66f000 	C:\Windows\SYSTEM32\USERENV.dll
+0x00007ff8ae710000 - 0x00007ff8ae7b5000 	C:\Windows\system32\ADVAPI32.dll
+0x00007ff8a5bb0000 - 0x00007ff8a5bcb000 	C:\Windows\SYSTEM32\MPR.dll
+0x00007ff8ae820000 - 0x00007ff8ae956000 	C:\Windows\system32\RPCRT4.dll
+0x00007ff8aec40000 - 0x00007ff8aec97000 	C:\Windows\SYSTEM32\sechost.dll
+0x00007ff8b0b10000 - 0x00007ff8b0ce7000 	C:\Windows\SYSTEM32\combase.dll
+0x00007ff8aed50000 - 0x00007ff8aee95000 	C:\Windows\system32\GDI32.dll
+0x00007ff8ae070000 - 0x00007ff8ae084000 	C:\Windows\SYSTEM32\profapi.dll
+0x00007ff8acba0000 - 0x00007ff8acc41000 	C:\Windows\SYSTEM32\SHCORE.dll
+0x00007ff8aeba0000 - 0x00007ff8aebd4000 	C:\Windows\system32\IMM32.DLL
+0x00007ff8aef00000 - 0x00007ff8af038000 	C:\Windows\system32\MSCTF.dll
+0x00007ff8ae030000 - 0x00007ff8ae05f000 	C:\Windows\system32\nvinitx.dll
+0x000000000f000000 - 0x000000000f006000 	C:\Program Files\NVIDIA Corporation\CoProcManager\detoured.dll
+0x00007ff8ac0e0000 - 0x00007ff8ac13f000 	C:\Program Files\NVIDIA Corporation\CoProcManager\nvd3d9wrapx.dll
+0x00007ff8af330000 - 0x00007ff8af506000 	C:\Windows\system32\SETUPAPI.dll
+0x00007ff8ae140000 - 0x00007ff8ae18a000 	C:\Windows\system32\CFGMGR32.dll
+0x00007ff8ac090000 - 0x00007ff8ac0d6000 	C:\Program Files\NVIDIA Corporation\CoProcManager\nvdxgiwrapx.dll
+0x00007ff8ac230000 - 0x00007ff8ac48a000 	C:\Windows\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.9600.16384_none_62475f7becb72503\COMCTL32.dll
+0x000000005d980000 - 0x000000005da52000 	C:\Program Files\Java\jre7\bin\msvcr100.dll
+0x000000005c690000 - 0x000000005ce59000 	C:\Program Files\Java\jre7\bin\server\jvm.dll
+0x00007ff897540000 - 0x00007ff897549000 	C:\Windows\SYSTEM32\WSOCK32.dll
+0x00007ff8ab840000 - 0x00007ff8ab85f000 	C:\Windows\SYSTEM32\WINMM.dll
+0x00007ff8b0aa0000 - 0x00007ff8b0aa7000 	C:\Windows\system32\PSAPI.DLL
+0x00007ff8b0ab0000 - 0x00007ff8b0b08000 	C:\Windows\system32\WS2_32.dll
+0x00007ff8ab5b0000 - 0x00007ff8ab5da000 	C:\Windows\SYSTEM32\WINMMBASE.dll
+0x00007ff8af040000 - 0x00007ff8af049000 	C:\Windows\system32\NSI.dll
+0x00007ff8aced0000 - 0x00007ff8acef6000 	C:\Windows\SYSTEM32\DEVOBJ.dll
+0x000000005d970000 - 0x000000005d97f000 	C:\Program Files\Java\jre7\bin\verify.dll
+0x000000005d940000 - 0x000000005d968000 	C:\Program Files\Java\jre7\bin\java.dll
+0x000000005d920000 - 0x000000005d935000 	C:\Program Files\Java\jre7\bin\zip.dll
+
+VM Arguments:
+jvm_args: -Djava.library.path=C:\Users\Michael\Developer\AgileProject\src\dep -Dfile.encoding=UTF-8 -Xbootclasspath:C:\Program Files (x86)\Android\android-sdk\platforms\android-19\android.jar 
+java_command: com.StockTake.FinanceTest
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+JAVA_HOME=C:\Program Files\Java\jdk1.7.0_51
+PATH=C:\Program Files (x86)\iis express\PHP\v5.3;C:\app\ronsc_000\product\12.1.0\client_2;C:\app\ronsc_000\product\12.1.0\client_2\bin;C:\OracleFiles\product\12.1.0\client_2;C:\OracleFiles\product\12.1.0\client_2\bin;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit\;C:\Program Files\Microsoft SQL Server\110\Tools\Binn\;C:\Program Files (x86)\Windows Live\Shared;C:\Program Files (x86)\MySQL\MySQL Utilities 1.3.6\;C:\Python27;C:\Python27\Lib\site-packages\;C:\Python27\Scripts\;;C:\Program Files (x86)\Intel\OpenCL SDK\2.0\bin\x86;C:\Program Files (x86)\Intel\OpenCL SDK\2.0\bin\x64
+USERNAME=ronsc_000
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 42 Stepping 7, GenuineIntel
+
+
+
+---------------  S Y S T E M  ---------------
+
+OS: Windows 8 , 64 bit Build 9200 
+
+CPU:total 8 (4 cores per cpu, 2 threads per core) family 6 model 42 stepping 7, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, avx, aes, ht, tsc, tscinvbit
+
+Memory: 4k page, physical 8297156k(4931844k free), swap 9607876k(5449800k free)
+
+vm_info: Java HotSpot(TM) 64-Bit Server VM (24.51-b03) for windows-amd64 JRE (1.7.0_51-b13), built on Dec 18 2013 18:40:56 by "java_re" with unknown MS VC++:1600
+
+time: Wed Jan 29 09:22:37 2014
+elapsed time: 0 seconds
+

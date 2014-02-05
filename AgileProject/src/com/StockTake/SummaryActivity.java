@@ -15,7 +15,6 @@ import android.widget.TextView;
 
 public class SummaryActivity extends Activity
 {
-
 	/** Called when the activity is first created. */
 
 	StockManager myStockmanager;
@@ -29,20 +28,19 @@ public class SummaryActivity extends Activity
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
-		super.onCreate(savedInstanceState);
 		
+		super.onCreate(savedInstanceState);
+		System.out.println("summaryactivity - oncreate");
 		// Get the StockManager
 		myStockmanager = ((StockManager)getApplicationContext());
 		
-		setContentView(R.layout.summary);
+		setContentView(R.layout.summary);	
 
 	    update();
-
 	}
 
 	public void update() {
-		
-		
+		System.out.println("summaryactivity - update");
 		table = (TableLayout) this.findViewById(R.id.tableLayout1); 
 		
 		errorRow = new TableRow(this);
@@ -52,8 +50,9 @@ public class SummaryActivity extends Activity
 		
 		if (checkInternetConnection()) {
 			try {
-				
+				System.out.println("do this!");
 				onClick();
+				System.out.println("and this!");
 				myStockmanager.summaryTable(this);
 				
 			} catch(Exception e) {
@@ -73,18 +72,18 @@ public class SummaryActivity extends Activity
 
 	/* Click Refresh */
 	public void onClick() throws IOException, JSONException {
-	
+		System.out.println("summaryactivity - onclick");
 		myStockmanager.clearPortfolio();
-		myStockmanager.addPortfolioEntry("BLVN", "BowLeven Plc", 3960);
 		myStockmanager.addPortfolioEntry("BP", "BP Amoco Plc", 192);
 		myStockmanager.addPortfolioEntry("HSBA", "HSBC Holdings Plc Ord.", 343);
 		myStockmanager.addPortfolioEntry("EXPN", "Experian", 258);
 		myStockmanager.addPortfolioEntry("MKS", "Marks & Spencer Ord.", 485);
 		myStockmanager.addPortfolioEntry("SN", "Smith & Nephew Plc Ord.", 1219);
-		
 	}
 	
 	private boolean checkInternetConnection() {
+		System.out.println("summaryactivity - checkinternetconnection");
+		
 	
 		ConnectivityManager conMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 	
@@ -94,8 +93,5 @@ public class SummaryActivity extends Activity
 		} else {
 			return false;
 		}
-	
 	}
-
-
 }

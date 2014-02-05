@@ -11,10 +11,10 @@ public class AgileProjectActivity extends TabActivity {
 	StockManager myStockmanager = new StockManager();
 	
 	public void onCreate(Bundle savedInstanceState) {
-		
+		// Seems that this is the main entry point in this project.
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.main);
-
+	    System.out.println("AgileProjectActivity - oncreate");
 	    Resources res = getResources(); // Resource object to get Drawables
 	    TabHost tabHost = getTabHost();  // The activity TabHost
 	    TabHost.TabSpec spec;  // Resusable TabSpec for each tab

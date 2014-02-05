@@ -10,7 +10,7 @@ public class SplashScreen extends Activity {
    public void onCreate(Bundle savedInstanceState) {
       super.onCreate(savedInstanceState);
       setContentView(R.layout.splash);
-      
+      System.out.println("Splashscreen - oncreate");
       Thread splashThread = new Thread() {
          @Override
          public void run() {

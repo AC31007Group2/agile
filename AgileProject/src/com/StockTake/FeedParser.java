@@ -21,7 +21,7 @@ public class FeedParser
 	{
 		// Create JSON and Finance objects
 		JSONObject jObject;
-
+		System.out.println("Feedparser - perseJSON");
 
 		// Generate URL
 		URL feedUrl = new URL("http://finance.google.com/finance/info?client=ig&infotype=infoquoteall&q=LON:" + currentStock);
@@ -38,26 +38,36 @@ public class FeedParser
 		jsonText = jsonText.substring(5, jsonText.length() - 2);
 		is.close();
 		// Init object
+		
+		System.out.println("FeedParser - parseJSON - I am here - "+currentStock);
 		jObject = new JSONObject(jsonText);
+		
+		// Use this, just because some shares (expn) use comma to separate large values.
+		String tmpString = jObject.getString("l");
+		tmpString = tmpString.replace(",","");
+
 		// Set 'Last' value
-		toPopulate.setLast(Float.parseFloat(jObject.getString("l")) / 100f);
+		toPopulate.setLast(Float.parseFloat(tmpString) / 100f);
+		System.out.println("FeedParser - parseJSON - I am here 3 - "+currentStock);
+
 		//Log.v("LOGCATZ", " " + toPopulate.getLast());
 		// Set 'Company' name
 		toPopulate.setName(jObject.getString("t"));
+		System.out.println("FeedParser - parseJSON - I am here 4 - "+currentStock);
+
 		// Set 'Market'
 		toPopulate.setMarket(jObject.getString("e"));
 		// Set 'Instant Volume'
 		int instantVolume = volCharToInt(jObject.getString("vo"));
 		toPopulate.setInstantVolume(instantVolume);
 		
-	
-
+		
 
 	}
 	
 	public void getHistoric(Finance toPopulate, String stockToGet) {
 		
-
+		System.out.println("feedparser - gethostroc");
 		BufferedReader csvBr;
 		String csvData[] = null;
 				
@@ -77,21 +87,24 @@ public class FeedParser
 	}
 	
 	private BufferedReader getCsvFeed(String stockSymbol) throws IOException {
-		
+		System.out.println("feedparser - getcsvfeed");
 		// Check dates
 		Calendar cal = Calendar.getInstance();
-		int day = cal.get(Calendar.DATE) - 4;
+		int day   = cal.get(Calendar.DATE) - 4;
 		int month = cal.get(Calendar.MONTH);
-		
+		int year  = cal.get(Calendar.YEAR);
+		System.out.println("feedparser - getCsvFeed - Get the url - Stock "+stockSymbol);
 		// Generate URL
-		URL feedUrl = new URL("http://ichart.finance.yahoo.com/table.csv?s=" + stockSymbol + ".L" + "&a=" + month + "&b=" + day + "&c=2011");
+		URL feedUrl = new URL("http://ichart.finance.yahoo.com/table.csv?s=" + stockSymbol + ".L" + "&a=" + month + "&b=" + day + "&c="+year);
 		
 		InputStream is = feedUrl.openStream();
+		
+		System.out.println("feedparser - getCsvFeed - Stock "+stockSymbol);
 		return new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));			
 	}
 	
 	private String[] parseCsvString(BufferedReader csvToParse) throws IOException  {
-		
+		System.out.println("feedparser - parse csvstring");
 		String strLine = "";
 		StringTokenizer st = null;
 		int lineNumber = 0, tokenNumber = 0;
@@ -130,6 +143,7 @@ public class FeedParser
 	
 	public int volCharToInt(String amount)
 	{
+		System.out.println("feedparser - volchartoint");
 		float convertedVal = 0;
 		int multiplier = 1;
 		int returnValue = 0;

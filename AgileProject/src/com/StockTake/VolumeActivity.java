@@ -9,13 +9,9 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-
 public class VolumeActivity extends Activity
 {
-
-
 		/** Called when the activity is first created. */
-
 		StockManager myStockmanager;
 		//((MyApplication) context.getApplicationContext())
 		
@@ -23,7 +19,7 @@ public class VolumeActivity extends Activity
 		public void onCreate(Bundle savedInstanceState)
 		{
 			super.onCreate(savedInstanceState);
-			
+			System.out.println("volumenactivity - oncreate");
 			// Get the StockManager
 			myStockmanager = ((StockManager)getApplicationContext());
 			
@@ -65,12 +61,13 @@ public class VolumeActivity extends Activity
 				errorRow.addView(error1, params);
 	            table.addView(errorRow);
 			}
-
 		}
 
-		
+		/*
+		 * Check Connectivity to Internet
+		 */
 		private boolean checkInternetConnection() {
-		
+			System.out.println("volumeactivity - checkinternetconnection");
 			ConnectivityManager conMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 		
 			// ARE WE CONNECTED TO THE INTERNET
@@ -79,7 +76,5 @@ public class VolumeActivity extends Activity
 			} else {
 				return false;
 			}
-		
 		}
-		
 	}

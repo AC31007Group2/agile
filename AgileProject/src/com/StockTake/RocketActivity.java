@@ -23,7 +23,7 @@ public class RocketActivity extends Activity
 		public void onCreate(Bundle savedInstanceState)
 		{
 			super.onCreate(savedInstanceState);
-			
+			System.out.println("rocketactivity - oncreate");
 			// Get the StockManager
 			myStockmanager = ((StockManager)getApplicationContext());
 			
@@ -70,7 +70,7 @@ public class RocketActivity extends Activity
 
 		
 		private boolean checkInternetConnection() {
-		
+			System.out.println("rocketactivity - checkinternetconnection");
 			ConnectivityManager conMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 		
 			// ARE WE CONNECTED TO THE INTERNET

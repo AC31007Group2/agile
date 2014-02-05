@@ -8,7 +8,13 @@ import android.test.AndroidTestCase;
 public class FinanceTest extends AndroidTestCase
 {
 	Finance finance;
-
+/*
+	public FinanceTest()
+	{
+		junit.textui.TestRunner.run(suite());
+	}
+	*/
+	
 	public static void main(String[] args)
 	{
 		junit.textui.TestRunner.run(suite());

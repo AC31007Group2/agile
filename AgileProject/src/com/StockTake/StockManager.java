@@ -210,7 +210,7 @@ System.out.println("1");
 		table.setStretchAllColumns(true);
 		table.setShrinkAllColumns(true);
 
-		int stockCount = 6;
+		int stockCount = portfolio.size();
 		int stockCounter = 0;
 		int runs = 0;
 
@@ -274,7 +274,7 @@ System.out.println("1");
 		table.setStretchAllColumns(true);
 		table.setShrinkAllColumns(true);
 
-		int stockCount = 6;
+		int stockCount = portfolio.size();
 		int stockCounter = 0;
 		int rocketplummet = 0;
 

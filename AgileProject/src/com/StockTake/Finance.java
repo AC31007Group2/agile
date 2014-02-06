@@ -4,20 +4,19 @@ package com.StockTake;
 public class Finance
 {
 
-	public String name; // Stock name
-	public float last  = 0; // Last stock value
-	public String market; // Market
+	public String name; 			// Stock name
+	public float last  = 0;			// Last stock value
+	public String market; 			// Market
 	public float close = 0;
-	public int volume = 0;
-	public int instant_volume = 0;
+	public int volume = 0;			// Looks like a historic volume from x (4) days ago, using the CSV from yahoo api.
+	public int instant_volume = 0;  // Current volume, set when the stock object is being created, uses the data from goole api.
 	public boolean is_run;
 	public boolean is_rocket;
 	public boolean is_plummet;
 	
-	public final float RUN_CONST = 1.1f;
-	public final float ROCKET_CONST = 1.1f;
-	public final float PLUMMET_CONST = 0.8f;
-
+	public final float RUN_CONST 	 = 1.1f;    // Looks like some kind of a coeff for RUNs
+	public final float ROCKET_CONST  = 1.1f;    // Looks like some kind of a coeff for ROCKETs
+	public final float PLUMMET_CONST = 0.8f;   
 	public Finance()
 	{
 		name = "Default";

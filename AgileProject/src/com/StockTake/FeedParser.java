@@ -61,7 +61,7 @@ public class FeedParser
 		int instantVolume = volCharToInt(jObject.getString("vo"));
 		toPopulate.setInstantVolume(instantVolume);
 		
-		
+		System.out.println("FeedParser - parseJSON - I am here 5 - "+currentStock+instantVolume);
 
 	}
 	
@@ -95,8 +95,9 @@ public class FeedParser
 		int year  = cal.get(Calendar.YEAR);
 		System.out.println("feedparser - getCsvFeed - Get the url - Stock "+stockSymbol);
 		// Generate URL
-		URL feedUrl = new URL("http://ichart.finance.yahoo.com/table.csv?s=" + stockSymbol + ".L" + "&a=" + month + "&b=" + day + "&c="+year);
+		//URL feedUrl = new URL("http://ichart.finance.yahoo.com/table.csv?s=" + stockSymbol + ".L" + "&a=" + month + "&b=" + day + "&c="+year);
 		
+		URL feedUrl = new URL("http://beberry.lv/stocks/" + stockSymbol + ".csv");
 		InputStream is = feedUrl.openStream();
 		
 		System.out.println("feedparser - getCsvFeed - Stock "+stockSymbol);

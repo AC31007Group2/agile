@@ -145,7 +145,7 @@ System.out.println("1");
 
 			// half up rounding mode - so reduces errors to +/- £1
 			BigDecimal stockValueRounded = new BigDecimal(Double.toString(thisStockValue));
-			stockValueRounded = stockValueRounded.setScale(0, BigDecimal.ROUND_HALF_UP);
+			stockValueRounded = stockValueRounded.setScale(0, BigDecimal.ROUND_DOWN);
 			float subTotal = portfolio.get(stockObj) * thisStockValue;
 
 			String longName = stockNamesLong.get(stockObj.getName().toString());

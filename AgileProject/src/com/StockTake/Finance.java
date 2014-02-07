@@ -1,7 +1,7 @@
 package com.StockTake;
 
 
-public class Finance
+public class Finance implements Comparable<Finance> 
 {
 
 	public String name; 			// Stock name
@@ -13,6 +13,8 @@ public class Finance
 	public boolean is_run;
 	public boolean is_rocket;
 	public boolean is_plummet;
+	
+	public String orderBy;
 	
 	public final float RUN_CONST 	 = 1.1f;    // Looks like some kind of a coeff for RUNs
 	public final float ROCKET_CONST  = 1.1f;    // Looks like some kind of a coeff for ROCKETs
@@ -140,4 +142,30 @@ public class Finance
 			}	
 		}
 	}
+	
+	@Override
+	public int compareTo(Finance o) {
+		
+		if(orderBy == "value")
+		{
+			if (this.last > o.last) {
+				return -1;
+			} else if (this.last == o.last) {
+				return 0;
+			} else {
+				return 1;
+			}
+		}
+		else
+		{
+			if (this.name.compareTo(o.name) < 0) {
+				return -1;
+			} else if (this.name == o.name) {
+				return 0;
+			} else {
+				return 1;
+			}
+		}
+	}
+	
 }

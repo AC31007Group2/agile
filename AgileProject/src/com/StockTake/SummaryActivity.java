@@ -37,7 +37,7 @@ public class SummaryActivity extends Activity
 		// Get the StockManager
 		myStockmanager = ((StockManager)getApplicationContext());
 		
-		setContentView(R.layout.summary);	
+		setContentView(R.layout.summary_alph);	
 
 	    update();
 	}
@@ -90,11 +90,11 @@ public class SummaryActivity extends Activity
 			System.out.println("summaryactivity - onclick");
 			myStockmanager.clearPortfolio();
 			try {
+				myStockmanager.addPortfolioEntry("SN", "Smith & Nephew Plc Ord.", 1219);
 				myStockmanager.addPortfolioEntry("BP", "BP Amoco Plc", 192);
 				myStockmanager.addPortfolioEntry("HSBA", "HSBC Holdings Plc Ord.", 343);
 				myStockmanager.addPortfolioEntry("EXPN", "Experian", 258);
 				myStockmanager.addPortfolioEntry("MKS", "Marks & Spencer Ord.", 485);
-				myStockmanager.addPortfolioEntry("SN", "Smith & Nephew Plc Ord.", 1219);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -110,7 +110,7 @@ public class SummaryActivity extends Activity
 			// TODO Auto-generated method stub
 			ProgressBar pb = (ProgressBar)findViewById(R.id.progressBar1);
 			pb.setVisibility(View.GONE);
-			myStockmanager.summaryTable(parent);
+			myStockmanager.summaryTable(parent,"aaa");
 			super.onPostExecute(result);
 		}
 		

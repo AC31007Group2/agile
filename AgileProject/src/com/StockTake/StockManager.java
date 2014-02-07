@@ -94,7 +94,7 @@ public class StockManager extends Application
 		return value;
 	}
 
-	public void summaryTable(Activity contextActivity)
+	public void summaryTable(Activity contextActivity, String sortType)
 	{
 		System.out.println("Stockmanager - summarytable");
 		TableLayout table = (TableLayout) contextActivity.findViewById(R.id.tableLayout1); // Find
@@ -120,6 +120,7 @@ public class StockManager extends Application
 		TextView portfolioTotal = new TextView(contextActivity);
 System.out.println("1");
 		// Now sort...
+
 		Collections.sort(stockNames);
 		for (String currStockName : stockNames) // Sorted list of names
 		{

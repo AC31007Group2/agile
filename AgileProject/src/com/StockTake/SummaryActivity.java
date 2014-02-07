@@ -10,6 +10,8 @@ import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Html;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -74,6 +76,14 @@ public class SummaryActivity extends Activity
 	{
 		Activity parent;
 		@Override
+		protected void onPreExecute() {
+			// TODO Auto-generated method stub
+			ProgressBar pb = (ProgressBar)findViewById(R.id.progressBar1);
+			pb.setVisibility(View.VISIBLE);
+			super.onPreExecute();
+		}
+
+		@Override
 		protected Void doInBackground(Activity... params) {
 			// TODO Auto-generated method stub
 			parent = params[0];
@@ -98,6 +108,8 @@ public class SummaryActivity extends Activity
 		@Override
 		protected void onPostExecute(Void result) {
 			// TODO Auto-generated method stub
+			ProgressBar pb = (ProgressBar)findViewById(R.id.progressBar1);
+			pb.setVisibility(View.GONE);
 			myStockmanager.summaryTable(parent);
 			super.onPostExecute(result);
 		}

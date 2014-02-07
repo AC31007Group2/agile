@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry exported="true" kind="lib" path="dep/junit3.8.2/junit.jar"/>
+	<classpathentry kind="lib" path="lib/android-support-v4.jar"/>
+	<classpathentry kind="lib" path="lib/android-support-v13.jar"/>
+	<classpathentry kind="lib" path="lib/android-support-v7-appcompat.jar"/>
+	<classpathentry kind="lib" path="lib/android-support-v7-gridlayout.jar"/>
+	<classpathentry kind="lib" path="lib/android-support-v7-mediarouter.jar"/>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
 	<classpathentry kind="src" path="Tests">
 		<attributes>

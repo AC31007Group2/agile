@@ -7,6 +7,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import org.json.JSONException;
+
+
 import android.app.Activity;
 import android.app.Application;
 import android.graphics.Color;
@@ -29,6 +31,12 @@ public class StockManager extends Application
 	FeedParser newParse = new FeedParser();
 
 	private String myState;
+	
+   public enum SortParameter 
+   {
+        NAME, VALUE
+   }
+	    
 
 	//gets or sets the state
 	public String getState(){
@@ -97,7 +105,7 @@ public class StockManager extends Application
 		return value;
 	}
 
-	public void summaryTable(Activity contextActivity, String sortType)
+	public void summaryTable(Activity contextActivity,SortParameter sortBy)
 	{
 		System.out.println("Stockmanager - summarytable");
 		TableLayout table = (TableLayout) contextActivity.findViewById(R.id.tableLayout1); // Find
@@ -122,9 +130,21 @@ public class StockManager extends Application
 		TableRow rowTotal = new TableRow(contextActivity);
 		TextView portfolioTotal = new TextView(contextActivity);
 		
-		
-		
-		Collections.sort(portfolioList);
+		// Sort the list, depending on the sort parameter.
+		switch(sortBy)
+		{
+			case NAME: 
+				Collections.sort(portfolioList,new NameComparator());
+				break;
+			
+			case VALUE:
+				Collections.sort(portfolioList,new ValueComparator());
+				break;
+				
+			default:
+				Collections.sort(portfolioList,new NameComparator());
+				break;
+		}
 		
 		for (Finance stockObj : portfolioList)
 		{
@@ -180,74 +200,6 @@ public class StockManager extends Application
 		}
 		
 System.out.println("1");
-		// Now sort...
-
-		// Sort the list.
-		//Collections.sort(portfolio);
-/*
-		for (String currStockName : stockNames) // Sorted list of names
-		{
-			System.out.println("2");
-			Finance stockObj = null;
-			for (Finance thisObj : portfolio.keySet())
-			{
-				if (thisObj.getName().equals(currStockName))
-				{
-					System.out.println("4");
-					stockObj = thisObj;
-					break; // fail fast
-				}
-			}
-			System.out.println("3");
-			rowStock[stockCounter] = new TableRow(contextActivity);
-			stockName[stockCounter] = new TextView(contextActivity);
-			stockShares[stockCounter] = new TextView(contextActivity);
-			stockValue[stockCounter] = new TextView(contextActivity);
-			stockTotal[stockCounter] = new TextView(contextActivity);
-
-			float thisStockValue = stockObj.getLast();
-
-			// half up rounding mode - so reduces errors to +/- £1
-			BigDecimal stockValueRounded = new BigDecimal(Double.toString(thisStockValue));
-			stockValueRounded = stockValueRounded.setScale(0, BigDecimal.ROUND_DOWN);
-			float subTotal = portfolio.get(stockObj) * thisStockValue;
-
-			String longName = stockNamesLong.get(stockObj.getName().toString());
-
-			stockName[stockCounter].setText(longName);
-			stockName[stockCounter].setTypeface(Typeface.DEFAULT, Typeface.BOLD);
-			stockName[stockCounter].setTextColor(Color.rgb(58, 128, 255));
-			stockName[stockCounter].setTextSize(16f);
-			stockName[stockCounter].setHeight(70);
-			stockName[stockCounter].setWidth(200);
-			stockName[stockCounter].setGravity(Gravity.LEFT | Gravity.CENTER_VERTICAL);
-
-			stockShares[stockCounter].setText(String.format("%,3.0f", portfolio.get(stockObj)));
-			stockShares[stockCounter].setGravity(Gravity.RIGHT | Gravity.CENTER_VERTICAL);
-			stockShares[stockCounter].setTextSize(20f);
-			stockShares[stockCounter].setSingleLine(true);
-
-			stockValue[stockCounter].setText("£" + String.format("%.2f", thisStockValue));
-			stockValue[stockCounter].setGravity(Gravity.RIGHT | Gravity.CENTER_VERTICAL);
-			stockValue[stockCounter].setTextSize(20f);
-			stockValue[stockCounter].setSingleLine(true);
-
-			stockTotal[stockCounter].setText("£" + String.format("%,3.0f", subTotal));
-			stockTotal[stockCounter].setGravity(Gravity.RIGHT | Gravity.CENTER_VERTICAL);
-			stockTotal[stockCounter].setTextSize(20f);
-			stockTotal[stockCounter].setSingleLine(true);
-
-			rowStock[stockCounter].addView(stockName[stockCounter]);
-			rowStock[stockCounter].addView(stockShares[stockCounter]);
-			rowStock[stockCounter].addView(stockValue[stockCounter]);
-			rowStock[stockCounter].addView(stockTotal[stockCounter]);
-
-			table.addView(rowStock[stockCounter]);
-
-			stockCounter++;
-			System.out.println("6");
-		}
-*/
 		String totalVal = "Total Portfolio Value:     £" + String.format("%,.0f", getPortfolioTotal());
 		portfolioTotal.setText(totalVal);
 		portfolioTotal.setTextSize(20f);
@@ -262,6 +214,7 @@ System.out.println("1");
 		System.out.println("7");
 	}
 
+	
 	public int volumeTable(Activity contextActivity)
 	{
 		System.out.println("stockmanager - volumnetable");
@@ -283,19 +236,11 @@ System.out.println("1");
 		TextView[] runLabel = new TextView[stockCount];
 
 		// Now sort...
-		/*Collections.sort(stockNames);
-		for (String currStockName : stockNames) // Sorted list of names
+		Collections.sort(portfolioList,new NameComparator());
+		
+		for (Finance stockObj : portfolioList)
 		{
-
-			Finance stockObj = null;
-			for (Finance thisObj : portfolio.keySet())
-			{
-				if (thisObj.getName().equals(currStockName))
-				{
-					stockObj = thisObj;
-					break; // fail fast
-				}
-			}
+			
 
 			rowRun[stockCounter] = new TableRow(contextActivity);
 			runStock[stockCounter] = new TextView(contextActivity);
@@ -320,7 +265,7 @@ System.out.println("1");
 
 			stockCounter++;
 
-		}*/
+		}
 
 		return runs;
 
@@ -347,19 +292,11 @@ System.out.println("1");
 		TextView[] rocketState = new TextView[stockCount];
 
 		// Now sort...
-		/*Collections.sort(stockNames);
-		for (String currStockName : stockNames) // Sorted list of names
+		Collections.sort(portfolioList,new NameComparator());
+		
+		for (Finance stockObj : portfolioList)
 		{
-
-			Finance stockObj = null;
-			for (Finance thisObj : portfolio.keySet())
-			{
-				if (thisObj.getName().equals(currStockName))
-				{
-					stockObj = thisObj;
-					break; // fail fast
-				}
-			}
+			
 
 			rowRocket[stockCounter] = new TableRow(contextActivity);
 			rocketStock[stockCounter] = new TextView(contextActivity);
@@ -392,7 +329,7 @@ System.out.println("1");
 
 			stockCounter++;
 
-		}*/
+		}
 
 		return rocketplummet;
 

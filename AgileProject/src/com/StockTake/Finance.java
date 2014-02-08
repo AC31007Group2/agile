@@ -1,7 +1,9 @@
 package com.StockTake;
 
+import java.util.Comparator;
 
-public class Finance implements Comparable<Finance> 
+
+public class Finance
 {
 
 	public String name; 			// Stock name
@@ -14,11 +16,11 @@ public class Finance implements Comparable<Finance>
 	public boolean is_rocket;
 	public boolean is_plummet;
 	
-	public String orderBy;
-	
 	public final float RUN_CONST 	 = 1.1f;    // Looks like some kind of a coeff for RUNs
 	public final float ROCKET_CONST  = 1.1f;    // Looks like some kind of a coeff for ROCKETs
 	public final float PLUMMET_CONST = 0.8f;   
+	
+
 	public Finance()
 	{
 		name = "Default";
@@ -142,30 +144,33 @@ public class Finance implements Comparable<Finance>
 			}	
 		}
 	}
+}
 	
-	@Override
-	public int compareTo(Finance o) {
-		
-		if(orderBy == "value")
-		{
-			if (this.last > o.last) {
+	class NameComparator implements Comparator<Finance> {
+	    @Override
+		public int compare(Finance o1, Finance o2) {
+			
+	    	if (o1.name.compareTo(o2.name) < 0) {
 				return -1;
-			} else if (this.last == o.last) {
-				return 0;
-			} else {
-				return 1;
-			}
-		}
-		else
-		{
-			if (this.name.compareTo(o.name) < 0) {
-				return -1;
-			} else if (this.name == o.name) {
+			} else if (o1.name == o2.name) {
 				return 0;
 			} else {
 				return 1;
 			}
 		}
 	}
+
 	
-}
+	class ValueComparator implements Comparator<Finance> {
+	    @Override
+		public int compare(Finance o1, Finance o2) {
+			
+				if (o1.last > o2.last) {
+					return -1;
+				} else if (o1.last == o2.last) {
+					return 0;
+				} else {
+					return 1;
+				}
+		}
+	}

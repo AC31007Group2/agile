@@ -33,11 +33,13 @@ public class SummaryActivity extends Activity
 	{
 		
 		super.onCreate(savedInstanceState);
+		
+		
 		System.out.println("summaryactivity - oncreate");
 		// Get the StockManager
 		myStockmanager = ((StockManager)getApplicationContext());
 		
-		setContentView(R.layout.summary_alph);	
+		setContentView(R.layout.summary);	
 
 	    update();
 	}
@@ -110,7 +112,7 @@ public class SummaryActivity extends Activity
 			// TODO Auto-generated method stub
 			ProgressBar pb = (ProgressBar)findViewById(R.id.progressBar1);
 			pb.setVisibility(View.GONE);
-			myStockmanager.summaryTable(parent,"aaa");
+			myStockmanager.summaryTable(parent,StockManager.SortParameter.VALUE);
 			super.onPostExecute(result);
 		}
 		

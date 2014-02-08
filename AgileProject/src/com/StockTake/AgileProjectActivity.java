@@ -24,7 +24,7 @@ public class AgileProjectActivity extends TabActivity {
 	    intent = new Intent().setClass(this, SummaryActivity.class);
 
 	    // Initialize a TabSpec for each tab and add it to the TabHost
-	    spec = tabHost.newTabSpec("Summary (Alphabetically)").setIndicator("Summary (Alphabetically)",
+	    spec = tabHost.newTabSpec("Summary").setIndicator("Summary (Alphabetically)",
 	                      res.getDrawable(R.drawable.ic_tab_summary_alph))
 	                  .setContent(intent);
 	    tabHost.addTab(spec);
@@ -33,7 +33,7 @@ public class AgileProjectActivity extends TabActivity {
 	    intent = new Intent().setClass(this, VolumeActivity.class);
 
 	 // Initialize a TabSpec for each tab and add it to the TabHost
-	    spec = tabHost.newTabSpec("Summary (Rank)").setIndicator("Summary (Rank)",
+	    spec = tabHost.newTabSpec("Summary").setIndicator("Summary (Rank)",
 	                      res.getDrawable(R.drawable.ic_tab_summary_rank))
 	                  .setContent(intent);
 	    tabHost.addTab(spec);

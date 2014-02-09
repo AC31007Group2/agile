@@ -7,5 +7,7 @@
     <string name="is_using_mock_data">Use Mock Data?</string>
     <string name="settings_menu">Settings</string>
     <string name="is_using_mock_data_summary">Switch to mock data for testing purposes.</string>
+    <string name="is_using_broken_data_summary">Switch to broken data for testing purposes.</string>
+    <string name="is_using_broken_data">Use Broken Data?</string>
     <string name="google_finance">http://finance.google.com/finance/info?client=ig&amp;infotype=infoquoteall&amp;q=LON:</string>
 </resources>

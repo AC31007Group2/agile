@@ -8,9 +8,11 @@ import com.StockTake.StockManager.SortParameter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.Html;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -97,7 +99,68 @@ public class SummaryActivity extends Activity implements Param
 			parent = params[0];
 			System.out.println("summaryactivity - onclick");
 			myStockmanager.clearPortfolio();
+			SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+			boolean useBrokenData = preferences.getBoolean("is_using_broken_data", false);
+			boolean weGotAProblem = false;
+			
+			/*TextView tv = (TextView)findViewById(R.id.errorText);
+			tv.setVisibility(View.GONE);*/
+			
+			if(useBrokenData)
+			{
+				try {
+					
+					
+					
+					try {
+					myStockmanager.addPortfolioEntry("SN", "Smith & Nephew Plc Ord.", 1219);
+					}catch(Exception e)
+					{
+						weGotAProblem = true;
+					}
+					try{
+					myStockmanager.addPortfolioEntry("BPGH", "BP Amoco Plc", 192);
+					}catch(Exception e)
+					{
+						weGotAProblem = true;
+						
+					}
+					try{
+					myStockmanager.addPortfolioEntry("HSBA", "HSBC Holdings Plc Ord.", 343);
+					}catch(Exception e)
+					{
+						weGotAProblem = true;
+					}
+					try{
+					myStockmanager.addPortfolioEntry("EXPN", "Experian", 258);
+					}catch(Exception e)
+					{
+						weGotAProblem = true;
+					}
+					myStockmanager.addPortfolioEntry("MKS", "Marks & Spencer Ord.", 485);
+					
+					/*if(weGotAProblem){
+						tv.setVisibility(View.VISIBLE);
+					}*/
+					
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				
+				return null;
+				
+			}
+			else
+			{
 			try {
+				/*TextView tv = (TextView)findViewById(R.id.errorText);
+				tv.setVisibility(View.GONE);
+				tv.setText("");*/
 				myStockmanager.addPortfolioEntry("SN", "Smith & Nephew Plc Ord.", 1219);
 				myStockmanager.addPortfolioEntry("BP", "BP Amoco Plc", 192);
 				myStockmanager.addPortfolioEntry("HSBA", "HSBC Holdings Plc Ord.", 343);
@@ -111,6 +174,7 @@ public class SummaryActivity extends Activity implements Param
 				e.printStackTrace();
 			}
 			return null;
+			}
 		}
 		
 		@Override

@@ -97,7 +97,7 @@ public class StockManager extends Application
 		stockNamesLong.put(stockCode.substring(stockCode.indexOf(":") + 1), stockNameLong);
 		return true;
 	}
-
+	
 	public float getPortfolioTotal()
 	{
 		System.out.println("stockmanager - getprotfolio");

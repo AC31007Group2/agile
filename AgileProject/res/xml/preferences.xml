@@ -4,5 +4,10 @@
         android:title="@string/is_using_mock_data"
         android:summary="@string/is_using_mock_data_summary"
         android:defaultValue="false"/>
+    
+    <CheckBoxPreference android:key="is_using_broken_data"
+        android:title="@string/is_using_broken_data"
+        android:summary="@string/is_using_broken_data_summary"
+        android:defaultValue="false"/>
 
 </PreferenceScreen>

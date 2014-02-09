@@ -16,7 +16,7 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-public class SummaryActivity extends Activity
+public class SummaryActivityRank extends Activity
 {
 	/** Called when the activity is first created. */
 
@@ -112,7 +112,7 @@ public class SummaryActivity extends Activity
 			// TODO Auto-generated method stub
 			ProgressBar pb = (ProgressBar)findViewById(R.id.progressBar1);
 			pb.setVisibility(View.GONE);
-			myStockmanager.summaryTable(parent,StockManager.SortParameter.NAME);
+			myStockmanager.summaryTable(parent,StockManager.SortParameter.VALUE);
 			super.onPostExecute(result);
 		}
 		

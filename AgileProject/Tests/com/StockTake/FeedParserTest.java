@@ -17,7 +17,7 @@ public class FeedParserTest extends AndroidTestCase
 
 	protected void setUp()
 	{
-		feedparse = new FeedParser();
+		feedparse = new FeedParser(getContext());
 		finance = new Finance();
 	}
 

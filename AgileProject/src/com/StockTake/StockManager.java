@@ -21,6 +21,14 @@ import android.widget.TextView;
 
 public class StockManager extends Application
 {
+	
+	@Override
+	public void onCreate() {
+		// TODO Auto-generated method stub
+		super.onCreate();
+		this.newParse = new FeedParser(getApplicationContext());
+	}
+
 	// private Finance stockObj;
 	private HashMap<Finance, Float> portfolio = new HashMap<Finance, Float>();
 	
@@ -28,7 +36,7 @@ public class StockManager extends Application
 	
 	private HashMap<String, String> stockNamesLong = new HashMap<String, String>();
 	
-	FeedParser newParse = new FeedParser();
+	FeedParser newParse;
 
 	private String myState;
 	

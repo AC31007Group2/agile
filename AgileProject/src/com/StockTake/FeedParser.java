@@ -12,10 +12,18 @@ import java.util.StringTokenizer;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 public class FeedParser
 {
+	private Context m_context;
+
+	public FeedParser(Context m_context) {
+		this.m_context = m_context;
+	}
 
 	public void parseJSON(Finance toPopulate, String currentStock) throws IOException, JSONException
 	{
@@ -94,10 +102,18 @@ public class FeedParser
 		int month = cal.get(Calendar.MONTH);
 		int year  = cal.get(Calendar.YEAR);
 		System.out.println("feedparser - getCsvFeed - Get the url - Stock "+stockSymbol);
+		
+		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(m_context);
+		boolean useTestData = preferences.getBoolean("is_using_mock_data", false);
+		URL feedUrl = new URL("http://ichart.finance.yahoo.com/table.csv?s=" + stockSymbol + ".L" + "&a=" + month + "&b=" + day + "&c="+year);
+		if(useTestData)
+		{
+			feedUrl = new URL("http://beberry.lv/stocks/" + stockSymbol + ".csv");
+		}
 		// Generate URL
 		//URL feedUrl = new URL("http://ichart.finance.yahoo.com/table.csv?s=" + stockSymbol + ".L" + "&a=" + month + "&b=" + day + "&c="+year);
 		
-		URL feedUrl = new URL("http://beberry.lv/stocks/" + stockSymbol + ".csv");
+		//URL feedUrl = new URL("http://beberry.lv/stocks/" + stockSymbol + ".csv");
 		InputStream is = feedUrl.openStream();
 		
 		System.out.println("feedparser - getCsvFeed - Stock "+stockSymbol);

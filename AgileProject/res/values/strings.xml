@@ -4,5 +4,8 @@
     <string name="data_source">Data Source</string>
     <string name="live_data">Live Data</string>
     <string name="mock_data">Mock Data</string>
+    <string name="is_using_mock_data">Use Mock Data?</string>
+    <string name="settings_menu">Settings</string>
+    <string name="is_using_mock_data_summary">Switch to mock data for testing purposes.</string>
     <string name="google_finance">http://finance.google.com/finance/info?client=ig&amp;infotype=infoquoteall&amp;q=LON:</string>
 </resources>

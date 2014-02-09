@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
-    <item android:id="@+id/data_source" 
-      android:title="@string/data_source"  >
-        <menu>
-            <item android:id="@+id/live_data"
-                android:title="@string/live_data"/>
-            <item android:id="@+id/mock_data"
-                android:title="@string/mock_data"/>
-        </menu>
-    </item>
+    <item android:id="@+id/settings_menu"
+        android:title="@string/settings_menu"
+        android:icon="@drawable/ic_action_settings"
+        android:showAsAction="ifRoom"/>
         
 
 </menu>

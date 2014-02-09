@@ -18,13 +18,12 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-public class SummaryActivityRank extends SummaryActivity implements Param
+public class SummaryActivityAlphabetical extends SummaryActivity implements Param
 {
 	/** Called when the activity is first created. */
 	@Override
 	public StockManager.SortParameter getParam() {
-		return SortParameter.VALUE ;
+		return SortParameter.NAME ;
 	}
-
 
 }

@@ -24,6 +24,7 @@
 
 		<activity android:name=".SummaryActivity" android:label="@string/app_name" />
 		<activity android:name=".SummaryActivityRank" android:label="@string/app_name" />
+		<activity android:name=".SummaryActivityAlphabetical" android:label="@string/app_name" />
 
 		<activity android:name=".VolumeActivity" android:label="@string/app_name" />
 

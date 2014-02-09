@@ -4,6 +4,8 @@ import java.io.IOException;
 
 import org.json.JSONException;
 
+import com.StockTake.StockManager.SortParameter;
+
 import android.app.Activity;
 import android.content.Context;
 import android.net.ConnectivityManager;
@@ -16,9 +18,13 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-public class SummaryActivity extends Activity
+public class SummaryActivity extends Activity implements Param
 {
 	/** Called when the activity is first created. */
+	@Override
+	public StockManager.SortParameter getParam() {
+		return SortParameter.NAME ;
+	}
 
 	StockManager myStockmanager;
 	
@@ -112,7 +118,7 @@ public class SummaryActivity extends Activity
 			// TODO Auto-generated method stub
 			ProgressBar pb = (ProgressBar)findViewById(R.id.progressBar1);
 			pb.setVisibility(View.GONE);
-			myStockmanager.summaryTable(parent,StockManager.SortParameter.NAME);
+			myStockmanager.summaryTable(parent,getParam());
 			super.onPostExecute(result);
 		}
 		

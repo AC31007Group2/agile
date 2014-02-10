@@ -89,7 +89,7 @@ public class SummaryActivity extends Activity implements Param
             table.addView(errorRow);
 		}
 	}
-	private class CreateFinanceObjectAsync extends AsyncTask<Activity, Void, List<String>>>
+	private class CreateFinanceObjectAsync extends AsyncTask<Activity, Void, List<String>>
 	{
 		Activity parent;
 		@Override
@@ -119,7 +119,12 @@ public class SummaryActivity extends Activity implements Param
 				problems.add("SN");
 			}
 			try{
-			myStockmanager.addPortfolioEntry("BP", "BP Amoco Plc", 192);
+				if (useBrokenData) {
+					myStockmanager.addPortfolioEntry("BPEEE", "BP Amoco Plc", 192);
+				}
+				else {
+					myStockmanager.addPortfolioEntry("BP", "BP Amoco Plc", 192);
+				}
 			}catch(Exception e)
 			{
 				problems.add("BP");

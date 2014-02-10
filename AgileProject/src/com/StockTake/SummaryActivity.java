@@ -168,19 +168,11 @@ public class SummaryActivity extends Activity implements Param
 				String[]printStore = new String[result.size()];				
 				result.toArray(printStore);
 				
-				if (result.size()==1)
-				{
-					for (int i=0; i<result.size(); i++)
-					{
-						theText=theText + printStore[i].toString();
-					}
-				}
-				else{
+				
 				for (int i=0; i<result.size(); i++)
 				{
-					if (i!=0) { theText += ", "; }
+					if (i > 0) { theText += ", "; }
 					theText += printStore[i].toString() ;
-				}
 				}
 				TextView tv = (TextView)findViewById(R.id.errorText);
 				tv.setText(theText + " shares currently unavailable");

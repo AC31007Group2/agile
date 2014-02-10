@@ -20,10 +20,6 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-import java.util.List;
-import java.util.ArrayList;
-
-
 enum status { success, failure };
 
 
@@ -89,7 +85,7 @@ public class SummaryActivity extends Activity implements Param
             table.addView(errorRow);
 		}
 	}
-	private class CreateFinanceObjectAsync extends AsyncTask<Activity, Void, List<String>>>
+	private class CreateFinanceObjectAsync extends AsyncTask<Activity, Void, status>
 	{
 		Activity parent;
 		@Override
@@ -101,66 +97,104 @@ public class SummaryActivity extends Activity implements Param
 		}
 
 		@Override
-		protected List<String> doInBackground(Activity... params) {
+		protected status doInBackground(Activity... params) {
 			// TODO Auto-generated method stub
 			parent = params[0];
 			System.out.println("summaryactivity - onclick");
 			myStockmanager.clearPortfolio();
 			SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 			boolean useBrokenData = preferences.getBoolean("is_using_broken_data", false);
+			boolean weGotAProblem =false;
 			
-			List<String> problems = new ArrayList<String>();
-			
-
-			try {
-			myStockmanager.addPortfolioEntry("SN", "Smith & Nephew Plc Ord.", 1219);
-			}catch(Exception e)
-			{
-				problems.add("SN");
-			}
-			try{
-			myStockmanager.addPortfolioEntry("BP", "BP Amoco Plc", 192);
-			}catch(Exception e)
-			{
-				problems.add("BP");
-				
-			}
-			try{
-			myStockmanager.addPortfolioEntry("HSBA", "HSBC Holdings Plc Ord.", 343);
-			}catch(Exception e)
-			{
-				problems.add("HSBA");
-			}
-			try{
-			myStockmanager.addPortfolioEntry("EXPN", "Experian", 258);
-			}catch(Exception e)
-			{
-				problems.add("EXPN");
-			}
-			try {
-				myStockmanager.addPortfolioEntry("MKS", "Marks & Spencer Ord.", 485);
-			} catch(Exception e)
-			{
-				problems.add("MKS");
-			}
+			if(useBrokenData)
+			{		
+					try {
+					myStockmanager.addPortfolioEntry("SN", "Smith & Nephew Plc Ord.", 1219);
+					}catch(Exception e)
+					{
+						weGotAProblem = true;
+					}
+					try{
+					myStockmanager.addPortfolioEntry("BPGH", "BP Amoco Plc", 192);
+					}catch(Exception e)
+					{
+						weGotAProblem = true;
+						
+					}
+					try{
+					myStockmanager.addPortfolioEntry("HSBA", "HSBC Holdings Plc Ord.", 343);
+					}catch(Exception e)
+					{
+						weGotAProblem = true;
+					}
+					try{
+					myStockmanager.addPortfolioEntry("EXPN", "Experian", 258);
+					}catch(Exception e)
+					{
+						weGotAProblem = true;
+					}
+					try {
+						myStockmanager.addPortfolioEntry("MKS", "Marks & Spencer Ord.", 485);
+					} catch(Exception e)
+					{
+						weGotAProblem = true;
+					}
 					
 				
-			return problems;
+				return !weGotAProblem? status.success : status.failure;
 				
-		
+			}
+			else
+			{
+					try {
+					myStockmanager.addPortfolioEntry("SN", "Smith & Nephew Plc Ord.", 1219);
+					}catch(Exception e)
+					{
+						weGotAProblem = true;
+					}
+					try{
+					myStockmanager.addPortfolioEntry("BP", "BP Amoco Plc", 192);
+					}catch(Exception e)
+					{
+						weGotAProblem = true;
+						
+					}
+					try{
+					myStockmanager.addPortfolioEntry("HSBA", "HSBC Holdings Plc Ord.", 343);
+					}catch(Exception e)
+					{
+						weGotAProblem = true;
+					}
+					try{
+					myStockmanager.addPortfolioEntry("EXPN", "Experian", 258);
+					}catch(Exception e)
+					{
+						weGotAProblem = true;
+					}
+					try {
+						myStockmanager.addPortfolioEntry("MKS", "Marks & Spencer Ord.", 485);
+					} catch(Exception e)
+					{
+						weGotAProblem = true;
+					}
+					
+				
+				return !weGotAProblem? status.success : status.failure;
+				
+			}
 		}
 		
 		@Override
-		protected void onPostExecute(List<String> result) {
+		protected void onPostExecute(status result) {
 			
 			// TODO Auto-generated method stub
-			if (result.isEmpty()) {
-				TextView tv = (TextView)findViewById(R.id.errorText);
-				tv.setVisibility(View.GONE);	
+			if (result == status.failure) {
+			TextView tv = (TextView)findViewById(R.id.errorText);
+			tv.setVisibility(View.VISIBLE);
 			}
 			else {
 				TextView tv = (TextView)findViewById(R.id.errorText);
-				tv.setVisibility(View.VISIBLE);	
+				tv.setVisibility(View.GONE);	
 			}
 			
 			ProgressBar pb = (ProgressBar)findViewById(R.id.progressBar1);

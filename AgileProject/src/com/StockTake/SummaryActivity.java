@@ -146,21 +146,41 @@ public class SummaryActivity extends Activity implements Param
 			}
 			else
 			{
-			try {
-		
-				myStockmanager.addPortfolioEntry("SN", "Smith & Nephew Plc Ord.", 1219);
-				myStockmanager.addPortfolioEntry("BP", "BP Amoco Plc", 192);
-				myStockmanager.addPortfolioEntry("HSBA", "HSBC Holdings Plc Ord.", 343);
-				myStockmanager.addPortfolioEntry("EXPN", "Experian", 258);
-				myStockmanager.addPortfolioEntry("MKS", "Marks & Spencer Ord.", 485);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return null;
+					try {
+					myStockmanager.addPortfolioEntry("SN", "Smith & Nephew Plc Ord.", 1219);
+					}catch(Exception e)
+					{
+						weGotAProblem = true;
+					}
+					try{
+					myStockmanager.addPortfolioEntry("BP", "BP Amoco Plc", 192);
+					}catch(Exception e)
+					{
+						weGotAProblem = true;
+						
+					}
+					try{
+					myStockmanager.addPortfolioEntry("HSBA", "HSBC Holdings Plc Ord.", 343);
+					}catch(Exception e)
+					{
+						weGotAProblem = true;
+					}
+					try{
+					myStockmanager.addPortfolioEntry("EXPN", "Experian", 258);
+					}catch(Exception e)
+					{
+						weGotAProblem = true;
+					}
+					try {
+						myStockmanager.addPortfolioEntry("MKS", "Marks & Spencer Ord.", 485);
+					} catch(Exception e)
+					{
+						weGotAProblem = true;
+					}
+					
+				
+				return !weGotAProblem? status.success : status.failure;
+				
 			}
 		}
 		

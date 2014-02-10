@@ -20,6 +20,9 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+enum status { success, failure };
+
+
 public class SummaryActivity extends Activity implements Param
 {
 	/** Called when the activity is first created. */
@@ -82,7 +85,7 @@ public class SummaryActivity extends Activity implements Param
             table.addView(errorRow);
 		}
 	}
-	private class CreateFinanceObjectAsync extends AsyncTask<Activity, Void, Void>
+	private class CreateFinanceObjectAsync extends AsyncTask<Activity, Void, status>
 	{
 		Activity parent;
 		@Override
@@ -94,24 +97,17 @@ public class SummaryActivity extends Activity implements Param
 		}
 
 		@Override
-		protected Void doInBackground(Activity... params) {
+		protected status doInBackground(Activity... params) {
 			// TODO Auto-generated method stub
 			parent = params[0];
 			System.out.println("summaryactivity - onclick");
 			myStockmanager.clearPortfolio();
 			SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 			boolean useBrokenData = preferences.getBoolean("is_using_broken_data", false);
-			boolean weGotAProblem = false;
-			
-			/*TextView tv = (TextView)findViewById(R.id.errorText);
-			tv.setVisibility(View.GONE);*/
+			boolean weGotAProblem =false;
 			
 			if(useBrokenData)
-			{
-				try {
-					
-					
-					
+			{		
 					try {
 					myStockmanager.addPortfolioEntry("SN", "Smith & Nephew Plc Ord.", 1219);
 					}catch(Exception e)
@@ -137,30 +133,21 @@ public class SummaryActivity extends Activity implements Param
 					{
 						weGotAProblem = true;
 					}
-					myStockmanager.addPortfolioEntry("MKS", "Marks & Spencer Ord.", 485);
+					try {
+						myStockmanager.addPortfolioEntry("MKS", "Marks & Spencer Ord.", 485);
+					} catch(Exception e)
+					{
+						weGotAProblem = true;
+					}
 					
-					/*if(weGotAProblem){
-						tv.setVisibility(View.VISIBLE);
-					}*/
-					
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (JSONException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
 				
-				
-				return null;
+				return !weGotAProblem? status.success : status.failure;
 				
 			}
 			else
 			{
 			try {
-				/*TextView tv = (TextView)findViewById(R.id.errorText);
-				tv.setVisibility(View.GONE);
-				tv.setText("");*/
+		
 				myStockmanager.addPortfolioEntry("SN", "Smith & Nephew Plc Ord.", 1219);
 				myStockmanager.addPortfolioEntry("BP", "BP Amoco Plc", 192);
 				myStockmanager.addPortfolioEntry("HSBA", "HSBC Holdings Plc Ord.", 343);
@@ -178,8 +165,18 @@ public class SummaryActivity extends Activity implements Param
 		}
 		
 		@Override
-		protected void onPostExecute(Void result) {
+		protected void onPostExecute(status result) {
+			
 			// TODO Auto-generated method stub
+			if (result == status.failure) {
+			TextView tv = (TextView)findViewById(R.id.errorText);
+			tv.setVisibility(View.VISIBLE);
+			}
+			else {
+				TextView tv = (TextView)findViewById(R.id.errorText);
+				tv.setVisibility(View.GONE);	
+			}
+			
 			ProgressBar pb = (ProgressBar)findViewById(R.id.progressBar1);
 			pb.setVisibility(View.GONE);
 			myStockmanager.summaryTable(parent,getParam());

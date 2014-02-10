@@ -44,7 +44,8 @@
 
     <TextView
         android:id="@+id/errorText"
-        android:text=""
-        />
+        android:text="One or more of your shares are currently unavailable from the market server"
+        android:textColor="#FF0000"
+        android:visibility="gone" />
  
 </TableLayout>

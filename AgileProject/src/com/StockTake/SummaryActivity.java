@@ -157,14 +157,33 @@ public class SummaryActivity extends Activity implements Param
 		
 		@Override
 		protected void onPostExecute(List<String> result) {
-			
+			String theText="";
+					
 			// TODO Auto-generated method stub
 			if (result.isEmpty()) {
 				TextView tv = (TextView)findViewById(R.id.errorText);
 				tv.setVisibility(View.GONE);	
 			}
 			else {
+				String[]printStore = new String[result.size()];				
+				result.toArray(printStore);
+				
+				if (result.size()==1)
+				{
+					for (int i=0; i<result.size(); i++)
+					{
+						theText=theText + printStore[i].toString();
+					}
+				}
+				else{
+				for (int i=0; i<result.size(); i++)
+				{
+					if (i!=0) { theText += ", "; }
+					theText += printStore[i].toString() ;
+				}
+				}
 				TextView tv = (TextView)findViewById(R.id.errorText);
+				tv.setText(theText + " shares currently unavailable");
 				tv.setVisibility(View.VISIBLE);	
 			}
 			

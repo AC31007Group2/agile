@@ -57,7 +57,7 @@ public class AgileProjectActivity extends TabActivity {
 
 	    intent = new Intent().setClass(this, SummaryActivityRank.class);
 	 // Initialize a TabSpec for each tab and add it to the TabHost
-	    spec = tabHost.newTabSpec("Summary").setIndicator("Summary (Rank)",
+	    spec = tabHost.newTabSpec("Summary").setIndicator("Summary (Total)",
 	                      res.getDrawable(R.drawable.ic_tab_summary_rank))
 	                  .setContent(intent);
 	    tabHost.addTab(spec);

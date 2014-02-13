@@ -1,5 +1,6 @@
 package com.StockTake;
 
+import java.security.acl.LastOwnerException;
 import java.util.Comparator;
 
 
@@ -12,6 +13,7 @@ public class Finance
 	public float close = 0;
 	public int volume = 0;			// Looks like a historic volume from x (4) days ago, using the CSV from yahoo api.
 	public int instant_volume = 0;  // Current volume, set when the stock object is being created, uses the data from goole api.
+	public float total; 			//total stock value.
 	public boolean is_run;
 	public boolean is_rocket;
 	public boolean is_plummet;
@@ -104,8 +106,19 @@ public class Finance
 	{
 		System.out.println("finance - getinstant");
 		return instant_volume;
-	}
+	}	
 	
+	
+	public float getTotal() {
+		System.out.println("finance - getTotal");
+		return total;
+	}
+
+	public void setTotal(float total) {
+		System.out.println("finance - setTotl");
+		this.total = total;
+	}
+
 	public boolean isRun() {
 		System.out.println("finance - isrun");
 		return is_run;
@@ -168,6 +181,20 @@ public class Finance
 				if (o1.last > o2.last) {
 					return -1;
 				} else if (o1.last == o2.last) {
+					return 0;
+				} else {
+					return 1;
+				}
+		}
+	}
+	
+	class TotalComparator implements Comparator<Finance> {
+	    @Override
+		public int compare(Finance o1, Finance o2) {
+			
+				if ((o1.total)> (o2.total)) {
+					return -1;
+				} else if ((o1.total) == (o2.total)) {
 					return 0;
 				} else {
 					return 1;

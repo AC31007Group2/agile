@@ -113,7 +113,7 @@ public class SummaryActivity extends Activity implements Param
 			
 
 			try {
-			myStockmanager.addPortfolioEntry("SN", "Smith & Nephew Plc Ord.", 1219);
+			myStockmanager.addPortfolioEntry("SN", "S & N", 1219);
 			}catch(Exception e)
 			{
 				problems.add("SN");
@@ -123,7 +123,7 @@ public class SummaryActivity extends Activity implements Param
 					myStockmanager.addPortfolioEntry("BPEEE", "BP Amoco Plc", 192);
 				}
 				else {
-					myStockmanager.addPortfolioEntry("BP", "BP Amoco Plc", 192);
+					myStockmanager.addPortfolioEntry("BP", "BP", 192);
 				}
 			}catch(Exception e)
 			{
@@ -131,7 +131,7 @@ public class SummaryActivity extends Activity implements Param
 				
 			}
 			try{
-			myStockmanager.addPortfolioEntry("HSBA", "HSBC Holdings Plc Ord.", 343);
+			myStockmanager.addPortfolioEntry("HSBA", "HSBC.", 343);
 			}catch(Exception e)
 			{
 				problems.add("HSBA");
@@ -143,7 +143,7 @@ public class SummaryActivity extends Activity implements Param
 				problems.add("EXPN");
 			}
 			try {
-				myStockmanager.addPortfolioEntry("MKS", "Marks & Spencer Ord.", 485);
+				myStockmanager.addPortfolioEntry("MKS", "M & S", 485);
 			} catch(Exception e)
 			{
 				problems.add("MKS");

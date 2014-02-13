@@ -33,6 +33,7 @@ public class StockManager extends Application
 	private HashMap<Finance, Float> portfolio = new HashMap<Finance, Float>();
 	
 	List<Finance> portfolioList = new LinkedList<Finance>();
+
 	
 	private HashMap<String, String> stockNamesLong = new HashMap<String, String>();
 	
@@ -86,6 +87,7 @@ public class StockManager extends Application
 		System.out.println("addportfolio");
 		System.out.println("The Stockcode is: " + stockCode);
 		Finance stockObj = createFinanceObject(stockCode); //doesnt work!
+		stockObj.setTotal(stockObj.last*numberOfShares);
 		System.out.println("finance object created");
 		if (portfolio.containsKey(stockObj))
 		{
@@ -146,7 +148,8 @@ public class StockManager extends Application
 				break;
 			
 			case VALUE:
-				Collections.sort(portfolioList,new ValueComparator());
+				Collections.sort(portfolioList,new TotalComparator());
+			//	Collections.sort(list)
 				break;
 				
 			default:
@@ -169,14 +172,15 @@ public class StockManager extends Application
 			// half up rounding mode - so reduces errors to +/- £1
 			BigDecimal stockValueRounded = new BigDecimal(Double.toString(thisStockValue));
 			stockValueRounded = stockValueRounded.setScale(0, BigDecimal.ROUND_DOWN);
-			float subTotal = portfolio.get(stockObj) * thisStockValue;
+			
+			//float subTotal = portfolio.get(stockObj) * thisStockValue;
 
 			String longName = stockNamesLong.get(stockObj.getName().toString());
 
 			stockName[stockCounter].setText(longName);
-			stockName[stockCounter].setTypeface(Typeface.DEFAULT, Typeface.BOLD);
+			stockName[stockCounter].setTypeface(Typeface.DEFAULT);
 			stockName[stockCounter].setTextColor(Color.rgb(58, 128, 255));
-			stockName[stockCounter].setTextSize(16f);
+			stockName[stockCounter].setTextSize(20f);
 			stockName[stockCounter].setHeight(70);
 			stockName[stockCounter].setWidth(200);
 			stockName[stockCounter].setGravity(Gravity.LEFT | Gravity.CENTER_VERTICAL);
@@ -191,7 +195,7 @@ public class StockManager extends Application
 			stockValue[stockCounter].setTextSize(20f);
 			stockValue[stockCounter].setSingleLine(true);
 
-			stockTotal[stockCounter].setText("£" + String.format("%,3.0f", subTotal));
+			stockTotal[stockCounter].setText("£" + String.format("%,3.0f", stockObj.getTotal()));
 			stockTotal[stockCounter].setGravity(Gravity.RIGHT | Gravity.CENTER_VERTICAL);
 			stockTotal[stockCounter].setTextSize(20f);
 			stockTotal[stockCounter].setSingleLine(true);

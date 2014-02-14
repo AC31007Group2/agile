@@ -33,7 +33,6 @@ public class StockManager extends Application
 	private HashMap<Finance, Float> portfolio = new HashMap<Finance, Float>();
 	
 	List<Finance> portfolioList = new LinkedList<Finance>();
-
 	
 	private HashMap<String, String> stockNamesLong = new HashMap<String, String>();
 	
@@ -112,6 +111,7 @@ public class StockManager extends Application
 		{
 			value += stockObj.getLast() * portfolio.get(stockObj);
 		}
+		
 		return value;
 	}
 
@@ -149,7 +149,6 @@ public class StockManager extends Application
 			
 			case VALUE:
 				Collections.sort(portfolioList,new TotalComparator());
-			//	Collections.sort(list)
 				break;
 				
 			default:
@@ -173,6 +172,12 @@ public class StockManager extends Application
 			BigDecimal stockValueRounded = new BigDecimal(Double.toString(thisStockValue));
 			stockValueRounded = stockValueRounded.setScale(0, BigDecimal.ROUND_DOWN);
 			
+			float thisStockTotal = stockObj.getTotal();
+			
+			//rounding down the stock total.
+			BigDecimal stockTotalRounded = new BigDecimal(Double.toString(thisStockTotal));
+			stockTotalRounded = stockTotalRounded.setScale(0, BigDecimal.ROUND_DOWN);	
+			
 			//float subTotal = portfolio.get(stockObj) * thisStockValue;
 
 			String longName = stockNamesLong.get(stockObj.getName().toString());
@@ -195,7 +200,7 @@ public class StockManager extends Application
 			stockValue[stockCounter].setTextSize(20f);
 			stockValue[stockCounter].setSingleLine(true);
 
-			stockTotal[stockCounter].setText("£" + String.format("%,3.0f", stockObj.getTotal()));
+			stockTotal[stockCounter].setText("£" + String.format("%,3.0f", stockTotalRounded));
 			stockTotal[stockCounter].setGravity(Gravity.RIGHT | Gravity.CENTER_VERTICAL);
 			stockTotal[stockCounter].setTextSize(20f);
 			stockTotal[stockCounter].setSingleLine(true);
@@ -211,8 +216,14 @@ public class StockManager extends Application
 			System.out.println("6");
 		}
 		
-System.out.println("1");
-		String totalVal = "Total Portfolio Value:     £" + String.format("%,.0f", getPortfolioTotal());
+		float potfolioTotal = getPortfolioTotal();
+		
+		//rounding down the Portfolio Total.
+		BigDecimal potfolioTotalRounded = new BigDecimal(Double.toString(potfolioTotal));
+		potfolioTotalRounded = potfolioTotalRounded.setScale(0, BigDecimal.ROUND_DOWN);	
+		
+		System.out.println("1");
+		String totalVal = "Total Portfolio Value:     £" + String.format("%,.0f", potfolioTotalRounded);
 		portfolioTotal.setText(totalVal);
 		portfolioTotal.setTextSize(20f);
 		portfolioTotal.setHeight(100);

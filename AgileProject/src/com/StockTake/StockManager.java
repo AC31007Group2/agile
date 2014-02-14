@@ -39,8 +39,8 @@ public class StockManager extends Application
 	FeedParser newParse;
 
 	private String myState;
-	
-   public enum SortParameter 
+
+public enum SortParameter 
    {
         NAME, VALUE
    }
@@ -53,6 +53,7 @@ public class StockManager extends Application
 	public void setState(String s){
 		System.out.println("stockmanager - setstate");
 		myState = s;}
+
 
 	//clear the portfolio hashmap - doesn't delete but keep overall structure without content
 	public void clearPortfolio(){
@@ -87,6 +88,7 @@ public class StockManager extends Application
 		System.out.println("The Stockcode is: " + stockCode);
 		Finance stockObj = createFinanceObject(stockCode); //doesnt work!
 		stockObj.setTotal(stockObj.last*numberOfShares);
+		
 		System.out.println("finance object created");
 		if (portfolio.containsKey(stockObj))
 		{
@@ -170,9 +172,9 @@ public class StockManager extends Application
 
 			// half up rounding mode - so reduces errors to +/- £1
 			BigDecimal stockValueRounded = new BigDecimal(Double.toString(thisStockValue));
-			stockValueRounded = stockValueRounded.setScale(0, BigDecimal.ROUND_DOWN);
+			stockValueRounded = stockValueRounded.setScale(2, BigDecimal.ROUND_DOWN);
 			
-			float thisStockTotal = stockObj.getTotal();
+			float thisStockTotal = (stockValueRounded.floatValue() * portfolio.get(stockObj));;
 			
 			//rounding down the stock total.
 			BigDecimal stockTotalRounded = new BigDecimal(Double.toString(thisStockTotal));
@@ -195,7 +197,7 @@ public class StockManager extends Application
 			stockShares[stockCounter].setTextSize(20f);
 			stockShares[stockCounter].setSingleLine(true);
 
-			stockValue[stockCounter].setText("£" + String.format("%.2f", thisStockValue));
+			stockValue[stockCounter].setText("£" + String.format("%.2f", stockValueRounded));
 			stockValue[stockCounter].setGravity(Gravity.RIGHT | Gravity.CENTER_VERTICAL);
 			stockValue[stockCounter].setTextSize(20f);
 			stockValue[stockCounter].setSingleLine(true);

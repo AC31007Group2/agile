@@ -1,4 +1,6 @@
-package com.StockTake;
+package com.StockTake.test;
+
+import com.StockTake.Finance;
 
 import junit.framework.Test;
 import junit.framework.TestSuite;

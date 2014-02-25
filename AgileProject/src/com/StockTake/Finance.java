@@ -51,6 +51,8 @@ public class Finance
 	public String getName()
 	{
 		System.out.println("finance - getname");
+		System.out.println("finance name: " + name);
+
 		return name;
 	}
 

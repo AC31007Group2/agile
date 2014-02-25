@@ -1,15 +1,14 @@
-package com.StockTake;
+package com.StockTake.test;
 
 import java.io.IOException;
-
 import org.json.JSONException;
-
+import com.StockTake.Finance;
+import com.StockTake.StockManager;
 import junit.framework.Assert;
 import junit.framework.TestCase;
 
 public class StockManagerTest extends TestCase
 {
-
 	StockManager stockManager = new StockManager();
 	
 	public void testSetGetState()
@@ -43,5 +42,4 @@ public class StockManagerTest extends TestCase
 		Assert.assertNotNull(finance);
 		Assert.assertEquals("BP", finance.getName());
 	}
-
 }

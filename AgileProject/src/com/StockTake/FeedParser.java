@@ -73,24 +73,27 @@ public class FeedParser
 
 	}
 	
-	public void getHistoric(Finance toPopulate, String stockToGet) {
-		
-		System.out.println("feedparser - gethostroc");
-		BufferedReader csvBr;
-		String csvData[] = null;
+	public boolean getHistoric(Finance toPopulate, String stockToGet) {
+
+			System.out.println("feedparser - gethistoric");
+			BufferedReader csvBr;
+			String csvData[] = null;
+			System.out.println("failed here2");
+			try {
+				System.out.println("failed here3");
+				csvBr = getCsvFeed(stockToGet);
+				csvData = parseCsvString(csvBr);
 				
-		try {
-			csvBr = getCsvFeed(stockToGet);
-			csvData = parseCsvString(csvBr);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
-		toPopulate.setClose(Float.parseFloat(csvData[0]) / 100f);
-		toPopulate.setVolume(Integer.parseInt(csvData[1]));
-		
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				System.out.println("An exception occurred !!!!! " + e);
+				return false;
+			}
+			
+			toPopulate.setClose(Float.parseFloat(csvData[0]) / 100f);
+			toPopulate.setVolume(Integer.parseInt(csvData[1]));
+			return true;
 
 	}
 	
@@ -104,12 +107,16 @@ public class FeedParser
 		System.out.println("feedparser - getCsvFeed - Get the url - Stock "+stockSymbol);
 		
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(m_context);
+		System.out.println("this point reached 0");
 		boolean useTestData = preferences.getBoolean("is_using_mock_data", false);
+		System.out.println("this point reached 1");
 		URL feedUrl = new URL("http://ichart.finance.yahoo.com/table.csv?s=" + stockSymbol + ".L" + "&a=" + month + "&b=" + day + "&c="+year);
 		if(useTestData)
 		{
 			feedUrl = new URL("http://beberry.lv/stocks/" + stockSymbol + ".csv");
 		}
+		System.out.println("this point reached 2");
+
 		// Generate URL
 		//URL feedUrl = new URL("http://ichart.finance.yahoo.com/table.csv?s=" + stockSymbol + ".L" + "&a=" + month + "&b=" + day + "&c="+year);
 		

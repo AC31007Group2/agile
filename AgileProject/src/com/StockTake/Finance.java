@@ -10,8 +10,8 @@ public class Finance
 	public String name; 			// Stock name
 	public float last  = 0;			// Last stock value
 	public String market; 			// Market
-	public float close = 0;
-	public int volume = 0;			// Looks like a historic volume from x (4) days ago, using the CSV from yahoo api.
+	public float close;
+	public int volume;				// Looks like a historic volume from x (4) days ago, using the CSV from yahoo api.
 	public int instant_volume = 0;  // Current volume, set when the stock object is being created, uses the data from goole api.
 	public float total; 			//total stock value.
 	public boolean is_run;
@@ -50,9 +50,6 @@ public class Finance
 
 	public String getName()
 	{
-		System.out.println("finance - getname");
-		System.out.println("finance name: " + name);
-
 		return name;
 	}
 

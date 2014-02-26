@@ -34,35 +34,43 @@ public class FeedParserTest extends AndroidTestCase {
 	{
 		return new TestSuite(FeedParserTest.class);
 	}
-
+	
+	/**
+	 * OK
+	 */
 	public void testNotNull() throws Throwable
 	{
 		Assert.assertNotSame(feedparse, null);
 	}
 
+	/**
+	 * OK
+	 */
 	public void testJSONParse() throws Throwable
 	{
 		feedparse.parseJSON(finance, "BP");
+		//System.out.println(finance.getName());
 		assertNotNull(finance.getClose());
 		assertNotNull(finance.getName());
 		assertNotNull(finance.getSummary());
 		assertNotNull(finance.getInstantVolume());
 		assertNotNull(finance.getLast());
 		assertNotNull(finance.getMarket());
+				
+		Assert.assertEquals((String)finance.getName(), "BP");
 	}
 
+	
 	public void testGetHistoric() throws Throwable
 	{
 		Assert.assertNotNull(finance);
 		finance.setName("BP");
-		assertNotNull(finance.getName());
-		System.out.println("test data: " + finance.getName());
+		Assert.assertEquals((String)finance.getName(), "BP");
 
-		
-		//feedparse.getHistoric(finance, "BP");
-		//Assert.assertSame((String)finance.getName(), "BP");
 		Assert.assertEquals(feedparse.getHistoric(finance, "BP"), true);
 		
+		Assert.assertNotNull(finance.getVolume());
+		Assert.assertNotNull(finance.getClose());
 	}
 		
 	public void testVolCharToInt() throws Throwable

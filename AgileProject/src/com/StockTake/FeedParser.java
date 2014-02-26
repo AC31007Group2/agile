@@ -75,24 +75,23 @@ public class FeedParser
 	
 	public boolean getHistoric(Finance toPopulate, String stockToGet) {
 
-			System.out.println("feedparser - gethistoric");
 			BufferedReader csvBr;
 			String csvData[] = null;
-			System.out.println("failed here2");
+			
 			try {
-				System.out.println("failed here3");
 				csvBr = getCsvFeed(stockToGet);
 				csvData = parseCsvString(csvBr);
 				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-				System.out.println("An exception occurred !!!!! " + e);
+				
 				return false;
 			}
 			
 			toPopulate.setClose(Float.parseFloat(csvData[0]) / 100f);
 			toPopulate.setVolume(Integer.parseInt(csvData[1]));
+			
 			return true;
 
 	}

@@ -10,12 +10,6 @@ import android.test.AndroidTestCase;
 public class FinanceTest extends AndroidTestCase
 {
 	Finance finance;
-/*
-	public FinanceTest()
-	{
-		junit.textui.TestRunner.run(suite());
-	}
-	*/
 	
 	public static void main(String[] args)
 	{
@@ -85,12 +79,17 @@ public class FinanceTest extends AndroidTestCase
 		finance.setVolume(1000);
 		finance.setInstantVolume(1099);
 		finance.calcRun();
+		
 		assertFalse(finance.isRun());
+		
 		finance.setInstantVolume(1100);
 		finance.calcRun();
+		
 		assertFalse(finance.is_run);
+		
 		finance.setInstantVolume(1101);
 		finance.calcRun();
+		
 		assertTrue(finance.is_run);		
 	}
 	
@@ -100,20 +99,28 @@ public class FinanceTest extends AndroidTestCase
 		finance.setClose(1000f);
 		finance.setLast(1099);
 		finance.calcRocketPlummet();
+		
 		assertFalse(finance.isRocket());
+		
 		finance.setLast(1100);
 		finance.calcRocketPlummet();
+		
 		assertFalse(finance.isRocket());
+		
 		finance.setLast(1101);
 		finance.calcRocketPlummet();
+		
 		assertTrue(finance.isRocket());
+		
 		// Plummet boundary tests...
 		finance.setLast(801);
 		finance.calcRocketPlummet();
 		assertFalse(finance.isPlummet());
+		
 		finance.setLast(800);
 		finance.calcRocketPlummet();
 		assertFalse(finance.isPlummet());
+		
 		finance.setLast(799);
 		finance.calcRocketPlummet();
 		assertTrue(finance.isPlummet());

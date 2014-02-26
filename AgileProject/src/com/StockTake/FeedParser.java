@@ -28,9 +28,10 @@ public class FeedParser
 	public void parseJSON(Finance toPopulate, String currentStock) throws IOException, JSONException
 	{
 		// Create JSON and Finance objects
-		JSONObject jObject;
+		
 		System.out.println("Feedparser - perseJSON");
-
+		JSONObject jObject;
+		
 		// Generate URL
 		URL feedUrl = new URL("http://finance.google.com/finance/info?client=ig&infotype=infoquoteall&q=LON:" + currentStock);
 		// Read JSON
@@ -75,30 +76,35 @@ public class FeedParser
 	
 	public boolean getHistoric(Finance toPopulate, String stockToGet) {
 
+
 			BufferedReader csvBr;
 			String csvData[] = null;
 			
 			try {
+				System.out.println("AAAAAAZZ3");
 				csvBr   = getCsvFeed(stockToGet);
 				csvData = parseCsvString(csvBr);
+				System.out.println("AAAAAAZZ4");
 				
-			} catch (Exception e)
+			}
+			catch (Exception e)
 			{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 				
 				return false;
 			}
-			
+			System.out.println("AAAAAAZZ");
 			if(csvData != null)
 			{
 				toPopulate.setClose(Float.parseFloat(csvData[0]) / 100f);
 				toPopulate.setVolume(Integer.parseInt(csvData[1]));
-			
+				System.out.println("AAAAAAZZ1");
 				return true;
 			}
 			else
 			{
+				System.out.println("AAAAAAZZ2");
 				return false;
 			}
 	}

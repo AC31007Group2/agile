@@ -1,30 +1,22 @@
 package com.StockTake.test;
 
-//import java.lang.reflect.Method;
-
-//import android.content.Context;
 import java.io.BufferedReader;
 
 import android.content.Intent;
 import android.test.AndroidTestCase;
-//import android.test.InstrumentationTestCase;
-//import android.test.ServiceTestCase;
 
 import com.StockTake.FeedParser;
-//import com.StockTake.FeedParserTest;
 import com.StockTake.Finance;
 
 import junit.framework.Assert;
 import junit.framework.Test;
-//import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
-public class FeedParserTest extends AndroidTestCase {
-
-	
+public class FeedParserTest extends AndroidTestCase
+{
 	FeedParser feedparse;
 	Finance finance;
-	Intent intent;// = new Intent(getInstrumentation().getTargetContext(),
+	Intent intent;
 	
 	protected void setUp() throws Exception {
 		super.setUp();

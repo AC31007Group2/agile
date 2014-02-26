@@ -11,6 +11,7 @@ import org.json.JSONException;
 
 import android.app.Activity;
 import android.app.Application;
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.text.Html;
@@ -21,83 +22,93 @@ import android.widget.TextView;
 
 public class StockManager extends Application
 {
+	public FeedParser newParse;
+	private Context m_context;
+
 	
 	@Override
 	public void onCreate() {
 		// TODO Auto-generated method stub
 		super.onCreate();
+
 		this.newParse = new FeedParser(getApplicationContext());
+
 	}
 
-	// private Finance stockObj;
-	private HashMap<Finance, Float> portfolio = new HashMap<Finance, Float>();
+
+	//private HashMap<Finance, Float> portfolio = new HashMap<Finance, Float>();
 	
-	List<Finance> portfolioList = new LinkedList<Finance>();
+	private List<Finance> portfolioList = new LinkedList<Finance>();
 	
 	private HashMap<String, String> stockNamesLong = new HashMap<String, String>();
 	
-	FeedParser newParse;
+
 
 	private String myState;
 
-public enum SortParameter 
-   {
-        NAME, VALUE
-   }
+	public enum SortParameter 
+	{
+		NAME, VALUE
+	}
 	    
-
 	//gets or sets the state
-	public String getState(){
-		System.out.println("stockmanager - getstate");
-		return myState;}
-	public void setState(String s){
-		System.out.println("stockmanager - setstate");
-		myState = s;}
-
+	public String getState()
+	{
+		return myState;
+	}
+	
+	public void setState(String s)
+	{
+		myState = s;
+	}
 
 	//clear the portfolio hashmap - doesn't delete but keep overall structure without content
-	public void clearPortfolio(){
-		System.out.println("stockmanager - clearportfolio");
-		portfolio.clear();
+	public void clearPortfolio()
+	{
 		portfolioList.clear();
 		stockNamesLong.clear();
 	}
 
 	//create a new finance object
-	public Finance createFinanceObject(String stockCode) throws IOException, JSONException{
-		System.out.println("stockmanager - createfinance");
+	public Finance createFinanceObject(String stockCode) throws IOException, JSONException
+	{
 		Finance newStock = new Finance();
-		System.out.println("stockmanager - createfinance - finance created");
+
 		//create a new parser with the new Finance Object
-		newParse.parseJSON(newStock, stockCode);
-		newParse.getHistoric(newStock, stockCode);
+		this.newParse.parseJSON(newStock, stockCode);
+		this.newParse.getHistoric(newStock, stockCode);
+
 		//initialise newStock
-		System.out.println("stockmanager - createfinance - end JSON");
-		
 		newStock.calcRun();
 		newStock.calcRocketPlummet();
-		System.out.println("stockmanager - createfinance - before return");
+
 		return newStock;
 	}
 
 	//add entry to portfolio hashmap
-	public boolean addPortfolioEntry(String stockCode, String stockNameLong, int numberOfShares) throws IOException, JSONException{
-		System.out.println("stockmanager - addportfolio");
+	public boolean addPortfolioEntry(String stockCode, String stockNameLong, int numberOfShares) throws IOException, JSONException
+	{
 		float shareQuantity = (float) numberOfShares;
-		System.out.println("addportfolio");
-		System.out.println("The Stockcode is: " + stockCode);
+
 		Finance stockObj = createFinanceObject(stockCode); //doesnt work!
-		stockObj.setTotal(stockObj.last*numberOfShares);
 		
-		System.out.println("finance object created");
-		if (portfolio.containsKey(stockObj))
+
+		
+		stockObj.setTotal(stockObj.last*numberOfShares);
+		stockObj.setNumberOfShares(numberOfShares);
+		
+		System.out.println(stockObj.last+"Z1z1"+stockObj.getName()+stockObj.getTotal());
+		
+		if(this.portfolioList.contains(stockObj))
 		{
 			return false;
 		}
-		System.out.println("portfolio contains key");
-		portfolio.put(stockObj, shareQuantity); //add new Finance object to portfolio hashmap
+		
+
+		//portfolio.put(stockObj, shareQuantity); //add new Finance object to portfolio hashmap
 		portfolioList.add(stockObj);
 		stockNamesLong.put(stockCode.substring(stockCode.indexOf(":") + 1), stockNameLong);
+		
 		return true;
 	}
 	
@@ -105,13 +116,14 @@ public enum SortParameter
 	{
 		System.out.println("stockmanager - getprotfolio");
 		float value = 0;
-		if (portfolio.isEmpty())
+		if (this.portfolioList.isEmpty())
 		{
 			return 0;
 		}
-		for (Finance stockObj : portfolio.keySet())
+		
+		for (Finance stockObj : portfolioList)
 		{
-			value += stockObj.getLast() * portfolio.get(stockObj);
+			value += stockObj.getTotal();
 		}
 		
 		return value;
@@ -119,27 +131,23 @@ public enum SortParameter
 
 	public void summaryTable(Activity contextActivity,SortParameter sortBy)
 	{
-		System.out.println("Stockmanager - summarytable");
-		TableLayout table = (TableLayout) contextActivity.findViewById(R.id.tableLayout1); // Find
-																							// TableLayout
-																							// defined
-																							// in
-																							// main.xml
+		// Find TableLayout defined in main.xml
+		TableLayout table = (TableLayout) contextActivity.findViewById(R.id.tableLayout1); 
 
 		table.setStretchAllColumns(true);
 		table.setShrinkAllColumns(true);
 
 		// Stock Loop
-		int stockCount = portfolio.size();
+		int stockCount   = portfolioList.size();
 		int stockCounter = 0;
 
-		TableRow[] rowStock = new TableRow[stockCount];
-		TextView[] stockName = new TextView[stockCount];
+		TableRow[] rowStock    = new TableRow[stockCount];
+		TextView[] stockName   = new TextView[stockCount];
 		TextView[] stockShares = new TextView[stockCount];
-		TextView[] stockValue = new TextView[stockCount];
-		TextView[] stockTotal = new TextView[stockCount];
+		TextView[] stockValue  = new TextView[stockCount];
+		TextView[] stockTotal  = new TextView[stockCount];
 
-		TableRow rowTotal = new TableRow(contextActivity);
+		TableRow rowTotal       = new TableRow(contextActivity);
 		TextView portfolioTotal = new TextView(contextActivity);
 		
 		// Sort the list, depending on the sort parameter.
@@ -160,13 +168,11 @@ public enum SortParameter
 		
 		for (Finance stockObj : portfolioList)
 		{
-			
-			System.out.println("3");
-			rowStock[stockCounter] = new TableRow(contextActivity);
-			stockName[stockCounter] = new TextView(contextActivity);
+			rowStock[stockCounter]    = new TableRow(contextActivity);
+			stockName[stockCounter]   = new TextView(contextActivity);
 			stockShares[stockCounter] = new TextView(contextActivity);
-			stockValue[stockCounter] = new TextView(contextActivity);
-			stockTotal[stockCounter] = new TextView(contextActivity);
+			stockValue[stockCounter]  = new TextView(contextActivity);
+			stockTotal[stockCounter]  = new TextView(contextActivity);
 
 			float thisStockValue = stockObj.getLast();
 
@@ -174,7 +180,7 @@ public enum SortParameter
 			BigDecimal stockValueRounded = new BigDecimal(Double.toString(thisStockValue));
 			stockValueRounded = stockValueRounded.setScale(2, BigDecimal.ROUND_DOWN);
 			
-			float thisStockTotal = (stockValueRounded.floatValue() * portfolio.get(stockObj));;
+			float thisStockTotal = stockObj.getTotal();
 			
 			//rounding down the stock total.
 			BigDecimal stockTotalRounded = new BigDecimal(Double.toString(thisStockTotal));
@@ -192,7 +198,7 @@ public enum SortParameter
 			stockName[stockCounter].setWidth(200);
 			stockName[stockCounter].setGravity(Gravity.LEFT | Gravity.CENTER_VERTICAL);
 
-			stockShares[stockCounter].setText(String.format("%,3.0f", portfolio.get(stockObj)));
+			stockShares[stockCounter].setText(String.format("%,3.0f", (float)stockObj.getNumberOfShares()));
 			stockShares[stockCounter].setGravity(Gravity.RIGHT | Gravity.CENTER_VERTICAL);
 			stockShares[stockCounter].setTextSize(20f);
 			stockShares[stockCounter].setSingleLine(true);
@@ -215,7 +221,6 @@ public enum SortParameter
 			table.addView(rowStock[stockCounter]);
 
 			stockCounter++;
-			System.out.println("6");
 		}
 		
 		float potfolioTotal = getPortfolioTotal();
@@ -224,7 +229,6 @@ public enum SortParameter
 		BigDecimal potfolioTotalRounded = new BigDecimal(Double.toString(potfolioTotal));
 		potfolioTotalRounded = potfolioTotalRounded.setScale(0, BigDecimal.ROUND_DOWN);	
 		
-		System.out.println("1");
 		String totalVal = "Total Portfolio Value:     £" + String.format("%,.0f", potfolioTotalRounded);
 		portfolioTotal.setText(totalVal);
 		portfolioTotal.setTextSize(20f);
@@ -236,23 +240,17 @@ public enum SortParameter
 
 		rowTotal.addView(portfolioTotal, params);
 		table.addView(rowTotal);
-		System.out.println("7");
 	}
 
-	
 	public int volumeTable(Activity contextActivity)
 	{
-		System.out.println("stockmanager - volumnetable");
-		TableLayout table = (TableLayout) contextActivity.findViewById(R.id.tableLayout2); // Find
-																							// TableLayout
-																							// defined
-																							// in
-																							// main.xml
-
+		// Find TableLayout defined in main.xml
+		TableLayout table = (TableLayout) contextActivity.findViewById(R.id.tableLayout2); 
+		
 		table.setStretchAllColumns(true);
 		table.setShrinkAllColumns(true);
 
-		int stockCount = portfolio.size();
+		int stockCount = portfolioList.size();
 		int stockCounter = 0;
 		int runs = 0;
 
@@ -265,8 +263,6 @@ public enum SortParameter
 		
 		for (Finance stockObj : portfolioList)
 		{
-			
-
 			rowRun[stockCounter] = new TableRow(contextActivity);
 			runStock[stockCounter] = new TextView(contextActivity);
 			runLabel[stockCounter] = new TextView(contextActivity);
@@ -289,30 +285,24 @@ public enum SortParameter
 			table.addView(rowRun[stockCounter]);
 
 			stockCounter++;
-
 		}
 
 		return runs;
-
 	}
 
 	public int rocketTable(Activity contextActivity)
 	{
-		System.out.println("stockmanager - rockettable");
-		TableLayout table = (TableLayout) contextActivity.findViewById(R.id.tableLayout3); // Find
-																							// TableLayout
-																							// defined
-																							// in
-																							// main.xml
-
+		// Find TableLayout defined in main.xml
+		TableLayout table = (TableLayout) contextActivity.findViewById(R.id.tableLayout3); 
+		
 		table.setStretchAllColumns(true);
 		table.setShrinkAllColumns(true);
 
-		int stockCount = portfolio.size();
-		int stockCounter = 0;
+		int stockCount    = portfolioList.size();
+		int stockCounter  = 0;
 		int rocketplummet = 0;
 
-		TableRow[] rowRocket = new TableRow[stockCount];
+		TableRow[] rowRocket   = new TableRow[stockCount];
 		TextView[] rocketStock = new TextView[stockCount];
 		TextView[] rocketState = new TextView[stockCount];
 
@@ -321,9 +311,7 @@ public enum SortParameter
 		
 		for (Finance stockObj : portfolioList)
 		{
-			
-
-			rowRocket[stockCounter] = new TableRow(contextActivity);
+			rowRocket[stockCounter]   = new TableRow(contextActivity);
 			rocketStock[stockCounter] = new TextView(contextActivity);
 			rocketState[stockCounter] = new TextView(contextActivity);
 			rocketState[stockCounter].setGravity(Gravity.RIGHT);
@@ -353,11 +341,8 @@ public enum SortParameter
 			table.addView(rowRocket[stockCounter]);
 
 			stockCounter++;
-
 		}
 
 		return rocketplummet;
-
 	}
-
 }

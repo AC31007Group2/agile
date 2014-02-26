@@ -13,10 +13,11 @@ public class Finance
 	public float close;
 	public int volume;				// Looks like a historic volume from x (4) days ago, using the CSV from yahoo api.
 	public int instant_volume = 0;  // Current volume, set when the stock object is being created, uses the data from goole api.
-	public float total; 			//total stock value.
+	public float total; 			// total stock value.
 	public boolean is_run;
 	public boolean is_rocket;
 	public boolean is_plummet;
+	public int numberOfShares;
 	
 	public final float RUN_CONST 	 = 1.1f;    // Looks like some kind of a coeff for RUNs
 	public final float ROCKET_CONST  = 1.1f;    // Looks like some kind of a coeff for ROCKETs
@@ -141,6 +142,16 @@ public class Finance
 				is_run = false;
 			}
 		}
+	}
+	
+	public int getNumberOfShares()
+	{
+		return this.numberOfShares;
+	}
+	
+	public void setNumberOfShares(int shareCount)
+	{
+		this.numberOfShares = shareCount;
 	}
 	
 	public void calcRocketPlummet() {

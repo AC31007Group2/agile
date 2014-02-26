@@ -79,104 +79,119 @@ public class FeedParser
 			String csvData[] = null;
 			
 			try {
-				csvBr = getCsvFeed(stockToGet);
+				csvBr   = getCsvFeed(stockToGet);
 				csvData = parseCsvString(csvBr);
 				
-			} catch (Exception e) {
+			} catch (Exception e)
+			{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 				
 				return false;
 			}
 			
-			toPopulate.setClose(Float.parseFloat(csvData[0]) / 100f);
-			toPopulate.setVolume(Integer.parseInt(csvData[1]));
+			if(csvData != null)
+			{
+				toPopulate.setClose(Float.parseFloat(csvData[0]) / 100f);
+				toPopulate.setVolume(Integer.parseInt(csvData[1]));
 			
-			return true;
-
+				return true;
+			}
+			else
+			{
+				return false;
+			}
 	}
 	
-	private BufferedReader getCsvFeed(String stockSymbol) throws IOException {
-		System.out.println("feedparser - getcsvfeed");
+	public BufferedReader getCsvFeed(String stockSymbol) throws IOException {
+		
 		// Check dates
 		Calendar cal = Calendar.getInstance();
+		
 		int day   = cal.get(Calendar.DATE) - 4;
 		int month = cal.get(Calendar.MONTH);
 		int year  = cal.get(Calendar.YEAR);
-		System.out.println("feedparser - getCsvFeed - Get the url - Stock "+stockSymbol);
+
 		
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(m_context);
-		System.out.println("this point reached 0");
+
 		boolean useTestData = preferences.getBoolean("is_using_mock_data", false);
-		System.out.println("this point reached 1");
 		URL feedUrl = new URL("http://ichart.finance.yahoo.com/table.csv?s=" + stockSymbol + ".L" + "&a=" + month + "&b=" + day + "&c="+year);
+		
 		if(useTestData)
 		{
 			feedUrl = new URL("http://beberry.lv/stocks/" + stockSymbol + ".csv");
-		}
-		System.out.println("this point reached 2");
+		};
 
-		// Generate URL
-		//URL feedUrl = new URL("http://ichart.finance.yahoo.com/table.csv?s=" + stockSymbol + ".L" + "&a=" + month + "&b=" + day + "&c="+year);
-		
-		//URL feedUrl = new URL("http://beberry.lv/stocks/" + stockSymbol + ".csv");
 		InputStream is = feedUrl.openStream();
 		
-		System.out.println("feedparser - getCsvFeed - Stock "+stockSymbol);
 		return new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));			
 	}
 	
-	private String[] parseCsvString(BufferedReader csvToParse) throws IOException  {
-		System.out.println("feedparser - parse csvstring");
-		String strLine = "";
+	public String[] parseCsvString(BufferedReader csvToParse) throws IOException 
+	{
+		String strLine 	   = "";
 		StringTokenizer st = null;
-		int lineNumber = 0, tokenNumber = 0;
-		String csvdata[] = new String[2];
+		int lineNumber     = 0;
+		int tokenNumber    = 0;
 		
-		while( ((strLine = csvToParse.readLine()) != null))
+		String csvdata[] = null;
+		
+		if(csvToParse != null)
 		{
-			lineNumber++;
-			
-			if (lineNumber == 2) {
-
-				st = new StringTokenizer(strLine, ",");
-				String token;
+			while(((strLine = csvToParse.readLine()) != null))
+			{
+				lineNumber++;
 				
-				while(st.hasMoreTokens())
+				if (lineNumber == 2)
 				{
-					tokenNumber++;
-					token = st.nextToken();
-					if (tokenNumber == 5) {
-						csvdata[0] = token;
-						//Log.v("LOGCATZ",  "Last Close: " + csvdata[0]);
+					st = new StringTokenizer(strLine, ",");
+					String token;
+					
+					while(st.hasMoreTokens())
+					{
+						if(csvdata == null)
+						{
+							csvdata = new String[2];
+						}
+						
+						tokenNumber++;
+						token = st.nextToken();
+							
+						if (tokenNumber == 5)
+						{
+							csvdata[0] = token;
+						}
+						
+						if (tokenNumber == 6)
+						{
+							csvdata[1] = token;
+						}
 					}
 					
-					if (tokenNumber == 6) {
-						csvdata[1] = token;
-						//Log.v("LOGCATZ",  "Last Volume: " + csvdata[1]);
-					}
+					tokenNumber = 0;
 				}
-				tokenNumber = 0;
 			}
 		}
 		
-		return csvdata;
-			
+		return csvdata;	
 	}
 	
 	public int volCharToInt(String amount)
 	{
-		System.out.println("feedparser - volchartoint");
 		float convertedVal = 0;
 		int multiplier = 1;
 		int returnValue = 0;
+		
 		try
 		{
 			amount = amount.replaceAll(",", "");
+			
 			String valComponent = amount.substring(0, amount.length()-1);
 			String multComponent = amount.substring(amount.length()-1);
 			convertedVal = Float.parseFloat(valComponent);
 			multComponent = multComponent.toUpperCase();
+			
 			if (multComponent.equals("M"))
 			{
 				multiplier = 1000000;
@@ -185,6 +200,7 @@ public class FeedParser
 			{
 				multiplier = 1000;
 			}
+			
 			convertedVal = convertedVal * (float)multiplier;
 			returnValue = (int) convertedVal;
 		}
@@ -192,7 +208,15 @@ public class FeedParser
 		{
 			returnValue = 0;
 		}
-		return returnValue;
+		
+		if(returnValue < 0)
+		{		
+			return 0;
+		}
+		else
+		{
+			return returnValue;
+		}
 	}
 	
 	

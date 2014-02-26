@@ -27,7 +27,6 @@ public class Finance
 	{
 		name = "Default";
 		last = 0;
-		System.out.println("Finance - constructor");
 	}
 
 	public void setLast(float newLast)
@@ -80,7 +79,7 @@ public class Finance
 	public float getClose()
 	{
 		System.out.println("finance - getclose");
-		return close;
+		return this.close;
 	}
 	
 	public void setVolume(int newVol)
@@ -92,7 +91,7 @@ public class Finance
 	public int getVolume()
 	{
 		System.out.println("finance - getvolume");
-		return volume;
+		return this.volume;
 	}
 	
 	public void setInstantVolume(int newVol)

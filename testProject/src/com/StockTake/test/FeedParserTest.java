@@ -3,6 +3,8 @@ package com.StockTake.test;
 //import java.lang.reflect.Method;
 
 //import android.content.Context;
+import java.io.BufferedReader;
+
 import android.content.Intent;
 import android.test.AndroidTestCase;
 //import android.test.InstrumentationTestCase;
@@ -45,11 +47,12 @@ public class FeedParserTest extends AndroidTestCase {
 
 	/**
 	 * OK
+	 * Test method with existing stock symbol.
 	 */
-	public void testJSONParse() throws Throwable
+	public void testJSONPars() throws Throwable
 	{
 		feedparse.parseJSON(finance, "BP");
-		//System.out.println(finance.getName());
+
 		assertNotNull(finance.getClose());
 		assertNotNull(finance.getName());
 		assertNotNull(finance.getSummary());
@@ -60,8 +63,27 @@ public class FeedParserTest extends AndroidTestCase {
 		Assert.assertEquals((String)finance.getName(), "BP");
 	}
 
+	/**
+	 * OK
+	 * Test method with NULL stock symbol.
+	 */
+	public void testGetHistoricNull() throws Throwable
+	{
+		Assert.assertNotNull(finance);
+		finance.setName(null);
+		Assert.assertEquals((String)finance.getName(), null);
+
+		Assert.assertEquals(feedparse.getHistoric(finance, null), false);
+		
+		Assert.assertSame(finance.getVolume(),0);
+		Assert.assertEquals(finance.getClose(), 0.0, 0.0);
+	}
 	
-	public void testGetHistoric() throws Throwable
+	/**
+	 * OK
+	 * Test method with existing stock symbol.
+	 */
+	public void testGetHistoricExisting() throws Throwable
 	{
 		Assert.assertNotNull(finance);
 		finance.setName("BP");
@@ -72,10 +94,63 @@ public class FeedParserTest extends AndroidTestCase {
 		Assert.assertNotNull(finance.getVolume());
 		Assert.assertNotNull(finance.getClose());
 	}
+	
+	/**
+	 * OK
+	 * Test method with not existing stock symbol.
+	 */
+	public void testGetHistoricNotExisting() throws Throwable
+	{
+		Assert.assertNotNull(finance);
+		finance.setName("THIS STOCK DOES NOT EXIST");
+		Assert.assertEquals((String)finance.getName(), "THIS STOCK DOES NOT EXIST");
+
+		Assert.assertEquals(feedparse.getHistoric(finance, "THIS STOCK DOES NOT EXIST"), false);
 		
+		Assert.assertNotNull(finance.getVolume());
+		Assert.assertNotNull(finance.getClose());
+	}
+	
+	/**
+	 * OK
+	 */
 	public void testVolCharToInt() throws Throwable
 	{
 		String testAmount = "123M";
 		Assert.assertEquals(123000000, feedparse.volCharToInt(testAmount));
+		
+		testAmount = "100K";
+		Assert.assertEquals(100000, feedparse.volCharToInt(testAmount));
+		
+		testAmount = "0";
+		Assert.assertEquals(0, feedparse.volCharToInt(testAmount));
+		
+		testAmount = "-1";
+		Assert.assertEquals(0, feedparse.volCharToInt(testAmount));
+		
+		testAmount = "aWrongString";
+		Assert.assertEquals(0, feedparse.volCharToInt(testAmount));
+	}
+	
+	/**
+	 * OK
+	 * Test method with an existing stock symbol.
+	 */
+	public void testParseCsvStringExisting() throws Throwable
+	{
+		BufferedReader csvBr;
+		csvBr   = feedparse.getCsvFeed("BP");
+
+		
+		Assert.assertNotNull(feedparse.parseCsvString(csvBr));
+	}
+	
+	/**
+	 * OK
+	 * Test method with a null stock symbol.
+	 */
+	public void testParseCsvStringNull() throws Throwable
+	{
+		Assert.assertNull(feedparse.parseCsvString(null));
 	}
 }

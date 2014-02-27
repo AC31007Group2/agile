@@ -1,0 +1,14 @@
+30% I.	Sprint conclusion work (sprint review, sprint retrospective)
+------------------
+	* Sprint review (10%)
+	* Source control (20%)
+		* Regular use.
+		* Used by whole team.
+		* Appropriate use (commits etc.)
+		* Used for other materials (documents, other files)
+
+
+70% II.	Quality assurance (unit tests, acceptance tests, source control, other …)
+------------------
+	* Show how refactoring was done.
+	* What were the standards of the team.

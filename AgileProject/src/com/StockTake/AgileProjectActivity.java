@@ -33,60 +33,30 @@ public class AgileProjectActivity extends TabActivity {
 		}
 	}
 
-	public void onCreate(Bundle savedInstanceState) {
-		// Seems that this is the main entry point in this project.
-	    super.onCreate(savedInstanceState);
+	public void onCreate(Bundle savedInstanceState) 
+	{
+		super.onCreate(savedInstanceState);
 	    setContentView(R.layout.main);
-	    System.out.println("AgileProjectActivity - oncreate");
 	    Resources res = getResources(); // Resource object to get Drawables
-	    TabHost tabHost = getTabHost();  // The activity TabHost
-	    TabHost.TabSpec spec;  // Resusable TabSpec for each tab
-	    Intent intent;  // Reusable Intent for each tab
-
-	    // Create an Intent to launch an Activity for the tab (to be reused)
-	    intent = new Intent().setClass(this, SummaryActivityAlphabetical.class);
-
-	    // Initialize a TabSpec for each tab and add it to the TabHost
-	    spec = tabHost.newTabSpec("Summary").setIndicator("Summary (Alphabetically)",
-	                      res.getDrawable(R.drawable.ic_tab_summary_alph))
-	                  .setContent(intent);
+	    //TabHost tabHost = getTabHost();  // The activity TabHost			//deprecated
+	    TabHost tabHost = (TabHost)findViewById(android.R.id.tabhost);
+	    
+	    Intent intent = new Intent().setClass(this, SummaryActivityAlphabetical.class);
+	    TabHost.TabSpec spec = tabHost.newTabSpec("Summary").setIndicator("Summary",res.getDrawable(R.drawable.ic_tab_summary_alph)).setContent(intent);
 	    tabHost.addTab(spec);
 	    
-	 // Create an Intent to launch an Activity for the tab (to be reused)
-	    //intent = new Intent().setClass(this, VolumeActivity.class);
-
 	    intent = new Intent().setClass(this, SummaryActivityRank.class);
-	 // Initialize a TabSpec for each tab and add it to the TabHost
-	    spec = tabHost.newTabSpec("Summary").setIndicator("Summary (Total)",
-	                      res.getDrawable(R.drawable.ic_tab_summary_rank))
-	                  .setContent(intent);
+	    spec = tabHost.newTabSpec("Summary").setIndicator("Summary", res.getDrawable(R.drawable.ic_tab_summary_rank)).setContent(intent);
 	    tabHost.addTab(spec);
 	    
-	 // Create an Intent to launch an Activity for the tab (to be reused)
 	    intent = new Intent().setClass(this, VolumeActivity.class);
-
-	    
-	    
-	    // Initialize a TabSpec for each tab and add it to the TabHost
-	    spec = tabHost.newTabSpec("Trade Volume").setIndicator("Trade Volume",
-	                      res.getDrawable(R.drawable.ic_tab_volume))
-	                  .setContent(intent);
+	    spec = tabHost.newTabSpec("Trade Volume").setIndicator("Trade Volume",res.getDrawable(R.drawable.ic_tab_volume)).setContent(intent);
 	    tabHost.addTab(spec);
 	    
-		 // Create an Intent to launch an Activity for the tab (to be reused)
 	    intent = new Intent().setClass(this, RocketActivity.class);
-
-	    // Initialize a TabSpec for each tab and add it to the TabHost
-	    spec = tabHost.newTabSpec("Alerts").setIndicator("Alerts",
-	                      res.getDrawable(R.drawable.ic_tab_alerts))
-	                  .setContent(intent);
+	    spec = tabHost.newTabSpec("Alerts").setIndicator("Alerts", res.getDrawable(R.drawable.ic_tab_alerts)).setContent(intent);
 	    tabHost.addTab(spec);
-
 
 	    tabHost.setCurrentTab(0);
 	}
-	
-	
 }
-
-

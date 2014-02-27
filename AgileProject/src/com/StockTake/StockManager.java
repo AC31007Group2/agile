@@ -11,7 +11,6 @@ import org.json.JSONException;
 
 import android.app.Activity;
 import android.app.Application;
-import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.text.Html;
@@ -23,7 +22,6 @@ import android.widget.TextView;
 public class StockManager extends Application
 {
 	public FeedParser newParse;
-	private Context m_context;
 
 	
 	@Override
@@ -35,9 +33,6 @@ public class StockManager extends Application
 
 	}
 
-
-	//private HashMap<Finance, Float> portfolio = new HashMap<Finance, Float>();
-	
 	private List<Finance> portfolioList = new LinkedList<Finance>();
 	
 	private HashMap<String, String> stockNamesLong = new HashMap<String, String>();
@@ -88,8 +83,6 @@ public class StockManager extends Application
 	//add entry to portfolio hashmap
 	public boolean addPortfolioEntry(String stockCode, String stockNameLong, int numberOfShares) throws IOException, JSONException
 	{
-		float shareQuantity = (float) numberOfShares;
-
 		Finance stockObj = createFinanceObject(stockCode); //doesnt work!
 		
 

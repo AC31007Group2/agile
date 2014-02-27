@@ -3,7 +3,6 @@ package com.StockTake.test;
 import java.io.IOException;
 import org.json.JSONException;
 
-import android.content.Intent;
 import android.test.AndroidTestCase;
 
 import com.StockTake.FeedParser;
@@ -11,7 +10,6 @@ import com.StockTake.Finance;
 import com.StockTake.StockManager;
 import junit.framework.Assert;
 import junit.framework.Test;
-import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 public class StockManagerTest extends AndroidTestCase

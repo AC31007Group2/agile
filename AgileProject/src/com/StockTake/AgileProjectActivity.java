@@ -1,10 +1,10 @@
 package com.StockTake;
 
+import android.app.Activity;
 import android.app.TabActivity;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -35,10 +35,10 @@ public class AgileProjectActivity extends TabActivity {
 
 	public void onCreate(Bundle savedInstanceState) 
 	{
-		super.onCreate(savedInstanceState);
+		//super.onCreate(savedInstanceState);
 	    setContentView(R.layout.main);
 	    Resources res = getResources(); // Resource object to get Drawables
-	    //TabHost tabHost = getTabHost();  // The activity TabHost			//deprecated
+
 	    TabHost tabHost = (TabHost)findViewById(android.R.id.tabhost);
 	    
 	    Intent intent = new Intent().setClass(this, SummaryActivityAlphabetical.class);

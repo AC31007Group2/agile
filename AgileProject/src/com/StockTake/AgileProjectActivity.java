@@ -42,19 +42,19 @@ public class AgileProjectActivity extends TabActivity {
 	    TabHost tabHost = (TabHost)findViewById(android.R.id.tabhost);
 	    
 	    Intent intent = new Intent().setClass(this, SummaryActivityAlphabetical.class);
-	    TabHost.TabSpec spec = tabHost.newTabSpec("Summary").setIndicator("Summary",res.getDrawable(R.drawable.ic_tab_summary_alph)).setContent(intent);
+	    TabHost.TabSpec spec = tabHost.newTabSpec("Summary").setIndicator("",res.getDrawable(R.drawable.ic_tab_summary_alph)).setContent(intent);
 	    tabHost.addTab(spec);
 	    
 	    intent = new Intent().setClass(this, SummaryActivityRank.class);
-	    spec = tabHost.newTabSpec("Summary").setIndicator("Summary", res.getDrawable(R.drawable.ic_tab_summary_rank)).setContent(intent);
+	    spec = tabHost.newTabSpec("Summary").setIndicator("", res.getDrawable(R.drawable.ic_tab_summary_rank)).setContent(intent);
 	    tabHost.addTab(spec);
 	    
 	    intent = new Intent().setClass(this, VolumeActivity.class);
-	    spec = tabHost.newTabSpec("Trade Volume").setIndicator("Trade Volume",res.getDrawable(R.drawable.ic_tab_volume)).setContent(intent);
+	    spec = tabHost.newTabSpec("Trade Volume").setIndicator("",res.getDrawable(R.drawable.ic_tab_volume)).setContent(intent);
 	    tabHost.addTab(spec);
 	    
 	    intent = new Intent().setClass(this, RocketActivity.class);
-	    spec = tabHost.newTabSpec("Alerts").setIndicator("Alerts", res.getDrawable(R.drawable.ic_tab_alerts)).setContent(intent);
+	    spec = tabHost.newTabSpec("Alerts").setIndicator("", res.getDrawable(R.drawable.ic_tab_alerts)).setContent(intent);
 	    tabHost.addTab(spec);
 
 	    tabHost.setCurrentTab(0);

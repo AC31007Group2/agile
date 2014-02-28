@@ -14,25 +14,25 @@
         <TextView
             android:id="@+id/summaryNameHeader"
             android:layout_height="match_parent"
-            android:text="Name"
+            android:text="@string/name"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/summarySharesHeader"
             android:gravity="right"
-            android:text="Shares"
+            android:text="@string/Shares"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/summaryValueHeader"
             android:gravity="right"
-            android:text="Value"
+            android:text="@string/Value"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/summaryTotalHeader"
             android:gravity="right"
-            android:text="Total"
+            android:text="@string/Total"
             android:textStyle="bold" />
     </TableRow>
 
@@ -44,7 +44,7 @@
 
     <TextView
         android:id="@+id/errorText"
-        android:text="One or more of your shares are currently unavailable from the market server"
+        android:text="@string/warningMessage"
         android:textColor="#FF0000"
         android:visibility="gone" />
  

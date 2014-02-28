@@ -8,6 +8,7 @@
          android:layout_width="fill_parent"
          android:scaleType="centerCrop"
          android:layout_height="fill_parent" 
-         android:contentDescription="splash">
+         android:contentDescription="@string/app_name"
+      >
       </ImageView>
 </LinearLayout>

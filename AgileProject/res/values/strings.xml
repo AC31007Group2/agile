@@ -10,4 +10,22 @@
     <string name="is_using_broken_data_summary">Switch to broken data for testing purposes.</string>
     <string name="is_using_broken_data">Use Broken Data?</string>
     <string name="google_finance">http://finance.google.com/finance/info?client=ig&amp;infotype=infoquoteall&amp;q=LON:</string>
+    <string name="name">Name</string>
+    <string name="Shares">Shares</string>
+    <string name="Value">Value</string>
+    <string name="Total">Total</string>
+    <string name="warningMessage">One or more of your shares are currently unavailable from the market server</string>
+	
+	<string name="editRUNCONSTTitle">Adjust Run-constant value</string>
+	<string name="editRUNCONSTDescr">Send RUN warning if values change by ___ %</string>
+	      
+	
+	<string name="editROCKET_CONSTTitle">Adjust Rocket alarm value</string>
+	<string name="editROCKET_CONSTDescr">Send Rocket warning if stock values rises by ___ %</string>
+	      
+	
+	<string name="editPLUMMET_CONSTTitle">Adjust Plummet warning value</string>
+	<string name="editPLUMMET_CONSTDescr">Send warning if stock plumments by ___ %</string>
+     	 
+	
 </resources>

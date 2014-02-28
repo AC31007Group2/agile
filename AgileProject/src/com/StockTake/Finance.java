@@ -1,11 +1,15 @@
 package com.StockTake;
 
+//import java.io.ObjectInputStream.GetField;
 import java.util.Comparator;
 
+//import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 
 public class Finance
 {
-
 	public String name; 			// Stock name
 	public float last  = 0;			// Last stock value
 	public String market; 			// Market
@@ -18,15 +22,33 @@ public class Finance
 	public boolean is_plummet;
 	public int numberOfShares;
 	
-	public final float RUN_CONST 	 = 1.1f;    // Looks like some kind of a coeff for RUNs
-	public final float ROCKET_CONST  = 1.1f;    // Looks like some kind of a coeff for ROCKETs
-	public final float PLUMMET_CONST = 0.8f;   
+	public float RUN_CONST;//	 = 1.1f;    // Looks like some kind of a coeff for RUNs
+	public float ROCKET_CONST;// = 1.1f;    // Looks like some kind of a coeff for ROCKETs
+	public float PLUMMET_CONST;// = 0.8f;   
+	
+	public static final String PREFS_NAME = "strings";
+	public Context context;
 	
 
-	public Finance()
+	public Finance(Context context)
 	{
+		this.context = context;
+		initialiseValues();
 		name = "Default";
 		last = 0;
+	}
+	
+	/*
+	 * Get current value of floats for calculations
+	 */
+	public void initialiseValues()
+	{
+		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+		ROCKET_CONST = Float.parseFloat(preferences.getString("ROCKET_CONST","1.1f"));
+		RUN_CONST = Float.parseFloat(preferences.getString("RUN_CONST","1.1f"));
+		PLUMMET_CONST = Float.parseFloat(preferences.getString("PLUMMET_CONST","0.8f"));
+		System.out.println("rocket value: " + ROCKET_CONST);
+		System.out.println(preferences.getString("Value", "doesnt work"));
 	}
 
 	public void setLast(float newLast)
@@ -133,6 +155,8 @@ public class Finance
 	}
 	
 	public void calcRun() {
+		initialiseValues();
+
 		System.out.println("finance - calcrun");
 		if (volume != 0 && instant_volume != 0) {
 			if (instant_volume > (RUN_CONST * volume)) {
@@ -155,6 +179,7 @@ public class Finance
 	
 	public void calcRocketPlummet() {
 		System.out.println("finance - calcrocketplummet");
+		initialiseValues();
 		is_plummet = false;
 		is_rocket = false;
 		if (last != 0 && close != 0) {
@@ -170,17 +195,9 @@ public class Finance
 	class NameComparator implements Comparator<Finance> {
 	    @Override
 		public int compare(Finance o1, Finance o2) {
-			
-	    	if (o1.name.compareTo(o2.name) < 0) {
-				return -1;
-			} else if (o1.name == o2.name) {
-				return 0;
-			} else {
-				return 1;
-			}
+			return o1.name.compareTo(o2.name);
 		}
 	}
-
 	
 	class ValueComparator implements Comparator<Finance> {
 	    @Override

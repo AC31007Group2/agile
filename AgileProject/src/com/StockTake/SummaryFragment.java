@@ -1,15 +1,15 @@
 package com.StockTake;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+//import java.io.IOException;
+//import java.util.ArrayList;
+//import java.util.List;
 
-import org.json.JSONException;
+//import org.json.JSONException;
 
-import com.StockTake.StockManager.SortParameter;
+//import com.StockTake.StockManager.SortParameter;
 //import com.StockTake.SummaryActivity.CreateFinanceObjectAsync;
 
-import android.app.Fragment;
+/*//import android.app.Fragment;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -24,7 +24,7 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TableLayout;
 import android.widget.TableRow;
-import android.widget.TextView;
+import android.widget.TextView;*/
 
 /*
 public class SummaryFragment extends Fragment implements Param

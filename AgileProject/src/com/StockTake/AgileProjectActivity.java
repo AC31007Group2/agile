@@ -35,7 +35,7 @@ public class AgileProjectActivity extends TabActivity {
 
 	public void onCreate(Bundle savedInstanceState) 
 	{
-		super.onCreate(savedInstanceState);
+		//super.onCreate(savedInstanceState);
 	    setContentView(R.layout.main);
 	    Resources res = getResources(); // Resource object to get Drawables
 

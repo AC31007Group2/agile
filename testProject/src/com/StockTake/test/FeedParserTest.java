@@ -21,7 +21,7 @@ public class FeedParserTest extends AndroidTestCase
 	protected void setUp() throws Exception {
 		super.setUp();
 		feedparse = new FeedParser(getContext());
-		finance = new Finance();
+		finance = new Finance(getContext());
 	}
 	
 	public static Test suite()

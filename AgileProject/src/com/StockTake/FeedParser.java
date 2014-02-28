@@ -125,6 +125,7 @@ public class FeedParser
 		
 		if(useTestData)
 		{
+			System.out.println("YMCA");
 			feedUrl = new URL("http://beberry.lv/stocks/" + stockSymbol + ".csv");
 		};
 

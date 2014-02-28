@@ -18,7 +18,7 @@ public class FinanceTest extends AndroidTestCase
 
 	protected void setUp()
 	{
-		finance = new Finance();
+		finance = new Finance(getContext());
 	}
 
 	public static Test suite()

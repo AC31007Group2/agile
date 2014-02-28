@@ -9,5 +9,32 @@
         android:title="@string/is_using_broken_data"
         android:summary="@string/is_using_broken_data_summary"
         android:defaultValue="false"/>
-
+	<!-- the option to adjust alert setting -->
+    <EditTextPreference 
+        android:key="RUN_CONST"
+        android:title="@string/editRUNCONSTTitle"
+        android:dialogTitle="@string/editRUNCONSTTitle" 
+        android:dialogMessage="@string/editRUNCONSTDescr" 
+        android:enabled="true" 
+        android:selectable="true" 
+        android:defaultValue="1.1"/>
+    
+    <EditTextPreference 
+        android:key="ROCKET_CONST"
+        android:title="@string/editROCKET_CONSTTitle"
+        android:dialogTitle="@string/editROCKET_CONSTTitle" 
+        android:dialogMessage="@string/editROCKET_CONSTDescr" 
+        android:enabled="true" 
+        android:selectable="true" 
+        android:defaultValue="1.1"/>
+    
+    <EditTextPreference 
+        android:key="PLUMMET_CONST"
+        android:title="@string/editPLUMMET_CONSTTitle"
+        android:dialogTitle="@string/editPLUMMET_CONSTTitle" 
+        android:dialogMessage="@string/editPLUMMET_CONSTDescr" 
+        android:enabled="true" 
+        android:selectable="true" 
+        android:defaultValue="0.8"/>
+	
 </PreferenceScreen>

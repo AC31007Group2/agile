@@ -158,7 +158,7 @@ public class StockManager extends Application
 				Collections.sort(portfolioList,new NameComparator());
 				break;
 		}
-		
+	
 		for (Finance stockObj : portfolioList)
 		{
 			rowStock[stockCounter]    = new TableRow(contextActivity);
@@ -215,6 +215,7 @@ public class StockManager extends Application
 
 			stockCounter++;
 		}
+	
 		
 		float potfolioTotal = getPortfolioTotal();
 		

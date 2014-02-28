@@ -43,6 +43,9 @@ public class SummaryActivity extends Activity implements Param
 	TextView error1;
 	TableRow.LayoutParams params;
 	
+	static protected boolean waiting = false;
+	
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
@@ -63,18 +66,19 @@ public class SummaryActivity extends Activity implements Param
 	public void update() {
 		System.out.println("summaryactivity - update");
 		table = (TableLayout) this.findViewById(R.id.tableLayout1); 
-		
-		errorRow = new TableRow(this);
-		error1 = new TextView(this);
-		params = new TableRow.LayoutParams();  
-	    params.span = 4;
+			
 		
 		if (checkInternetConnection()) {
 			try {
+				if (!waiting) {
+				errorRow = new TableRow(this);
+				error1 = new TextView(this);
+				params = new TableRow.LayoutParams();  
+			    params.span = 4;
 				System.out.println("do this!");
 				onClick();
 				System.out.println("and this!");
-				
+				}
 			} catch(Exception e) {
 				/* Parse Error */ 
        		error1.setText(Html.fromHtml(" <big>Oops!</big><br/><br/> Something went wrong when we tried to retrieve your share portfolio.<br/><br/> Please try again later."));
@@ -91,19 +95,21 @@ public class SummaryActivity extends Activity implements Param
 	}
 	private class CreateFinanceObjectAsync extends AsyncTask<Activity, Void, List<String>>
 	{
-		Activity parent;
+		SummaryActivity parent;
 		@Override
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
 			ProgressBar pb = (ProgressBar)findViewById(R.id.progressBar1);
 			pb.setVisibility(View.VISIBLE);
 			super.onPreExecute();
+			
 		}
 
 		@Override
 		protected List<String> doInBackground(Activity... params) {
 			// TODO Auto-generated method stub
-			parent = params[0];
+			parent = (SummaryActivity) params[0];
+			waiting= true;
 			System.out.println("summaryactivity - onclick");
 			myStockmanager.clearPortfolio();
 			SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
@@ -149,7 +155,7 @@ public class SummaryActivity extends Activity implements Param
 				problems.add("MKS");
 			}
 					
-				
+			waiting= false;
 			return problems;
 				
 		
@@ -182,6 +188,7 @@ public class SummaryActivity extends Activity implements Param
 			ProgressBar pb = (ProgressBar)findViewById(R.id.progressBar1);
 			pb.setVisibility(View.GONE);
 			myStockmanager.summaryTable(parent,getParam());
+			
 			super.onPostExecute(result);
 		}
 		

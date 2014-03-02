@@ -67,7 +67,7 @@ public class StockManager extends Application
 	//create a new finance object
 	public Finance createFinanceObject(String stockCode) throws IOException, JSONException
 	{
-		Finance newStock = new Finance(getApplicationContext());
+		Finance newStock = new Finance(StockManager.this);
 
 		//create a new parser with the new Finance Object
 		this.newParse.parseJSON(newStock, stockCode);

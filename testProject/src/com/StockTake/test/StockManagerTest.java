@@ -18,8 +18,8 @@ public class StockManagerTest extends AndroidTestCase
 	
 	protected void setUp() throws Exception {
 		super.setUp();
-		stockManager = new StockManager();
-		
+		stockManager = ((StockManager)getContext().getApplicationContext());
+
 		if(stockManager.newParse == null)
 		{
 			// Need to do this as in the test case getApplicationContext returns null in the onCreate method.

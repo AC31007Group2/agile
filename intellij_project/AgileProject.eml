@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component jdk="Android API 19 Platform" jdk_type="Android SDK">
+	<exclude-output/>
+	<contentEntry url="file://$MODULE_DIR$/../AgileProject"/>
+	<lib name="junit.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/../AgileProject/dep/junit3.8.2/junit.jar!/"/>
+	</lib>
+	<lib name="android-support-v13.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/../AgileProject/lib/android-support-v13.jar!/"/>
+	</lib>
+	<lib name="android-support-v7-appcompat.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/../AgileProject/lib/android-support-v7-appcompat.jar!/"/>
+	</lib>
+	<lib name="android-support-v7-gridlayout.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/../AgileProject/lib/android-support-v7-gridlayout.jar!/"/>
+	</lib>
+	<lib name="android-support-v7-mediarouter.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/../AgileProject/lib/android-support-v7-mediarouter.jar!/"/>
+	</lib>
+</component>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module classpath="eclipse" classpath-dir="$MODULE_DIR$/../AgileProject" type="JAVA_MODULE" version="4">
+  <component name="FacetManager">
+    <facet type="android" name="Android">
+      <configuration>
+        <option name="GEN_FOLDER_RELATIVE_PATH_APT" value="/../AgileProject/gen" />
+        <option name="GEN_FOLDER_RELATIVE_PATH_AIDL" value="/../AgileProject/gen" />
+        <option name="MANIFEST_FILE_RELATIVE_PATH" value="/../AgileProject/AndroidManifest.xml" />
+        <option name="RES_FOLDER_RELATIVE_PATH" value="/../AgileProject/res" />
+        <option name="ASSETS_FOLDER_RELATIVE_PATH" value="/../AgileProject/assets" />
+        <option name="LIBS_FOLDER_RELATIVE_PATH" value="/../AgileProject/libs" />
+        <resOverlayFolders>
+          <path>/../AgileProject/res-overlay</path>
+        </resOverlayFolders>
+      </configuration>
+    </facet>
+  </component>
+</module>
+

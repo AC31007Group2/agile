@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module classpath="eclipse" classpath-dir="$MODULE_DIR$/../testProject" type="JAVA_MODULE" version="4">
+  <component name="FacetManager">
+    <facet type="android" name="Android">
+      <configuration>
+        <option name="GEN_FOLDER_RELATIVE_PATH_APT" value="/../testProject/gen" />
+        <option name="GEN_FOLDER_RELATIVE_PATH_AIDL" value="/../testProject/gen" />
+        <option name="MANIFEST_FILE_RELATIVE_PATH" value="/../testProject/AndroidManifest.xml" />
+        <option name="RES_FOLDER_RELATIVE_PATH" value="/../testProject/res" />
+        <option name="ASSETS_FOLDER_RELATIVE_PATH" value="/../testProject/assets" />
+        <option name="LIBS_FOLDER_RELATIVE_PATH" value="/../testProject/libs" />
+        <resOverlayFolders>
+          <path>/../testProject/res-overlay</path>
+        </resOverlayFolders>
+      </configuration>
+    </facet>
+  </component>
+</module>
+

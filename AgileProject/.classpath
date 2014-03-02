@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry exported="true" kind="lib" path="dep/junit3.8.2/junit.jar"/>
-	<classpathentry kind="lib" path="lib/android-support-v4.jar"/>
 	<classpathentry kind="lib" path="lib/android-support-v13.jar"/>
 	<classpathentry kind="lib" path="lib/android-support-v7-appcompat.jar"/>
 	<classpathentry kind="lib" path="lib/android-support-v7-gridlayout.jar"/>
 	<classpathentry kind="lib" path="lib/android-support-v7-mediarouter.jar"/>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
+	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
+	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
 	<classpathentry kind="src" path="Tests">
 		<attributes>
 			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="/Users/Michael/Developer/AgileProject/src/dep"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
-	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
 	<classpathentry kind="output" path="bin/classes"/>

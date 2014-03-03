@@ -17,15 +17,15 @@
     <string name="warningMessage">One or more of your shares are currently unavailable from the market server</string>
 	
 	<string name="editRUNCONSTTitle">Adjust Run-constant value</string>
-	<string name="editRUNCONSTDescr">Send RUN warning if values change by ___ %</string>
+	<string name="editRUNCONSTDescr">Send RUN warning if values change by ___ % \nplease ensure that value is greater than 0 and less than 100</string>
 	      
 	
 	<string name="editROCKET_CONSTTitle">Adjust Rocket alarm value</string>
-	<string name="editROCKET_CONSTDescr">Send Rocket warning if stock values rises by ___ %</string>
+	<string name="editROCKET_CONSTDescr">Send Rocket warning if stock values rises by ___ % \nplease ensure that value is greater than 0 and less than 100</string>
 	      
 	
 	<string name="editPLUMMET_CONSTTitle">Adjust Plummet warning value</string>
-	<string name="editPLUMMET_CONSTDescr">Send warning if stock plumments by ___ %</string>
+	<string name="editPLUMMET_CONSTDescr">Send warning if stock plumments by ___ % \nplease ensure that value is greater than 0 and less than 100</string>
      	 
 	
 </resources>

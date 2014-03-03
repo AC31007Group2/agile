@@ -15,6 +15,7 @@
         android:title="@string/editRUNCONSTTitle"
         android:dialogTitle="@string/editRUNCONSTTitle" 
         android:dialogMessage="@string/editRUNCONSTDescr" 
+        android:inputType="number"
         android:enabled="true" 
         android:selectable="true" 
         android:defaultValue="1.1"/>
@@ -24,6 +25,7 @@
         android:title="@string/editROCKET_CONSTTitle"
         android:dialogTitle="@string/editROCKET_CONSTTitle" 
         android:dialogMessage="@string/editROCKET_CONSTDescr" 
+        android:inputType="number"
         android:enabled="true" 
         android:selectable="true" 
         android:defaultValue="1.1"/>
@@ -33,6 +35,7 @@
         android:title="@string/editPLUMMET_CONSTTitle"
         android:dialogTitle="@string/editPLUMMET_CONSTTitle" 
         android:dialogMessage="@string/editPLUMMET_CONSTDescr" 
+        android:inputType="number"
         android:enabled="true" 
         android:selectable="true" 
         android:defaultValue="0.8"/>

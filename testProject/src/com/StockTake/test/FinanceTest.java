@@ -82,10 +82,40 @@ public class FinanceTest extends AndroidTestCase
 		
 		assertFalse(finance.isRocket());
 		
-		finance.ROCKET_CONST = (float)-1.1;
+		finance.setRocketConst((float)-1.1);
+		finance.calcRocketPlummet();
 		
 		assertFalse(finance.isRocket());
 	}
+	
+	public void testPlummetExtremeValues()
+	{
+		finance.setClose(1000f);
+		finance.setLast(1099);
+		finance.calcRocketPlummet();
+		
+		assertFalse(finance.isPlummet());
+		
+		finance.setRocketConst((float)-1.1);
+		finance.calcRocketPlummet();
+		
+		assertFalse(finance.isPlummet());
+	}
+	
+	public void testRunExtremeValues()
+	{
+		finance.setClose(1000f);
+		finance.setLast(1099);
+		finance.calcRocketPlummet();
+		
+		assertFalse(finance.isRun());
+		
+		finance.setRunConst((float)-1.1);
+		finance.calcRocketPlummet();
+		
+		assertFalse(finance.isRun());
+	}
+	
 	
 	public void testCalcRunAndIsRun() throws Throwable
 	{

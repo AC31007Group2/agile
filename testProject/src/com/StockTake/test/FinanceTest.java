@@ -74,6 +74,19 @@ public class FinanceTest extends AndroidTestCase
 		Assert.assertEquals(6354, finance.getInstantVolume());
 	}
 	
+	public void testRocketExtremeValues()
+	{
+		finance.setClose(1000f);
+		finance.setLast(1099);
+		finance.calcRocketPlummet();
+		
+		assertFalse(finance.isRocket());
+		
+		finance.ROCKET_CONST = (float)-1.1;
+		
+		assertFalse(finance.isRocket());
+	}
+	
 	public void testCalcRunAndIsRun() throws Throwable
 	{
 		finance.setVolume(1000);

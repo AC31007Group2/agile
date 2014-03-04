@@ -9,11 +9,13 @@ import com.StockTake.StockManager.SortParameter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.Html;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TableLayout;
@@ -43,6 +45,7 @@ public class SummaryActivity extends Activity implements Param
 	TextView error1;
 	TableRow.LayoutParams params;
 	
+	
 	static protected boolean waiting = false;
 	
 	
@@ -58,6 +61,7 @@ public class SummaryActivity extends Activity implements Param
 		myStockmanager = ((StockManager)getApplicationContext());
 		
 		setContentView(R.layout.summary);	
+		
 
 	    update();
 	}
@@ -67,6 +71,7 @@ public class SummaryActivity extends Activity implements Param
 		System.out.println("summaryactivity - update");
 		table = (TableLayout) this.findViewById(R.id.tableLayout1); 
 			
+		
 		
 		if (checkInternetConnection()) {
 			try {
@@ -195,6 +200,7 @@ public class SummaryActivity extends Activity implements Param
 	}
 	/* Click Refresh */
 	public void onClick() throws IOException, JSONException {
+		
 		new CreateFinanceObjectAsync().execute(this, null, null);
 		System.out.println("summaryactivity - onclick");
 	}
@@ -212,4 +218,5 @@ public class SummaryActivity extends Activity implements Param
 			return false;
 		}
 	}
+	
 }

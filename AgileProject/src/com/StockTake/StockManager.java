@@ -181,14 +181,15 @@ public class StockManager extends Application
 			
 			//float subTotal = portfolio.get(stockObj) * thisStockValue;
 
-			String longName = stockNamesLong.get(stockObj.getName().toString());
-
-			stockName[stockCounter].setText(longName);
+			//String longName = stockNamesLong.get(stockObj.getName().toString());
+			String stockSymbol = stockObj.getName().toString();
+			
+			stockName[stockCounter].setText(stockSymbol);
 			stockName[stockCounter].setTypeface(Typeface.DEFAULT);
 			stockName[stockCounter].setTextColor(Color.rgb(58, 128, 255));
 			stockName[stockCounter].setTextSize(20f);
 			stockName[stockCounter].setHeight(70);
-			stockName[stockCounter].setWidth(200);
+			stockName[stockCounter].setWidth(80);
 			stockName[stockCounter].setGravity(Gravity.LEFT | Gravity.CENTER_VERTICAL);
 
 			stockShares[stockCounter].setText(String.format("%,3.0f", (float)stockObj.getNumberOfShares()));

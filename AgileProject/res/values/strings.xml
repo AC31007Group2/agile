@@ -21,11 +21,11 @@
 	      
 	
 	<string name="editROCKET_CONSTTitle">Adjust Rocket alarm value</string>
-	<string name="editROCKET_CONSTDescr">Send Rocket warning if stock values rises by  % \nplease ensure that value is greater than 0 and less than 100</string>
+	<string name="editROCKET_CONSTDescr">Send Rocket warning if stock values rises by % \nplease ensure that value is greater than 0 and less than 100</string>
 	      
 	
 	<string name="editPLUMMET_CONSTTitle">Adjust Plummet warning value</string>
-	<string name="editPLUMMET_CONSTDescr">Send warning if stock plumments by  % \nplease ensure that value is greater than 0 and less than 100</string>
+	<string name="editPLUMMET_CONSTDescr">Send warning if stock plumments by % \nplease ensure that value is greater than 0 and less than 100</string>
      	 
 	
 </resources>

@@ -23,9 +23,9 @@ public class Finance
 	public boolean is_plummet;
 	public int numberOfShares;
 	
-	public float RUN_CONST;//	 = 1.1f;    // Looks like some kind of a coeff for RUNs
-	public float ROCKET_CONST;// = 1.1f;    // Looks like some kind of a coeff for ROCKETs
-	public float PLUMMET_CONST;// = 0.8f;   
+	private float RUN_CONST;//	 = 1.1f;    // Looks like some kind of a coeff for RUNs
+	private float ROCKET_CONST;// = 1.1f;    // Looks like some kind of a coeff for ROCKETs
+	private float PLUMMET_CONST;// = 0.8f;   
 	
 	public static final String PREFS_NAME = "strings";
 	public Context context;
@@ -45,11 +45,10 @@ public class Finance
 	public void initialiseValues()
 	{
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-		ROCKET_CONST = Float.parseFloat(preferences.getString("ROCKET_CONST","1.1f"));
-		RUN_CONST = Float.parseFloat(preferences.getString("RUN_CONST","1.1f"));
-		PLUMMET_CONST = Float.parseFloat(preferences.getString("PLUMMET_CONST","0.8f"));
-		System.out.println("rocket value: " + ROCKET_CONST);
-		System.out.println(preferences.getString("Value", "doesnt work"));
+		
+		this.setRocketConst(Float.parseFloat(preferences.getString("ROCKET_CONST","1.1f")));
+		this.setRunConst(Float.parseFloat(preferences.getString("RUN_CONST","1.1f")));
+		this.setPlummetConst(Float.parseFloat(preferences.getString("PLUMMET_CONST","0.8f")));
 	}
 
 	public void setLast(float newLast)
@@ -189,6 +188,30 @@ public class Finance
 			} else if (last < (PLUMMET_CONST * close)) {
 				is_plummet = true;
 			}	
+		}
+	}
+	
+	public void setRocketConst(float newConst)
+	{
+		if(newConst > 0)
+		{
+			this.ROCKET_CONST = newConst;
+		}
+	}
+	
+	public void setRunConst(float newConst)
+	{
+		if(newConst > 0)
+		{
+			this.RUN_CONST = newConst;
+		}
+	}
+	
+	public void setPlummetConst(float newConst)
+	{
+		if(newConst > 0)
+		{
+			this.PLUMMET_CONST = newConst;
 		}
 	}
 }

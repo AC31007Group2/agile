@@ -60,7 +60,10 @@ public class StockManager extends Application
 	//clear the portfolio hashmap - doesn't delete but keep overall structure without content
 	public void clearPortfolio()
 	{
-		portfolioList.clear();
+        synchronized (portfolioList)
+        {
+		    portfolioList.clear();
+        }
 		stockNamesLong.clear();
 	}
 
@@ -99,7 +102,10 @@ public class StockManager extends Application
 		
 
 		//portfolio.put(stockObj, shareQuantity); //add new Finance object to portfolio hashmap
-		portfolioList.add(stockObj);
+        synchronized (portfolioList)
+        {
+		    portfolioList.add(stockObj);
+        }
 		stockNamesLong.put(stockCode.substring(stockCode.indexOf(":") + 1), stockNameLong);
 		
 		return true;
@@ -142,81 +148,83 @@ public class StockManager extends Application
 
 		TableRow rowTotal       = new TableRow(contextActivity);
 		TextView portfolioTotal = new TextView(contextActivity);
-		
-		// Sort the list, depending on the sort parameter.
-		switch(sortBy)
-		{
-			case NAME: 
-				Collections.sort(portfolioList,new NameComparator());
-				break;
-			
-			case VALUE:
-				Collections.sort(portfolioList,new TotalComparator());
-				break;
-				
-			default:
-				Collections.sort(portfolioList,new NameComparator());
-				break;
-		}
-	
-		for (Finance stockObj : portfolioList)
-		{
-			rowStock[stockCounter]    = new TableRow(contextActivity);
-			stockName[stockCounter]   = new TextView(contextActivity);
-			stockShares[stockCounter] = new TextView(contextActivity);
-			stockValue[stockCounter]  = new TextView(contextActivity);
-			stockTotal[stockCounter]  = new TextView(contextActivity);
 
-			float thisStockValue = stockObj.getLast();
+        synchronized (portfolioList)
+        {
+            // Sort the list, depending on the sort parameter.
+            switch(sortBy)
+            {
+                case NAME:
+                    Collections.sort(portfolioList,new NameComparator());
+                    break;
 
-			// half up rounding mode - so reduces errors to +/- £1
-			BigDecimal stockValueRounded = new BigDecimal(Double.toString(thisStockValue));
-			stockValueRounded = stockValueRounded.setScale(2, BigDecimal.ROUND_DOWN);
-			
-			float thisStockTotal = stockObj.getTotal();
-			
-			//rounding down the stock total.
-			BigDecimal stockTotalRounded = new BigDecimal(Double.toString(thisStockTotal));
-			stockTotalRounded = stockTotalRounded.setScale(0, BigDecimal.ROUND_DOWN);	
-			
-			//float subTotal = portfolio.get(stockObj) * thisStockValue;
+                case VALUE:
+                    Collections.sort(portfolioList,new TotalComparator());
+                    break;
 
-			//String longName = stockNamesLong.get(stockObj.getName().toString());
-			String stockSymbol = stockObj.getName().toString();
-			
-			stockName[stockCounter].setText(stockSymbol);
-			stockName[stockCounter].setTypeface(Typeface.DEFAULT);
-			stockName[stockCounter].setTextColor(Color.rgb(58, 128, 255));
-			stockName[stockCounter].setTextSize(20f);
-			stockName[stockCounter].setHeight(70);
-			stockName[stockCounter].setWidth(80);
-			stockName[stockCounter].setGravity(Gravity.LEFT | Gravity.CENTER_VERTICAL);
+                default:
+                    Collections.sort(portfolioList,new NameComparator());
+                    break;
+            }
 
-			stockShares[stockCounter].setText(String.format("%,3.0f", (float)stockObj.getNumberOfShares()));
-			stockShares[stockCounter].setGravity(Gravity.RIGHT | Gravity.CENTER_VERTICAL);
-			stockShares[stockCounter].setTextSize(20f);
-			stockShares[stockCounter].setSingleLine(true);
+            for (Finance stockObj : portfolioList)
+            {
+                rowStock[stockCounter]    = new TableRow(contextActivity);
+                stockName[stockCounter]   = new TextView(contextActivity);
+                stockShares[stockCounter] = new TextView(contextActivity);
+                stockValue[stockCounter]  = new TextView(contextActivity);
+                stockTotal[stockCounter]  = new TextView(contextActivity);
 
-			stockValue[stockCounter].setText("£" + String.format("%.2f", stockValueRounded));
-			stockValue[stockCounter].setGravity(Gravity.RIGHT | Gravity.CENTER_VERTICAL);
-			stockValue[stockCounter].setTextSize(20f);
-			stockValue[stockCounter].setSingleLine(true);
+                float thisStockValue = stockObj.getLast();
 
-			stockTotal[stockCounter].setText("£" + String.format("%,3.0f", stockTotalRounded));
-			stockTotal[stockCounter].setGravity(Gravity.RIGHT | Gravity.CENTER_VERTICAL);
-			stockTotal[stockCounter].setTextSize(20f);
-			stockTotal[stockCounter].setSingleLine(true);
+                // half up rounding mode - so reduces errors to +/- £1
+                BigDecimal stockValueRounded = new BigDecimal(Double.toString(thisStockValue));
+                stockValueRounded = stockValueRounded.setScale(2, BigDecimal.ROUND_DOWN);
 
-			rowStock[stockCounter].addView(stockName[stockCounter]);
-			rowStock[stockCounter].addView(stockShares[stockCounter]);
-			rowStock[stockCounter].addView(stockValue[stockCounter]);
-			rowStock[stockCounter].addView(stockTotal[stockCounter]);
+                float thisStockTotal = stockObj.getTotal();
 
-			table.addView(rowStock[stockCounter]);
+                //rounding down the stock total.
+                BigDecimal stockTotalRounded = new BigDecimal(Double.toString(thisStockTotal));
+                stockTotalRounded = stockTotalRounded.setScale(0, BigDecimal.ROUND_DOWN);
 
-			stockCounter++;
-		}
-	
+                //float subTotal = portfolio.get(stockObj) * thisStockValue;
+
+                //String longName = stockNamesLong.get(stockObj.getName().toString());
+                String stockSymbol = stockObj.getName().toString();
+
+                stockName[stockCounter].setText(stockSymbol);
+                stockName[stockCounter].setTypeface(Typeface.DEFAULT);
+                stockName[stockCounter].setTextColor(Color.rgb(58, 128, 255));
+                stockName[stockCounter].setTextSize(20f);
+                stockName[stockCounter].setHeight(70);
+                stockName[stockCounter].setWidth(80);
+                stockName[stockCounter].setGravity(Gravity.LEFT | Gravity.CENTER_VERTICAL);
+
+                stockShares[stockCounter].setText(String.format("%,3.0f", (float)stockObj.getNumberOfShares()));
+                stockShares[stockCounter].setGravity(Gravity.RIGHT | Gravity.CENTER_VERTICAL);
+                stockShares[stockCounter].setTextSize(20f);
+                stockShares[stockCounter].setSingleLine(true);
+
+                stockValue[stockCounter].setText("£" + String.format("%.2f", stockValueRounded));
+                stockValue[stockCounter].setGravity(Gravity.RIGHT | Gravity.CENTER_VERTICAL);
+                stockValue[stockCounter].setTextSize(20f);
+                stockValue[stockCounter].setSingleLine(true);
+
+                stockTotal[stockCounter].setText("£" + String.format("%,3.0f", stockTotalRounded));
+                stockTotal[stockCounter].setGravity(Gravity.RIGHT | Gravity.CENTER_VERTICAL);
+                stockTotal[stockCounter].setTextSize(20f);
+                stockTotal[stockCounter].setSingleLine(true);
+
+                rowStock[stockCounter].addView(stockName[stockCounter]);
+                rowStock[stockCounter].addView(stockShares[stockCounter]);
+                rowStock[stockCounter].addView(stockValue[stockCounter]);
+                rowStock[stockCounter].addView(stockTotal[stockCounter]);
+
+                table.addView(rowStock[stockCounter]);
+
+                stockCounter++;
+            }
+        }
 		
 		float potfolioTotal = getPortfolioTotal();
 		
@@ -254,33 +262,34 @@ public class StockManager extends Application
 		TextView[] runLabel = new TextView[stockCount];
 
 		// Now sort...
-		Collections.sort(portfolioList,new NameComparator());
-		
-		for (Finance stockObj : portfolioList)
-		{
-			rowRun[stockCounter] = new TableRow(contextActivity);
-			runStock[stockCounter] = new TextView(contextActivity);
-			runLabel[stockCounter] = new TextView(contextActivity);
+        Collections.sort(portfolioList,new NameComparator());
 
-			if (stockObj.isRun())
-			{
-				runStock[stockCounter].setText(stockNamesLong.get(stockObj.getName().toString()));
-				runStock[stockCounter].setTextSize(20f);
-				runStock[stockCounter].setHeight(100);
-				runStock[stockCounter].setGravity(Gravity.CENTER_VERTICAL);
-				runLabel[stockCounter].setText("Run");
-				runLabel[stockCounter].setTextSize(20f);
-				runLabel[stockCounter].setHeight(100);
-				runLabel[stockCounter].setGravity(Gravity.CENTER_VERTICAL | Gravity.RIGHT);
-				rowRun[stockCounter].addView(runStock[stockCounter]);
-				rowRun[stockCounter].addView(runLabel[stockCounter]);
-				runs++;
-			}
+        for (Finance stockObj : portfolioList)
+        {
+            rowRun[stockCounter] = new TableRow(contextActivity);
+            runStock[stockCounter] = new TextView(contextActivity);
+            runLabel[stockCounter] = new TextView(contextActivity);
 
-			table.addView(rowRun[stockCounter]);
+            if (stockObj.isRun())
+            {
+                runStock[stockCounter].setText(stockNamesLong.get(stockObj.getName().toString()));
+                runStock[stockCounter].setTextSize(20f);
+                runStock[stockCounter].setHeight(100);
+                runStock[stockCounter].setGravity(Gravity.CENTER_VERTICAL);
+                runLabel[stockCounter].setText("Run");
+                runLabel[stockCounter].setTextSize(20f);
+                runLabel[stockCounter].setHeight(100);
+                runLabel[stockCounter].setGravity(Gravity.CENTER_VERTICAL | Gravity.RIGHT);
+                rowRun[stockCounter].addView(runStock[stockCounter]);
+                rowRun[stockCounter].addView(runLabel[stockCounter]);
+                runs++;
+            }
 
-			stockCounter++;
-		}
+            table.addView(rowRun[stockCounter]);
+
+            stockCounter++;
+        }
+
 
 		return runs;
 	}
@@ -301,42 +310,42 @@ public class StockManager extends Application
 		TextView[] rocketStock = new TextView[stockCount];
 		TextView[] rocketState = new TextView[stockCount];
 
-		// Now sort...
-		Collections.sort(portfolioList,new NameComparator());
-		
-		for (Finance stockObj : portfolioList)
-		{
-			rowRocket[stockCounter]   = new TableRow(contextActivity);
-			rocketStock[stockCounter] = new TextView(contextActivity);
-			rocketState[stockCounter] = new TextView(contextActivity);
-			rocketState[stockCounter].setGravity(Gravity.RIGHT);
-			rocketState[stockCounter].setTextSize(20f);
+    // Now sort...
+        Collections.sort(portfolioList,new NameComparator());
 
-			rocketStock[stockCounter].setTextSize(20f);
-			rocketStock[stockCounter].setHeight(100);
-			rocketStock[stockCounter].setGravity(Gravity.CENTER_VERTICAL);
-			rocketStock[stockCounter].setText(stockNamesLong.get(stockObj.getName().toString()));
+        for (Finance stockObj : portfolioList)
+        {
+            rowRocket[stockCounter]   = new TableRow(contextActivity);
+            rocketStock[stockCounter] = new TextView(contextActivity);
+            rocketState[stockCounter] = new TextView(contextActivity);
+            rocketState[stockCounter].setGravity(Gravity.RIGHT);
+            rocketState[stockCounter].setTextSize(20f);
 
-			if (stockObj.isRocket())
-			{
-				rocketState[stockCounter].setText(Html.fromHtml("<font color='green'>Rocket</font>"));
-				rowRocket[stockCounter].addView(rocketStock[stockCounter]);
-				rowRocket[stockCounter].addView(rocketState[stockCounter]);
-				rocketplummet++;
-			}
-			else
-				if (stockObj.isPlummet())
-				{
-					rocketState[stockCounter].setText(Html.fromHtml("<font color='red'>Plummet</font>"));
-					rowRocket[stockCounter].addView(rocketStock[stockCounter]);
-					rowRocket[stockCounter].addView(rocketState[stockCounter]);
-					rocketplummet++;
-				}
+            rocketStock[stockCounter].setTextSize(20f);
+            rocketStock[stockCounter].setHeight(100);
+            rocketStock[stockCounter].setGravity(Gravity.CENTER_VERTICAL);
+            rocketStock[stockCounter].setText(stockNamesLong.get(stockObj.getName().toString()));
 
-			table.addView(rowRocket[stockCounter]);
+            if (stockObj.isRocket())
+            {
+                rocketState[stockCounter].setText(Html.fromHtml("<font color='green'>Rocket</font>"));
+                rowRocket[stockCounter].addView(rocketStock[stockCounter]);
+                rowRocket[stockCounter].addView(rocketState[stockCounter]);
+                rocketplummet++;
+            }
+            else
+                if (stockObj.isPlummet())
+                {
+                    rocketState[stockCounter].setText(Html.fromHtml("<font color='red'>Plummet</font>"));
+                    rowRocket[stockCounter].addView(rocketStock[stockCounter]);
+                    rowRocket[stockCounter].addView(rocketState[stockCounter]);
+                    rocketplummet++;
+                }
 
-			stockCounter++;
-		}
+            table.addView(rowRocket[stockCounter]);
+
+            stockCounter++;
+        }
 
 		return rocketplummet;
 	}

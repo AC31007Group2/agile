@@ -42,8 +42,8 @@ public class SummaryActivity extends Activity implements Param
 	TableRow errorRow;
 	TextView error1;
 	TableRow.LayoutParams params;
-	
-	static protected boolean waiting = false;
+
+    static AsyncTask<Activity, Void, List<String>> taskWaiting;
 	
 	
 	@Override
@@ -56,7 +56,8 @@ public class SummaryActivity extends Activity implements Param
 		System.out.println("summaryactivity - oncreate");
 		// Get the StockManager
 		myStockmanager = ((StockManager)getApplicationContext());
-		
+		taskWaiting = null;
+
 		setContentView(R.layout.summary);	
 
 	    update();
@@ -66,11 +67,11 @@ public class SummaryActivity extends Activity implements Param
 	public void update() {
 		System.out.println("summaryactivity - update");
 		table = (TableLayout) this.findViewById(R.id.tableLayout1); 
-			
+
 		
 		if (checkInternetConnection()) {
 			try {
-				if (!waiting) {
+
 				errorRow = new TableRow(this);
 				error1 = new TextView(this);
 				params = new TableRow.LayoutParams();  
@@ -78,7 +79,7 @@ public class SummaryActivity extends Activity implements Param
 				System.out.println("do this!");
 				onClick();
 				System.out.println("and this!");
-				}
+
 			} catch(Exception e) {
 				/* Parse Error */ 
        		error1.setText(Html.fromHtml(" <big>Oops!</big><br/><br/> Something went wrong when we tried to retrieve your share portfolio.<br/><br/> Please try again later."));
@@ -109,62 +110,84 @@ public class SummaryActivity extends Activity implements Param
 		protected List<String> doInBackground(Activity... params) {
 			// TODO Auto-generated method stub
 			parent = (SummaryActivity) params[0];
-			waiting= true;
 			System.out.println("summaryactivity - onclick");
+
 			myStockmanager.clearPortfolio();
 			SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 			boolean useBrokenData = preferences.getBoolean("is_using_broken_data", false);
 			
 			List<String> problems = new ArrayList<String>();
-			
+            if (this.isCancelled())
+            {
+                cancel(true);
+                return problems;
+            }
 
-			try {
-			myStockmanager.addPortfolioEntry("SN", "S & N", 1219);
-			}catch(Exception e)
+			try
+            {
+                if (this.isCancelled()) return problems;
+                myStockmanager.addPortfolioEntry("SN", "S & N", 1219);
+			}
+            catch(Exception e)
 			{
 				problems.add("SN");
 			}
-			try{
+			try
+            {
+                if (this.isCancelled()) return problems;
 				if (useBrokenData) {
 					myStockmanager.addPortfolioEntry("BPEEE", "BP Amoco Plc", 192);
 				}
 				else {
 					myStockmanager.addPortfolioEntry("BP", "BP", 192);
 				}
-			}catch(Exception e)
+			}
+            catch(Exception e)
 			{
 				problems.add("BP");
 				
 			}
-			try{
-			myStockmanager.addPortfolioEntry("HSBA", "HSBC.", 343);
-			}catch(Exception e)
+			try
+            {
+                if (this.isCancelled()) return problems;
+			    myStockmanager.addPortfolioEntry("HSBA", "HSBC.", 343);
+			}
+            catch(Exception e)
 			{
 				problems.add("HSBA");
 			}
-			try{
-			myStockmanager.addPortfolioEntry("EXPN", "Experian", 258);
-			}catch(Exception e)
+			try
+            {
+                if (this.isCancelled()) return problems;
+			    myStockmanager.addPortfolioEntry("EXPN", "Experian", 258);
+			}
+            catch(Exception e)
 			{
 				problems.add("EXPN");
 			}
-			try {
+			try
+            {
+                if (this.isCancelled()) return problems;
 				myStockmanager.addPortfolioEntry("MKS", "M & S", 485);
 			} catch(Exception e)
 			{
 				problems.add("MKS");
 			}
-					
-			waiting= false;
+
 			return problems;
 				
 		
 		}
-		
+
+        @Override
+        protected void onCancelled() {
+            taskWaiting = null;
+        }
+
 		@Override
 		protected void onPostExecute(List<String> result) {
 			String theText="";
-					
+
 			// TODO Auto-generated method stub
 			if (result.isEmpty()) {
 				TextView tv = (TextView)findViewById(R.id.errorText);
@@ -188,14 +211,19 @@ public class SummaryActivity extends Activity implements Param
 			ProgressBar pb = (ProgressBar)findViewById(R.id.progressBar1);
 			pb.setVisibility(View.GONE);
 			myStockmanager.summaryTable(parent,getParam());
-			
+
+            taskWaiting = null;
+
 			super.onPostExecute(result);
 		}
 		
 	}
 	/* Click Refresh */
 	public void onClick() throws IOException, JSONException {
-		new CreateFinanceObjectAsync().execute(this, null, null);
+        if (taskWaiting == null)
+        {
+		    taskWaiting = new CreateFinanceObjectAsync().execute(this, null, null);
+        }
 		System.out.println("summaryactivity - onclick");
 	}
 	

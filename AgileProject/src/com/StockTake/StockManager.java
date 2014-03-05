@@ -122,10 +122,11 @@ public class StockManager extends Application
 		return value;
 	}
 
-	public void summaryTable(Activity contextActivity,SortParameter sortBy)
+	public void summaryTable(Activity contextActivity,SummaryFragment.Mode mode)
 	{
 		// Find TableLayout defined in main.xml
-		TableLayout table = (TableLayout) contextActivity.findViewById(R.id.tableLayout1); 
+        TableLayout table;
+		table = (TableLayout) contextActivity.findViewById(R.id.tableLayout1);
 
 		table.setStretchAllColumns(true);
 		table.setShrinkAllColumns(true);
@@ -144,13 +145,13 @@ public class StockManager extends Application
 		TextView portfolioTotal = new TextView(contextActivity);
 		
 		// Sort the list, depending on the sort parameter.
-		switch(sortBy)
+		switch(mode)
 		{
-			case NAME: 
+			case ALPHABETICAL:
 				Collections.sort(portfolioList,new NameComparator());
 				break;
 			
-			case VALUE:
+			case BYVALUE:
 				Collections.sort(portfolioList,new TotalComparator());
 				break;
 				

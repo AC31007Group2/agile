@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="SCOPE_TYPE" value="4" />
+  </component>
   <component name="AndroidLayoutPreviewToolWindow">
     <option name="state">
       <GlobalState />
@@ -15,6 +18,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0223de23-4eae-42fd-9f3a-9688e0d95289" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../AgileProject/src/com/StockTake/AsyncStockManager.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../AgileProject/src/com/StockTake/StockRow.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../AgileProject/src/com/StockTake/TestFragment.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../AgileProject/res/layout/test_fragment.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../AgileProject/src/com/StockTake/AgileProjectActivity.java" afterPath="$PROJECT_DIR$/../AgileProject/src/com/StockTake/AgileProjectActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../AgileProject/AndroidManifest.xml" afterPath="$PROJECT_DIR$/../AgileProject/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../AgileProject/src/com/StockTake/StockManager.java" afterPath="$PROJECT_DIR$/../AgileProject/src/com/StockTake/StockManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../AgileProject/src/com/StockTake/SummaryActivity.java" afterPath="$PROJECT_DIR$/../AgileProject/src/com/StockTake/SummaryActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../AgileProject/src/com/StockTake/SummaryFragment.java" afterPath="$PROJECT_DIR$/../AgileProject/src/com/StockTake/SummaryFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../AgileProject/res/layout/main_layout.xml" afterPath="$PROJECT_DIR$/../AgileProject/res/layout/main_layout.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="agile.iws" />
@@ -70,23 +83,6 @@
       </breakpoint>
     </breakpoint_any>
     <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
-    <line_breakpoints>
-      <breakpoint url="file://$PROJECT_DIR$/../AgileProject/src/com/StockTake/SummaryFragment.java" line="33" class="com.StockTake.SummaryFragment" package="com.StockTake">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="REMOVE_AFTER_HIT" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-    </line_breakpoints>
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -96,10 +92,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="AgileProjectActivity.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../AgileProject/src/com/StockTake/AgileProjectActivity.java">
+      <file leaf-file-name="StockManager.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../AgileProject/src/com/StockTake/StockManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="56" column="23" selection-start="1811" selection-end="1811" vertical-scroll-proportion="0.0" vertical-offset="716" max-vertical-offset="1700">
+            <state line="37" column="4" selection-start="811" selection-end="890" vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="5542">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FeedParser.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../AgileProject/src/com/StockTake/FeedParser.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="120" column="93" selection-start="3343" selection-end="3348" vertical-scroll-proportion="-9.5" vertical-offset="1793" max-vertical-offset="4012">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -107,41 +112,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="summary_fragment_layout.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../AgileProject/res/layout/summary_fragment_layout.xml">
+      <file leaf-file-name="AsyncStockManager.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../AgileProject/src/com/StockTake/AsyncStockManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="952">
+            <state line="24" column="26" selection-start="595" selection-end="595" vertical-scroll-proportion="0.6816609" vertical-offset="211" max-vertical-offset="561">
               <folding>
-                <element signature="e#641#655#0" expanded="true" />
-                <element signature="e#841#857#0" expanded="true" />
-                <element signature="e#1042#1057#0" expanded="true" />
-                <element signature="e#1242#1257#0" expanded="true" />
-                <element signature="e#1613#1637#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#554#564#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="summary.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../AgileProject/res/layout/summary.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="4" selection-start="234" selection-end="290" vertical-scroll-proportion="-3.4" vertical-offset="0" max-vertical-offset="969">
-              <folding />
-            </state>
-          </provider>
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SummaryFragment.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/../AgileProject/src/com/StockTake/SummaryFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="37" column="1" selection-start="989" selection-end="989" vertical-scroll-proportion="1.0736842" vertical-offset="0" max-vertical-offset="612">
-              <folding />
             </state>
           </provider>
         </entry>
@@ -149,12 +127,68 @@
       <file leaf-file-name="SummaryActivity.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../AgileProject/src/com/StockTake/SummaryActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="45" column="45" selection-start="864" selection-end="1058" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3366">
+            <state line="37" column="4" selection-start="864" selection-end="1058" vertical-scroll-proportion="0.0" vertical-offset="323" max-vertical-offset="3366">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AgileProjectActivity.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../AgileProject/src/com/StockTake/AgileProjectActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="67" column="32" selection-start="1733" selection-end="1733" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1292">
               <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#827#828#0" expanded="false" />
-                <element signature="e#860#861#0" expanded="false" />
-                <element signature="e#3206#3214#0" expanded="false" />
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Finance.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../AgileProject/src/com/StockTake/Finance.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="11" column="13" selection-start="295" selection-end="295" vertical-scroll-proportion="0.0" vertical-offset="340" max-vertical-offset="3740">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test_fragment.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../AgileProject/res/layout/test_fragment.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="9" column="28" selection-start="385" selection-end="385" vertical-scroll-proportion="-6.12" vertical-offset="0" max-vertical-offset="289">
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SummaryActivityRank.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../AgileProject/src/com/StockTake/SummaryActivityRank.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="4" column="13" selection-start="87" selection-end="87" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="289">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TestFragment.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../AgileProject/src/com/StockTake/TestFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="37" column="0" selection-start="901" selection-end="901" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="663">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SummaryFragment.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../AgileProject/src/com/StockTake/SummaryFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="41" column="33" selection-start="1021" selection-end="1021" vertical-scroll-proportion="0.0" vertical-offset="575" max-vertical-offset="1581">
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -181,16 +215,22 @@
         <option value="$PROJECT_DIR$/../testProject/src/com/StockTake/test/FeedParserTest.java" />
         <option value="$PROJECT_DIR$/../testProject/src/com/StockTake/test/FinanceTest.java" />
         <option value="$PROJECT_DIR$/../testProject/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/../AgileProject/src/com/StockTake/StockManager.java" />
         <option value="$PROJECT_DIR$/../AgileProject/src/com/StockTake/Finance.java" />
         <option value="$PROJECT_DIR$/../testProject/src/com/StockTake/test/StockManagerTest.java" />
-        <option value="$PROJECT_DIR$/../AgileProject/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/../AgileProject/res/menu/options_menu.xml" />
         <option value="$PROJECT_DIR$/../AgileProject/res/layout/main.xml" />
-        <option value="$PROJECT_DIR$/../AgileProject/res/layout/main_layout.xml" />
-        <option value="$PROJECT_DIR$/../AgileProject/src/com/StockTake/AgileProjectActivity.java" />
         <option value="$PROJECT_DIR$/../AgileProject/res/layout/summary_fragment_layout.xml" />
+        <option value="$PROJECT_DIR$/../AgileProject/src/com/StockTake/SummaryActivity.java" />
+        <option value="$PROJECT_DIR$/../AgileProject/res/layout/test_fragment.xml" />
+        <option value="$PROJECT_DIR$/../AgileProject/res/layout/main_layout.xml" />
+        <option value="$PROJECT_DIR$/../AgileProject/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/../AgileProject/src/com/StockTake/StockRow.java" />
+        <option value="$PROJECT_DIR$/../AgileProject/src/com/StockTake/StockService.java" />
+        <option value="$PROJECT_DIR$/../AgileProject/src/com/StockTake/TestFragment.java" />
+        <option value="$PROJECT_DIR$/../AgileProject/src/com/StockTake/AgileProjectActivity.java" />
         <option value="$PROJECT_DIR$/../AgileProject/src/com/StockTake/SummaryFragment.java" />
+        <option value="$PROJECT_DIR$/../AgileProject/src/com/StockTake/StockManager.java" />
+        <option value="$PROJECT_DIR$/../AgileProject/src/com/StockTake/AsyncStockManager.java" />
       </list>
     </option>
   </component>
@@ -236,6 +276,34 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="agile" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="agile" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="testProject" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="agile" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="testProject" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -319,28 +387,6 @@
               <option name="myItemId" value="res" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="values" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="agile" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AgileProject" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="menu" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -370,20 +416,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="agile" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AgileProject" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="gen" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -399,7 +431,7 @@
     <property name="MemberChooser.sorted" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="MemberChooser.copyJavadoc" value="false" />
-    <property name="options.lastSelected" value="settings.nodejs" />
+    <property name="options.lastSelected" value="preferences.sourceCode.Java" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
@@ -413,7 +445,10 @@
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="CB5A1P1GMV" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="LayoutCode.rearrangeEntriesXML" value="false" />
-    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="AgileAVD" />
+    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="testavd" />
+    <property name="OverrideImplement.combined" value="true" />
+    <property name="OverrideImplement.overriding.sorted" value="false" />
+    <property name="LayoutCode.rearrangeEntriesJava" value="false" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -711,24 +746,28 @@
       <workItem from="1393754265516" duration="7979000" />
       <workItem from="1393798216257" duration="69000" />
       <workItem from="1393846810265" duration="2000" />
-      <workItem from="1393846813067" duration="15321000" />
+      <workItem from="1393846813067" duration="35691000" />
     </task>
     <task id="LOCAL-00001" summary="Started Migrating to ActionBar to remove depracation warning">
       <created>1393935039691</created>
       <updated>1393935039691</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Started Migrating to ActionBar to remove depracation warning&#10;">
+      <created>1393935094880</created>
+      <updated>1393935094880</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="24863000" />
+    <option name="totallyTimeSpent" value="45233000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32931727" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.5502008" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3266399" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -738,17 +777,17 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24903722" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3266399" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.34852374" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3239625" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32991013" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27278563" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32797858" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39892906" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.38955823" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3266399" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32931727" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29986614" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -772,7 +811,8 @@
       <TodoPanelSettings />
     </option>
     <MESSAGE value="Started Migrating to ActionBar to remove depracation warning" />
-    <option name="LAST_COMMIT_MESSAGE" value="Started Migrating to ActionBar to remove depracation warning" />
+    <MESSAGE value="Started Migrating to ActionBar to remove depracation warning&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Started Migrating to ActionBar to remove depracation warning&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -782,57 +822,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../AgileProject/src/com/StockTake/StockManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="69" column="31" selection-start="1433" selection-end="1433" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5916">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../AgileProject/src/com/StockTake/FeedParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="8" selection-start="710" selection-end="710" vertical-scroll-proportion="0.0" vertical-offset="493" max-vertical-offset="4012">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../AgileProject/src/com/StockTake/AgileProjectActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="4" selection-start="363" selection-end="363" vertical-scroll-proportion="0.0" vertical-offset="238" max-vertical-offset="1156">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../AgileProject/src/com/StockTake/RocketActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="8" selection-start="382" selection-end="382" vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="1530">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../AgileProject/src/com/StockTake/SettingsActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="13" selection-start="110" selection-end="110" vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="340">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../AgileProject/src/com/StockTake/Finance.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="207" column="30" selection-start="4674" selection-end="4674" vertical-scroll-proportion="0.0" vertical-offset="3519" max-vertical-offset="3995">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../AgileProject/src/com/StockTake/SummaryActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="4" selection-start="864" selection-end="864" vertical-scroll-proportion="0.0" vertical-offset="629" max-vertical-offset="3757">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../AgileProject/src/com/StockTake/VolumeActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="23" column="29" selection-start="669" selection-end="709" vertical-scroll-proportion="0.0" vertical-offset="391" max-vertical-offset="1445">
@@ -933,37 +922,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../AgileProject/src/com/StockTake/SettingsActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="13" selection-start="110" selection-end="110" vertical-scroll-proportion="0.17894737" vertical-offset="0" max-vertical-offset="475">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../AgileProject/src/com/StockTake/Param.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="2" column="17" selection-start="41" selection-end="41" vertical-scroll-proportion="0.07157895" vertical-offset="0" max-vertical-offset="475">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../AgileProject/src/com/StockTake/FeedParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="8" selection-start="710" selection-end="710" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3774">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../AgileProject/src/com/StockTake/Finance.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="207" column="30" selection-start="4674" selection-end="4674" vertical-scroll-proportion="0.0" vertical-offset="2483" max-vertical-offset="3740">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../AgileProject/src/com/StockTake/StockManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="69" column="31" selection-start="1433" selection-end="1433" vertical-scroll-proportion="0.0" vertical-offset="598" max-vertical-offset="5525">
           <folding />
         </state>
       </provider>
@@ -989,13 +950,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../AgileProject/src/com/StockTake/SummaryActivityAlphabetical.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="13" selection-start="88" selection-end="88" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="289">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../AgileProject/res/layout/main.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="8" column="43" selection-start="367" selection-end="367" vertical-scroll-proportion="-5.44" vertical-offset="0" max-vertical-offset="510">
@@ -1016,13 +970,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../AgileProject/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="0" selection-start="746" selection-end="746" vertical-scroll-proportion="0.59911895" vertical-offset="0" max-vertical-offset="952">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../AgileProject/res/layout/splash.xml">
       <provider editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="323">
@@ -1036,13 +983,6 @@
     <entry file="jar://C:/adt/adt-bundle-windows-x86_64-20131030/sdk/platforms/android-19/android.jar!/android/view/MenuItem.class">
       <provider selected="true" editor-type-id="text-editor">
         <state line="13" column="8" selection-start="371" selection-end="371" vertical-scroll-proportion="0.33259913" vertical-offset="53" max-vertical-offset="1853">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/adt/adt-bundle-windows-x86_64-20131030/sdk/platforms/android-19/android.jar!/android/app/Activity.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="117" column="16" selection-start="4387" selection-end="4387" vertical-scroll-proportion="0.3181818" vertical-offset="1825" max-vertical-offset="7565">
           <folding />
         </state>
       </provider>
@@ -1098,16 +1038,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../AgileProject/res/menu/options_menu.xml">
+    <entry file="jar://C:/adt/adt-bundle-windows-x86_64-20131030/sdk/platforms/android-19/android.jar!/android/os/AsyncTask.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="13" selection-start="496" selection-end="496" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="442">
+        <state line="34" column="62" selection-start="1458" selection-end="1458" vertical-scroll-proportion="0.33170733" vertical-offset="425" max-vertical-offset="952">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../AgileProject/src/com/StockTake/SettingsActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="13" selection-start="110" selection-end="110" vertical-scroll-proportion="0.14078675" vertical-offset="0" max-vertical-offset="483">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/adt/adt-bundle-windows-x86_64-20131030/sdk/platforms/android-19/android.jar!/android/app/Activity.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="13" selection-start="154" selection-end="154" vertical-scroll-proportion="-1.3382978" vertical-offset="714" max-vertical-offset="7565">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../AgileProject/res/layout/main_layout.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="14" selection-start="535" selection-end="535" vertical-scroll-proportion="-8.84" vertical-offset="0" max-vertical-offset="323">
+        <state line="16" column="55" selection-start="685" selection-end="685" vertical-scroll-proportion="-10.88" vertical-offset="0" max-vertical-offset="391">
           <folding />
         </state>
       </provider>
@@ -1115,57 +1069,140 @@
         <state />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../AgileProject/res/menu/options_menu.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="13" selection-start="496" selection-end="496" vertical-scroll-proportion="0.6819484" vertical-offset="0" max-vertical-offset="442">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/adt/adt-bundle-windows-x86_64-20131030/sdk/platforms/android-19/android.jar!/android/widget/TableLayout.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="16" selection-start="822" selection-end="822" vertical-scroll-proportion="0.0" vertical-offset="175" max-vertical-offset="1343">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../AgileProject/src/com/StockTake/StockRow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="0" selection-start="227" selection-end="227" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="357">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../AgileProject/src/com/StockTake/SummaryActivityAlphabetical.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="1" selection-start="304" selection-end="304" vertical-scroll-proportion="0.25757575" vertical-offset="0" max-vertical-offset="726">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../AgileProject/res/layout/summary_fragment_layout.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="10.2" vertical-offset="255" max-vertical-offset="952">
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../AgileProject/res/layout/test_fragment.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="28" selection-start="385" selection-end="385" vertical-scroll-proportion="-6.12" vertical-offset="0" max-vertical-offset="289">
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../AgileProject/res/layout/summary.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="4" selection-start="234" selection-end="290" vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="969">
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../AgileProject/src/com/StockTake/TestFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="37" column="0" selection-start="901" selection-end="901" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="663">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../AgileProject/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="53" selection-start="732" selection-end="732" vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="1292">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/../AgileProject/src/com/StockTake/AgileProjectActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="56" column="23" selection-start="1811" selection-end="1811" vertical-scroll-proportion="0.0" vertical-offset="716" max-vertical-offset="1700">
+        <state line="67" column="32" selection-start="1733" selection-end="1733" vertical-scroll-proportion="0.0" vertical-offset="507" max-vertical-offset="1292">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../AgileProject/res/layout/summary.xml">
+    <entry file="file://$PROJECT_DIR$/../AgileProject/src/com/StockTake/SummaryFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="4" selection-start="234" selection-end="290" vertical-scroll-proportion="-3.4" vertical-offset="0" max-vertical-offset="969">
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../AgileProject/res/layout/summary_fragment_layout.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="952">
+        <state line="41" column="33" selection-start="1021" selection-end="1021" vertical-scroll-proportion="0.0" vertical-offset="575" max-vertical-offset="1581">
           <folding>
-            <element signature="e#641#655#0" expanded="true" />
-            <element signature="e#841#857#0" expanded="true" />
-            <element signature="e#1042#1057#0" expanded="true" />
-            <element signature="e#1242#1257#0" expanded="true" />
-            <element signature="e#1613#1637#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
-      <provider editor-type-id="android-designer">
-        <state />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../AgileProject/src/com/StockTake/SummaryActivityRank.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="13" selection-start="87" selection-end="87" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="289">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../AgileProject/src/com/StockTake/SummaryActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="45" selection-start="864" selection-end="1058" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3366">
+        <state line="37" column="4" selection-start="864" selection-end="1058" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3366">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../AgileProject/src/com/StockTake/FeedParser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="120" column="93" selection-start="3343" selection-end="3348" vertical-scroll-proportion="-9.5" vertical-offset="1793" max-vertical-offset="4012">
           <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#827#828#0" expanded="false" />
-            <element signature="e#860#861#0" expanded="false" />
-            <element signature="e#3206#3214#0" expanded="false" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../AgileProject/src/com/StockTake/SummaryFragment.java">
+    <entry file="file://$PROJECT_DIR$/../AgileProject/src/com/StockTake/Finance.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="1" selection-start="989" selection-end="989" vertical-scroll-proportion="1.0736842" vertical-offset="0" max-vertical-offset="612">
+        <state line="11" column="13" selection-start="295" selection-end="295" vertical-scroll-proportion="0.0" vertical-offset="340" max-vertical-offset="3740">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../AgileProject/src/com/StockTake/StockManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="37" column="4" selection-start="811" selection-end="890" vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="5542">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../AgileProject/src/com/StockTake/AsyncStockManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="26" selection-start="595" selection-end="595" vertical-scroll-proportion="0.6816609" vertical-offset="211" max-vertical-offset="561">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#554#564#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

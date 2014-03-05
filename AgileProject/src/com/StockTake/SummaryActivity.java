@@ -187,7 +187,7 @@ public class SummaryActivity extends Activity implements Param
 			
 			ProgressBar pb = (ProgressBar)findViewById(R.id.progressBar1);
 			pb.setVisibility(View.GONE);
-			myStockmanager.summaryTable(parent,getParam());
+			//myStockmanager.summaryTable(parent,getParam());
 			
 			super.onPostExecute(result);
 		}

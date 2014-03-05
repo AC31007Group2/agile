@@ -2,6 +2,7 @@ package com.StockTake;
 
 import java.io.IOException;
 
+import android.util.Log;
 import org.json.JSONException;
 
 import com.StockTake.StockManager.SortParameter;
@@ -31,6 +32,7 @@ enum status { success, failure };
 
 public class SummaryActivity extends Activity implements Param
 {
+
 	/** Called when the activity is first created. */
 	@Override
 	public StockManager.SortParameter getParam() {
@@ -45,7 +47,7 @@ public class SummaryActivity extends Activity implements Param
 	TextView error1;
 	TableRow.LayoutParams params;
     
-	static AsyncTask<Activity, Void, List<String>> taskWaiting;
+	static AsyncTask<Activity, Void, List<String>> taskWaiting = null;
 	
 	
 	@Override
@@ -58,7 +60,6 @@ public class SummaryActivity extends Activity implements Param
 		System.out.println("summaryactivity - oncreate");
 		// Get the StockManager
 		myStockmanager = ((StockManager)getApplicationContext());
-		taskWaiting = null;
 
 		setContentView(R.layout.summary);	
 		
@@ -72,31 +73,32 @@ public class SummaryActivity extends Activity implements Param
 		table = (TableLayout) this.findViewById(R.id.tableLayout1); 
 
 		
-		
-		if (checkInternetConnection()) {
-			try {
+		if (taskWaiting == null) {
+            if (checkInternetConnection()) {
+                try {
 
-				errorRow = new TableRow(this);
-				error1 = new TextView(this);
-				params = new TableRow.LayoutParams();  
-			    params.span = 4;
-				System.out.println("do this!");
-				onClick();
-				System.out.println("and this!");
+                    errorRow = new TableRow(this);
+                    error1 = new TextView(this);
+                    params = new TableRow.LayoutParams();
+                    params.span = 4;
+                    System.out.println("do this!");
+                    onClick();
+                    System.out.println("and this!");
 
-			} catch(Exception e) {
-				/* Parse Error */ 
-       		error1.setText(Html.fromHtml(" <big>Oops!</big><br/><br/> Something went wrong when we tried to retrieve your share portfolio.<br/><br/> Please try again later."));
-       		errorRow.addView(error1, params);
-                table.addView(errorRow); 
-			}
-				
-		} else {
-			/* No Internet Connection */
-			error1.setText(Html.fromHtml(" <big>Oops!</big><br/><br/> It seems there is a problem with your internet connection."));
-			errorRow.addView(error1, params);
-            table.addView(errorRow);
-		}
+                } catch(Exception e) {
+                    /* Parse Error */
+                error1.setText(Html.fromHtml(" <big>Oops!</big><br/><br/> Something went wrong when we tried to retrieve your share portfolio.<br/><br/> Please try again later."));
+                errorRow.addView(error1, params);
+                    table.addView(errorRow);
+                }
+
+            } else {
+                /* No Internet Connection */
+                error1.setText(Html.fromHtml(" <big>Oops!</big><br/><br/> It seems there is a problem with your internet connection."));
+                errorRow.addView(error1, params);
+                table.addView(errorRow);
+            }
+        }
 	}
 	private class CreateFinanceObjectAsync extends AsyncTask<Activity, Void, List<String>>
 	{
@@ -123,7 +125,6 @@ public class SummaryActivity extends Activity implements Param
 			List<String> problems = new ArrayList<String>();
             if (this.isCancelled())
             {
-                cancel(true);
                 return problems;
             }
 
@@ -216,7 +217,7 @@ public class SummaryActivity extends Activity implements Param
 			pb.setVisibility(View.GONE);
 			myStockmanager.summaryTable(parent,getParam());
 
-            taskWaiting = null;
+            SummaryActivity.taskWaiting = null;
 
 			super.onPostExecute(result);
 		}
@@ -225,17 +226,17 @@ public class SummaryActivity extends Activity implements Param
 	/* Click Refresh */
 	public void onClick() throws IOException, JSONException {
 
-        if (taskWaiting == null)
+        Log.d("Summary", "begin");
+        if (SummaryActivity.taskWaiting == null)
         {
-		    taskWaiting = new CreateFinanceObjectAsync().execute(this, null, null);
+            Log.d("Summary", "spawn - " + (SummaryActivity.taskWaiting == null));
+            SummaryActivity.taskWaiting = new CreateFinanceObjectAsync().execute(this, null, null);
+            Log.d("Summary", "spawn - " + (SummaryActivity.taskWaiting == null));
         }
-		System.out.println("summaryactivity - onclick");
+        Log.d("Summary", "end");
 	}
 	
 	private boolean checkInternetConnection() {
-		System.out.println("summaryactivity - checkinternetconnection");
-		
-	
 		ConnectivityManager conMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 	
 		// ARE WE CONNECTED TO THE INTERNET

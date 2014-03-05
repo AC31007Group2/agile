@@ -27,8 +27,7 @@ public class FeedParser
 	public void parseJSON(Finance toPopulate, String currentStock) throws IOException, JSONException
 	{
 		// Create JSON and Finance objects
-		
-		System.out.println("Feedparser - perseJSON");
+
 		JSONObject jObject;
 		
 		// Generate URL
@@ -47,7 +46,6 @@ public class FeedParser
 		is.close();
 		// Init object
 		
-		System.out.println("FeedParser - parseJSON - I am here - "+currentStock);
 		jObject = new JSONObject(jsonText);
 		
 		// Use this, just because some shares (expn) use comma to separate large values.
@@ -56,20 +54,16 @@ public class FeedParser
 
 		// Set 'Last' value
 		toPopulate.setLast(Float.parseFloat(tmpString) / 100f);
-		System.out.println("FeedParser - parseJSON - I am here 3 - "+currentStock);
 
 		//Log.v("LOGCATZ", " " + toPopulate.getLast());
 		// Set 'Company' name
 		toPopulate.setName(jObject.getString("t"));
-		System.out.println("FeedParser - parseJSON - I am here 4 - "+currentStock);
 
 		// Set 'Market'
 		toPopulate.setMarket(jObject.getString("e"));
 		// Set 'Instant Volume'
 		int instantVolume = volCharToInt(jObject.getString("vo"));
 		toPopulate.setInstantVolume(instantVolume);
-		
-		System.out.println("FeedParser - parseJSON - I am here 5 - "+currentStock+instantVolume);
 
 	}
 	
@@ -80,11 +74,9 @@ public class FeedParser
 			String csvData[] = null;
 			
 			try {
-				System.out.println("AAAAAAZZ3");
 				csvBr   = getCsvFeed(stockToGet);
 				csvData = parseCsvString(csvBr);
-				System.out.println("AAAAAAZZ4");
-				
+
 			}
 			catch (Exception e)
 			{
@@ -93,17 +85,14 @@ public class FeedParser
 				
 				return false;
 			}
-			System.out.println("AAAAAAZZ");
 			if(csvData != null)
 			{
 				toPopulate.setClose(Float.parseFloat(csvData[0]) / 100f);
 				toPopulate.setVolume(Integer.parseInt(csvData[1]));
-				System.out.println("AAAAAAZZ1");
 				return true;
 			}
 			else
 			{
-				System.out.println("AAAAAAZZ2");
 				return false;
 			}
 	}
@@ -125,7 +114,6 @@ public class FeedParser
 		
 		if(useTestData)
 		{
-			System.out.println("YMCA");
 			feedUrl = new URL("http://beberry.lv/stocks/" + stockSymbol + ".csv");
 		};
 

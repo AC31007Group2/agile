@@ -88,8 +88,8 @@ public class StockManager extends Application {
 		stockObj.setTotal(stockObj.last * numberOfShares);
 		stockObj.setNumberOfShares(numberOfShares);
 
-		System.out.println(stockObj.last + "Z1z1" + stockObj.getName()
-				+ stockObj.getTotal());
+		//System.out.println(stockObj.last + "Z1z1" + stockObj.getName()
+		//		+ stockObj.getTotal());
 
 		if (this.portfolioList.contains(stockObj)) {
 			return false;
@@ -104,7 +104,7 @@ public class StockManager extends Application {
 	}
 
 	public float getPortfolioTotal() {
-		System.out.println("stockmanager - getprotfolio");
+		//System.out.println("stockmanager - getprotfolio");
 		float value = 0;
 		if (this.portfolioList.isEmpty()) {
 			return 0;

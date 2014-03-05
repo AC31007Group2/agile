@@ -203,11 +203,11 @@ public class StockManager extends Application {
 			stockName[stockCounter].setTypeface(Typeface.DEFAULT);
 			stockName[stockCounter].setTextColor(Color.rgb(58, 128, 255));
 			stockName[stockCounter].setTextSize(20f);
-			stockName[stockCounter].setHeight(40);
+			stockName[stockCounter].setHeight(80);
 			// stockName[stockCounter].setWidth(200);
 			stockName[stockCounter].setGravity(Gravity.LEFT
 					| Gravity.CENTER_VERTICAL);
-			
+
 			if(screenSize.widthPixels > 480){
 				stockShares[stockCounter].setText(String.format("%,3.0f",
 						(float) stockObj.getNumberOfShares()));
@@ -215,7 +215,7 @@ public class StockManager extends Application {
 						| Gravity.CENTER_VERTICAL);
 				stockShares[stockCounter].setTextSize(20f);
 				stockShares[stockCounter].setSingleLine(true);
-	
+
 				stockValue[stockCounter].setText("£"
 						+ String.format("%.2f", stockValueRounded));
 				stockValue[stockCounter].setGravity(Gravity.RIGHT
@@ -230,13 +230,13 @@ public class StockManager extends Application {
 					| Gravity.CENTER_VERTICAL);
 			stockTotal[stockCounter].setTextSize(20f);
 			stockTotal[stockCounter].setSingleLine(true);
-		
-			
-			rowStock[stockCounter].addView(stockName[stockCounter]);			
+
+
+			rowStock[stockCounter].addView(stockName[stockCounter]);
 			if(screenSize.widthPixels >= 480){
 				rowStock[stockCounter].addView(stockShares[stockCounter]);
 				rowStock[stockCounter].addView(stockValue[stockCounter]);
-				}			
+				}
 			rowStock[stockCounter].addView(stockTotal[stockCounter]);
 
 			table.addView(rowStock[stockCounter]);

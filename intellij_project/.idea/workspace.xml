@@ -18,16 +18,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0223de23-4eae-42fd-9f3a-9688e0d95289" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../AgileProject/src/com/StockTake/AsyncStockManager.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../AgileProject/src/com/StockTake/StockRow.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../AgileProject/src/com/StockTake/TestFragment.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../AgileProject/res/layout/test_fragment.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../AgileProject/src/com/StockTake/AgileProjectActivity.java" afterPath="$PROJECT_DIR$/../AgileProject/src/com/StockTake/AgileProjectActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../AgileProject/AndroidManifest.xml" afterPath="$PROJECT_DIR$/../AgileProject/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../AgileProject/src/com/StockTake/StockManager.java" afterPath="$PROJECT_DIR$/../AgileProject/src/com/StockTake/StockManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../AgileProject/src/com/StockTake/SummaryActivity.java" afterPath="$PROJECT_DIR$/../AgileProject/src/com/StockTake/SummaryActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../AgileProject/src/com/StockTake/SummaryFragment.java" afterPath="$PROJECT_DIR$/../AgileProject/src/com/StockTake/SummaryFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../AgileProject/res/layout/main_layout.xml" afterPath="$PROJECT_DIR$/../AgileProject/res/layout/main_layout.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="agile.iws" />
@@ -746,7 +736,7 @@
       <workItem from="1393754265516" duration="7979000" />
       <workItem from="1393798216257" duration="69000" />
       <workItem from="1393846810265" duration="2000" />
-      <workItem from="1393846813067" duration="35691000" />
+      <workItem from="1393846813067" duration="35772000" />
     </task>
     <task id="LOCAL-00001" summary="Started Migrating to ActionBar to remove depracation warning">
       <created>1393935039691</created>
@@ -756,11 +746,15 @@
       <created>1393935094880</created>
       <updated>1393935094880</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Started Re-implementing Stockmanager&#10;">
+      <created>1394019251382</created>
+      <updated>1394019251382</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="45233000" />
+    <option name="totallyTimeSpent" value="45314000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
@@ -812,7 +806,8 @@
     </option>
     <MESSAGE value="Started Migrating to ActionBar to remove depracation warning" />
     <MESSAGE value="Started Migrating to ActionBar to remove depracation warning&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Started Migrating to ActionBar to remove depracation warning&#10;" />
+    <MESSAGE value="Started Re-implementing Stockmanager&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Started Re-implementing Stockmanager&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />

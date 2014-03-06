@@ -61,10 +61,10 @@ public class FeedParser {
         tmpString = tmpString.replace(TARGET_STRING, REPLACEMENT_STRING);
 
         // Set 'Last' value
-        toPopulate.setLast(Float.parseFloat(tmpString) / C_DIV_AMOUNT);
+        toPopulate.setLastValue(Float.parseFloat(tmpString) / C_DIV_AMOUNT);
 
         // Set 'Company' name
-        toPopulate.setName(jObject.getString(m_context.getString(R.string.name_value_json_tag)));
+        toPopulate.setStockSymbol(jObject.getString(m_context.getString(R.string.name_value_json_tag)));
 
         // Set 'Market'
         toPopulate.setMarket(jObject.getString(m_context.getString(R.string.market_value_json_tag)));
@@ -84,8 +84,8 @@ public class FeedParser {
             return false;
         }
         if (csvData != null) {
-            toPopulate.setClose(Float.parseFloat(csvData[0]) / C_DIV_AMOUNT);
-            toPopulate.setVolume(Integer.parseInt(csvData[1]));
+            toPopulate.setClosingValue(Float.parseFloat(csvData[0]) / C_DIV_AMOUNT);
+            toPopulate.setVolumeHistoric(Integer.parseInt(csvData[1]));
             return true;
         } else {
             return false;

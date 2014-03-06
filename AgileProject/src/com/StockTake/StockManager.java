@@ -8,18 +8,15 @@ import java.util.HashMap;
 import java.util.List;
 import org.json.JSONException;
 
-import android.R.layout;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
-import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.text.Html;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup.LayoutParams;
 import android.view.WindowManager;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -29,6 +26,7 @@ public class StockManager extends Application {
 	public FeedParser newParse;
 
 	@Override
+
 	public void onCreate() {
 		// TODO Auto-generated method stub
 		super.onCreate();
@@ -65,6 +63,14 @@ public class StockManager extends Application {
 	}
 
 	// create a new finance object
+
+    /**
+     * Create a new Finance object from the given stock code. Retrieves the detials from the internet API
+     * @param stockCode - the code for the stock to retrieve.
+     * @return Finance object describing the named stock.
+     * @throws IOException
+     * @throws JSONException
+     */
 	public Finance createFinanceObject(String stockCode) throws IOException,
 			JSONException {
 		Finance newStock = new Finance(StockManager.this);
@@ -80,16 +86,25 @@ public class StockManager extends Application {
 		return newStock;
 	}
 
-	// add entry to portfolio hashmap
+    /**
+     * Adds an entry into the stock portfolio for the given stock code, (human-readable) name and quantity.
+     * Retrieves data from the internet, and so might be quite slow.
+     * @param stockCode
+     * @param stockNameLong
+     * @param numberOfShares
+     * @return Returns true if adding succeeds, false if it already exists.
+     * @throws IOException
+     * @throws JSONException
+     */
 	public boolean addPortfolioEntry(String stockCode, String stockNameLong,
 			int numberOfShares) throws IOException, JSONException {
 		Finance stockObj = createFinanceObject(stockCode); // doesnt work!
 
-		stockObj.setTotal(stockObj.last * numberOfShares);
 		stockObj.setNumberOfShares(numberOfShares);
+        stockObj.calculateTotalValue();
 
-		//System.out.println(stockObj.last + "Z1z1" + stockObj.getName()
-		//		+ stockObj.getTotal());
+		//System.out.println(stockObj.lastValue + "Z1z1" + stockObj.getStockSymbol()
+		//		+ stockObj.getTotalValue());
 
 		if (this.portfolioList.contains(stockObj)) {
 			return false;
@@ -103,20 +118,24 @@ public class StockManager extends Application {
 		return true;
 	}
 
+    /**
+     * Returns total number of pounds all of the stocks together are worth.
+     * @return
+     */
 	public float getPortfolioTotal() {
-		//System.out.println("stockmanager - getprotfolio");
 		float value = 0;
-		if (this.portfolioList.isEmpty()) {
-			return 0;
-		}
-
 		for (Finance stockObj : portfolioList) {
-			value += stockObj.getTotal();
+			value += stockObj.getTotalValue();
 		}
 
 		return value;
 	}
 
+    /**
+     * Builds a table in the GUI
+     * @param contextActivity
+     * @param sortBy
+     */
 	public void summaryTable(Activity contextActivity, SortParameter sortBy) {
 		// Find TableLayout defined in main.xml
 		TableLayout table = (TableLayout) contextActivity
@@ -179,7 +198,7 @@ public class StockManager extends Application {
 			stockValue[stockCounter] = new TextView(contextActivity);
 			stockTotal[stockCounter] = new TextView(contextActivity);
 
-			float thisStockValue = stockObj.getLast();
+			float thisStockValue = stockObj.getLastValue();
 
 			// half up rounding mode - so reduces errors to +/- £1
 			BigDecimal stockValueRounded = new BigDecimal(
@@ -187,9 +206,9 @@ public class StockManager extends Application {
 			stockValueRounded = stockValueRounded.setScale(2,
 					BigDecimal.ROUND_DOWN);
 
-			float thisStockTotal = stockObj.getTotal();
+			float thisStockTotal = stockObj.getTotalValue();
 
-			// rounding down the stock total.
+			// rounding down the stock totalValue.
 			BigDecimal stockTotalRounded = new BigDecimal(
 					Double.toString(thisStockTotal));
 			stockTotalRounded = stockTotalRounded.setScale(0,
@@ -197,7 +216,7 @@ public class StockManager extends Application {
 
 			// float subTotal = portfolio.get(stockObj) * thisStockValue;
 
-			String longName = stockNamesLong.get(stockObj.getName().toString());
+			String longName = stockNamesLong.get(stockObj.getStockSymbol().toString());
 
 			stockName[stockCounter].setText(longName);
 			stockName[stockCounter].setTypeface(Typeface.DEFAULT);
@@ -293,7 +312,7 @@ public class StockManager extends Application {
 
             if (stockObj.isRun())
             {
-                runStock[stockCounter].setText(stockNamesLong.get(stockObj.getName().toString()));
+                runStock[stockCounter].setText(stockNamesLong.get(stockObj.getStockSymbol().toString()));
                 runStock[stockCounter].setTextSize(20f);
                 runStock[stockCounter].setHeight(100);
                 runStock[stockCounter].setGravity(Gravity.CENTER_VERTICAL);
@@ -345,7 +364,7 @@ public class StockManager extends Application {
             rocketStock[stockCounter].setTextSize(20f);
             rocketStock[stockCounter].setHeight(100);
             rocketStock[stockCounter].setGravity(Gravity.CENTER_VERTICAL);
-            rocketStock[stockCounter].setText(stockNamesLong.get(stockObj.getName().toString()));
+            rocketStock[stockCounter].setText(stockNamesLong.get(stockObj.getStockSymbol().toString()));
 
             if (stockObj.isRocket())
             {

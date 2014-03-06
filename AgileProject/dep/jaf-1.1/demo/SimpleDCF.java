@@ -45,7 +45,7 @@ public class SimpleDCF implements DataContentHandlerFactory {
     /**
      * the constructor, takes a list of classes as an argument in the
      * form:
-     * <mimetype>:<class name>\n
+     * <mimetype>:<class stockSymbol>\n
      *
      * For Example:
      *
@@ -116,7 +116,7 @@ class VectorEntry {
     public String getMimeType() { return mimeType; }
     public String getClassName() { return className; }
     public String toString() { 
-	return new String("type: " + mimeType + " class name: " + className);
+	return new String("type: " + mimeType + " class stockSymbol: " + className);
     }
 
 }

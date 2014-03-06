@@ -33,14 +33,14 @@ public class FinanceTest extends AndroidTestCase
 
 	public void testSetGetName() throws Throwable
 	{
-		finance.setName("Test Name");
-		Assert.assertEquals("failure - setName didnt work", "Test Name", finance.getName());
+		finance.setStockSymbol("Test Name");
+		Assert.assertEquals("failure - setStockSymbol didnt work", "Test Name", finance.getStockSymbol());
 	}
 	
 	public void testSetGetLast() throws Throwable
 	{
-		finance.setLast(1.234f);
-		Assert.assertEquals("failure - setLast didnt work", 1.234f, finance.getLast(), 0);
+		finance.setLastValue(1.234f);
+		Assert.assertEquals("failure - setLastValue didnt work", 1.234f, finance.getLastValue(), 0);
 	}
 	
 	public void testSetGetMarket() throws Throwable
@@ -51,33 +51,33 @@ public class FinanceTest extends AndroidTestCase
 	
 	public void testGetSummary() throws Throwable
 	{
-		finance.setName("Test Name");
-		finance.setLast(1.234f);
+		finance.setStockSymbol("Test Name");
+		finance.setLastValue(1.234f);
 		Assert.assertEquals("failure - getSummary returned unexpected results", "Test Name:  1.234", finance.getSummary());
 	}
 	
 	public void testSetGetClose() throws Throwable
 	{
-		finance.setClose(2.345f);
-		Assert.assertEquals("failure - setClose did not work as anticipated", 2.345f, finance.getClose(), 0);
+		finance.setClosingValue(2.345f);
+		Assert.assertEquals("failure - setClosingValue did not work as anticipated", 2.345f, finance.getClosingValue(), 0);
 	}
 	
 	public void testSetGetVolume() throws Throwable
 	{
-		finance.setVolume(4321);
-		Assert.assertEquals("failure - setVolume did not correctly alter the volume", 4321, finance.getVolume(), 0);
+		finance.setVolumeHistoric(4321);
+		Assert.assertEquals("failure - setVolumeHistoric did not correctly alter the volumeHistoric", 4321, finance.getVolumeHistoric(), 0);
 	}
 	
 	public void testSetGetInstantVolume() throws Throwable
 	{
 		finance.setInstantVolume(6354);
-		Assert.assertEquals("failure - setInstant volume did not correctly set the colume", 6354, finance.getInstantVolume());
+		Assert.assertEquals("failure - setInstant volumeHistoric did not correctly set the colume", 6354, finance.getInstantVolume());
 	}
 	
 	public void testRocketExtremeValues()
 	{
-		finance.setClose(1000f);
-		finance.setLast(1099);
+		finance.setClosingValue(1000f);
+		finance.setLastValue(1099);
 		finance.calcRocketPlummet();
 		
 		assertFalse("failure - result is a rocket, although it shouldnt be", finance.isRocket());
@@ -90,8 +90,8 @@ public class FinanceTest extends AndroidTestCase
 	
 	public void testPlummetExtremeValues()
 	{
-		finance.setClose(1000f);
-		finance.setLast(1099);
+		finance.setClosingValue(1000f);
+		finance.setLastValue(1099);
 		finance.calcRocketPlummet();
 		
 		assertFalse("failure - result plummets although it shouldnt", finance.isPlummet());
@@ -104,8 +104,8 @@ public class FinanceTest extends AndroidTestCase
 	
 	public void testRunExtremeValues()
 	{
-		finance.setClose(1000f);
-		finance.setLast(1099);
+		finance.setClosingValue(1000f);
+		finance.setLastValue(1099);
 		finance.calcRocketPlummet();
 		
 		assertFalse("failure - stock is on a run although it shouldnt be", finance.isRun());
@@ -119,7 +119,7 @@ public class FinanceTest extends AndroidTestCase
 	
 	public void testCalcRunAndIsRun() throws Throwable
 	{
-		finance.setVolume(1000);
+		finance.setVolumeHistoric(1000);
 		finance.setInstantVolume(1099);
 		finance.calcRun();
 		
@@ -128,43 +128,43 @@ public class FinanceTest extends AndroidTestCase
 		finance.setInstantVolume(1100);
 		finance.calcRun();
 		
-		assertFalse("failure - should not be on run", finance.is_run);
+		assertFalse("failure - should not be on run", finance.isRun());
 		
 		finance.setInstantVolume(1101);
 		finance.calcRun();
 		
-		assertTrue("failure - Should be on a run!", finance.is_run);		
+		assertTrue("failure - Should be on a run!", finance.isRun());
 	}
 	
 	public void testCalcRocketPlummetAndIsPlummetIsRocket() throws Throwable
 	{
 		// Rocket boundary tests...
-		finance.setClose(1000f);
-		finance.setLast(1099);
+		finance.setClosingValue(1000f);
+		finance.setLastValue(1099);
 		finance.calcRocketPlummet();
 		
 		assertFalse("failure - should not rocket at the moment", finance.isRocket());
 		
-		finance.setLast(1100);
+		finance.setLastValue(1100);
 		finance.calcRocketPlummet();
 		
 		assertFalse("failure - should not rocket", finance.isRocket());
 		
-		finance.setLast(1101);
+		finance.setLastValue(1101);
 		finance.calcRocketPlummet();
 		
 		assertTrue("failure - should be rocketing at the moment", finance.isRocket());
 		
 		// Plummet boundary tests...
-		finance.setLast(801);
+		finance.setLastValue(801);
 		finance.calcRocketPlummet();
 		assertFalse("failure - should not plummet at the moment", finance.isPlummet());
 		
-		finance.setLast(800);
+		finance.setLastValue(800);
 		finance.calcRocketPlummet();
 		assertFalse("failure - should not plummet", finance.isPlummet());
 		
-		finance.setLast(799);
+		finance.setLastValue(799);
 		finance.calcRocketPlummet();
 		assertTrue("failure - should plummet at the moment!", finance.isPlummet());
 		

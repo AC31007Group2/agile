@@ -105,7 +105,7 @@ public class CompViewer extends Frame implements WindowListener {
 
 
     /**
-     * Make the bean based on it's class loader and name
+     * Make the bean based on it's class loader and stockSymbol
      */
     private Object makeBean(ClassLoader cls, String beanName) {
 	Object new_bean = null;

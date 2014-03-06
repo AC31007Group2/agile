@@ -90,7 +90,7 @@ public class AgileProjectActivity extends TabActivity {
      *
      * @param context    the activity contect
      * @param cls        the class
-     * @param name       the tab name
+     * @param name       the tab stockSymbol
      * @param drawableId the id of the drawable used for the tab
      * @param tabHost    the tabhosr
      * @return created tab specification

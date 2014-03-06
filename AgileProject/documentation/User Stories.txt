@@ -22,7 +22,7 @@ Complexity: 14 / Value: 200 / Priority: 14.28
 
 --------------------------------------------------------------------------------
 
-As a shareholder, I want to know the total loss since opening on Monday of the
+As a shareholder, I want to know the totalValue loss since opening on Monday of the
 current week till now. So that I can quickly tell if I have made or lost money,
 and how much.
 
@@ -57,6 +57,6 @@ Complexity: 14 / Value: 800 / Priority: 57.14
 --------------------------------------------------------------------------------
 
 As a shareholder, I want an estimate of how much my share portfolio is worth in
-total so that I can tell what my total investment worth is.
+totalValue so that I can tell what my totalValue investment worth is.
 
 Complexity: 14 / Value: 1000 / Priority: 71.42

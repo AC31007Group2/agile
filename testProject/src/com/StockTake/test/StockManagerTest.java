@@ -63,6 +63,6 @@ public class StockManagerTest extends AndroidTestCase
 		Finance finance;
 		finance = stockManager.createFinanceObject("BP");
 		Assert.assertNotNull("failure - finance object is null!", finance);
-		Assert.assertEquals("failure - finance name is not as expected", "BP", finance.getName());
+		Assert.assertEquals("failure - finance stockSymbol is not as expected", "BP", finance.getStockSymbol());
 	}
 }

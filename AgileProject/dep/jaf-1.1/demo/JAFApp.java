@@ -100,7 +100,7 @@ public class JAFApp extends Frame implements WindowListener, ItemListener, Actio
 			     1,1,
 			     1,0 );
 
-	    // file name label
+	    // file stockSymbol label
 	    f_title = new Label("File Name:");
 	    f_title.setBackground(Color.lightGray);
 	    f_title.setAlignment(Label.RIGHT);
@@ -112,7 +112,7 @@ public class JAFApp extends Frame implements WindowListener, ItemListener, Actio
 			     1, 1,
 			     5, 100);
 
-	    // file name label
+	    // file stockSymbol label
 	    f_name_label = new Label("<none selected>");
 	    f_name_label.setBackground(Color.lightGray);
 	    f_name_label.setAlignment(Label.LEFT);
@@ -124,7 +124,7 @@ public class JAFApp extends Frame implements WindowListener, ItemListener, Actio
 			     1, 1,
 			     15, 100);
 	    
-	    	    // file name label
+	    	    // file stockSymbol label
 	    f_title = new Label("MIME Type:");
 	    f_title.setBackground(Color.lightGray);
 	    f_title.setAlignment(Label.RIGHT);
@@ -362,7 +362,7 @@ public class JAFApp extends Frame implements WindowListener, ItemListener, Actio
 				    verb_choice.removeAll();
 				    for(int i = 0; i < cmds.length; i++)
 					{
-					    //		    verb_choice.addItem(cmds[i].getBeanDescriptor().getName());
+					    //		    verb_choice.addItem(cmds[i].getBeanDescriptor().getStockSymbol());
 					    verb_choice.addItem(cmds[i].getCommandName());
 					}
 				}

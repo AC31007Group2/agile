@@ -53,11 +53,11 @@ public class FeedParser
 		tmpString = tmpString.replace(",","");
 
 		// Set 'Last' value
-		toPopulate.setLast(Float.parseFloat(tmpString) / 100f);
+		toPopulate.setLastValue(Float.parseFloat(tmpString) / 100f);
 
-		//Log.v("LOGCATZ", " " + toPopulate.getLast());
-		// Set 'Company' name
-		toPopulate.setName(jObject.getString("t"));
+		//Log.v("LOGCATZ", " " + toPopulate.getLastValue());
+		// Set 'Company' stockSymbol
+		toPopulate.setStockSymbol(jObject.getString("t"));
 
 		// Set 'Market'
 		toPopulate.setMarket(jObject.getString("e"));
@@ -87,8 +87,8 @@ public class FeedParser
 			}
 			if(csvData != null)
 			{
-				toPopulate.setClose(Float.parseFloat(csvData[0]) / 100f);
-				toPopulate.setVolume(Integer.parseInt(csvData[1]));
+				toPopulate.setClosingValue(Float.parseFloat(csvData[0]) / 100f);
+				toPopulate.setVolumeHistoric(Integer.parseInt(csvData[1]));
 				return true;
 			}
 			else

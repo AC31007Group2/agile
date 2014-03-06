@@ -1,48 +1,46 @@
 package com.StockTake;
 
-//import java.io.ObjectInputStream.GetField;
 import java.util.Comparator;
 
-//import android.app.Activity;
-import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 public class Finance
 {
-	public String name; 			// Stock name
-	public float last  = 0;			// Last stock value
-	public String market; 			// Market
-	public float close;
-	public int volume;				// Looks like a historic volume from x (4) days ago, using the CSV from yahoo api.
-	public int instant_volume = 0;  // Current volume, set when the stock object is being created, uses the data from goole api.
-	public float total; 			// total stock value.
-	public boolean is_run;
-	public boolean is_rocket;
-	public boolean is_plummet;
-	public int numberOfShares;
+    private String stockSymbol;     // Stock stockSymbol
+    private float lastValue;	    // Last stock value
+    private String market; 			// Market
+    private float closingValue;     // The value of the share when the market was closing.
+    private int volumeHistoric;		// Looks like a historic volume from x(was set to 4) days ago, using the CSV from yahoo api.
+    private int volumeInstant;      // Current volume, set when the stock object is being created, uses the data from goole api.
+    private float totalValue; 	    // Total stock value.
+    private boolean is_run;
+    private boolean is_rocket;
+    private boolean is_plummet;
+	private int numberOfShares;
 	
-	private float RUN_CONST;//	 = 1.1f;    // Looks like some kind of a coeff for RUNs
-	private float ROCKET_CONST;// = 1.1f;    // Looks like some kind of a coeff for ROCKETs
-	private float PLUMMET_CONST;// = 0.8f;   
-	
-	public static final String PREFS_NAME = "strings";
+	private float RUN_CONST;       // Looks like some kind of a coeff for RUNs
+	private float ROCKET_CONST;    // Looks like some kind of a coeff for ROCKETs
+	private float PLUMMET_CONST;
+
 	public Context context;
-	
 
 	public Finance(Context context)
 	{
+        this.lastValue = 0;
+        this.volumeInstant = 0;
+        this.stockSymbol = "Default";
+
 		this.context = context;
-		initialiseValues();
-		name = "Default";
-		last = 0;
+
+        this.getConstants();
 	}
-	
-	/*
-	 * Get current value of floats for calculations
-	 */
-	public void initialiseValues()
+
+    /**
+     * Method that gets constants form the UI / preferences
+     */
+	private void getConstants()
 	{
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
 		
@@ -51,146 +49,262 @@ public class Finance
 		this.setPlummetConst(Float.parseFloat(preferences.getString("PLUMMET_CONST","0.8f")));
 	}
 
-	public void setLast(float newLast)
+    /**
+     * Method that sets the lastValue value of the stock
+     *
+     * @param newLast
+     */
+	public void setLastValue(float newLast)
 	{
-		//System.out.println("finance - setlast");
-		last = newLast;
+		this.lastValue = newLast;
 	}
 
-	public float getLast()
+    /**
+     * Method which returns the last value of this stock.
+     *
+     * @return last value of this stock.
+     */
+	public float getLastValue()
 	{
-		//System.out.println("finacne - getlast");
-		return last;
+		return this.lastValue;
 	}
 
-	public void setName(String newName)
+    /**
+     * Method which sets the
+     * @param stockSymbol
+     */
+	public void setStockSymbol(String stockSymbol)
 	{
-		//System.out.println("finance - setname");
-		name = newName;
+		this.stockSymbol = stockSymbol;
 	}
 
-	public String getName()
+    /**
+     * Method which returns the stock symbol for this stock
+     *
+     * @return the stock symbol
+     */
+	public String getStockSymbol()
 	{
-		return name;
+		return this.stockSymbol;
 	}
 
+    /**
+     * Method which sets the market
+     *
+     * @param newMarket
+     */
 	public void setMarket(String newMarket)
 	{
-		//System.out.println("finance - setmarket");
-		market = newMarket;
+		this.market = newMarket;
 	}
 
+    /**
+     * Method which returns the market
+     *
+     * @return market name
+     */
 	public String getMarket()
 	{
-//		System.out.println("finance - getmarket");
-		return market;
+		return this.market;
 	}
 
+    /**
+     * Method which returns a summary of this share.
+     *
+     * @return a string containing the stock symbol and it's last value.
+     */
 	public String getSummary()
 	{
-		//System.out.println("finacne - getsummary");
-		return name + ":  " + last;
-	}
-	
-	public void setClose(float newClose)
-	{
-		//System.out.println("finance - setclaose");
-		close = newClose;
+		return this.stockSymbol + ":  " + this.lastValue;
 	}
 
-	public float getClose()
+    /**
+     * Method which sets the value of the share when the market was closing.
+     *
+     * @param newClosingValue
+     */
+	public void setClosingValue(float newClosingValue)
 	{
-		//System.out.println("finance - getclose");
-		return this.close;
-	}
-	
-	public void setVolume(int newVol)
-	{
-		//System.out.println("finance - setvolume");
-		volume = newVol;
+		this.closingValue = newClosingValue;
 	}
 
-	public int getVolume()
+    /**
+     * Method which returns the value of this share when the market closed.
+     *
+     * @return the share value when the market closed.
+     */
+	public float getClosingValue()
 	{
-		//System.out.println("finance - getvolume");
-		return this.volume;
+		return this.closingValue;
 	}
-	
+
+    /**
+     * Method which sets the historic volume of this stock.
+     *
+     * @param newVol
+     */
+	public void setVolumeHistoric(int newVol)
+	{
+		this.volumeHistoric = newVol;
+	}
+
+    /**
+     * Method which returns the historic volume (how many shares have been traded in a specific period)
+     *
+     * @return the number of shares traded (historic)
+     */
+	public int getVolumeHistoric()
+	{
+		return this.volumeHistoric;
+	}
+
+    /**
+     * Method which sets the current volume of this share
+     *
+     * @param newVol
+     */
 	public void setInstantVolume(int newVol)
 	{
-		//System.out.println("finance - setinstan");
-		instant_volume = newVol;
+        this.volumeInstant = newVol;
 	}
 
+    /**
+     * Method which returns the current volume of this share
+     *
+     * @return
+     */
 	public int getInstantVolume()
 	{
-		//System.out.println("finance - getinstant");
-		return instant_volume;
-	}	
-	
-	
-	public float getTotal() {
-		//System.out.println("finance - getTotal");
-		return total;
+		return this.volumeInstant;
 	}
 
-	public void setTotal(float total) {
-		//System.out.println("finance - setTotl");
-		this.total = total;
+    /**
+     * Method which returns the current value of this share collection
+     *
+     * @return
+     */
+	public float getTotalValue()
+    {
+		return this.totalValue;
 	}
 
-	public boolean isRun() {
-		//System.out.println("finance - isrun");
-		return is_run;
+    /**
+     * Method which sets the total value of the shares
+     *
+     * @param totalValue
+     */
+	public void setTotalValue(float totalValue)
+    {
+		this.totalValue = totalValue;
 	}
-	
-	public boolean isRocket() {
-		//System.out.println("finance - isrocket");
-		return is_rocket;
-	}
-	
-	public boolean isPlummet() {
-	//System.out.println("finance - isplummet");
-		return is_plummet;
-	}
-	
-	public void calcRun() {
-		initialiseValues();
 
-		//System.out.println("finance - calcrun");
-		if (volume != 0 && instant_volume != 0) {
-			if (instant_volume > (RUN_CONST * volume)) {
-				is_run = true;
-			} else {
-				is_run = false;
+    /**
+     * Method which calculates the total value of this share collection
+     *
+     */
+    public void calculateTotalValue()
+    {
+        this.totalValue = this.numberOfShares*this.lastValue;
+    }
+
+    /**
+     * Method which tells if this stock is on a "run"
+     *
+     * @return whether this share is on a "run"
+     */
+	public boolean isRun()
+    {
+		return this.is_run;
+	}
+
+    /**
+     * Method which tells if this stock is on a "rocket"
+     *
+     * @return whether this share is on a "rocket"
+     */
+	public boolean isRocket()
+    {
+		return this.is_rocket;
+	}
+
+    /**
+     * Method which tells if this stock is on a "plummet"
+     *
+     * @return whether this share is on a "plummet"
+     */
+	public boolean isPlummet()
+    {
+		return this.is_plummet;
+	}
+
+    /**
+     * Method which returns how many shares of this stock object we have.
+     *
+     * @return the number of shares
+     */
+    public int getNumberOfShares()
+    {
+        return this.numberOfShares;
+    }
+
+    /**
+     * Method which sets the number of shares that are being owned.
+     *
+     * @param shareCount
+     */
+    public void setNumberOfShares(int shareCount)
+    {
+        this.numberOfShares = shareCount;
+    }
+
+    /**
+     * Method which determines whether this stock object is on a run
+     */
+	public void calcRun()
+    {
+		this.getConstants();
+
+		if (this.volumeHistoric != 0 && this.volumeInstant != 0)
+        {
+			if (this.volumeInstant > (this.RUN_CONST * this.volumeHistoric))
+            {
+                this.is_run = true;
+			}
+            else
+            {
+                this.is_run = false;
 			}
 		}
 	}
-	
-	public int getNumberOfShares()
-	{
-		return this.numberOfShares;
-	}
-	
-	public void setNumberOfShares(int shareCount)
-	{
-		this.numberOfShares = shareCount;
-	}
-	
-	public void calcRocketPlummet() {
-		//System.out.println("finance - calcrocketplummet");
-		initialiseValues();
-		is_plummet = false;
-		is_rocket = false;
-		if (last != 0 && close != 0) {
-			if (last > (ROCKET_CONST * close)) {
-				is_rocket = true;
-			} else if (last < (PLUMMET_CONST * close)) {
-				is_plummet = true;
+
+    /**
+     * Method which determines whether this stock object is plummeting
+     */
+	public void calcRocketPlummet()
+    {
+		this.getConstants();
+
+        this.is_plummet = false;
+        this.is_rocket  = false;
+
+		if (this.lastValue != 0 && this.closingValue != 0)
+        {
+			if ( this.lastValue > (this.ROCKET_CONST * this.closingValue))
+            {
+                this.is_rocket = true;
+			}
+            else if (this.lastValue < (this.PLUMMET_CONST * this.closingValue))
+            {
+                this.is_plummet = true;
 			}	
 		}
 	}
-	
+
+    /**
+     * Method which sets the "rocket" coefficient
+     *
+     * @param newConst
+     */
 	public void setRocketConst(float newConst)
 	{
 		if(newConst > 0)
@@ -198,7 +312,12 @@ public class Finance
 			this.ROCKET_CONST = newConst;
 		}
 	}
-	
+
+    /**
+     * Method which sets the "run" coefficient
+     *
+     * @param newConst
+     */
 	public void setRunConst(float newConst)
 	{
 		if(newConst > 0)
@@ -206,7 +325,12 @@ public class Finance
 			this.RUN_CONST = newConst;
 		}
 	}
-	
+
+    /**
+     * Method which sets the "plummet" coefficient
+     *
+     * @param newConst
+     */
 	public void setPlummetConst(float newConst)
 	{
 		if(newConst > 0)
@@ -216,37 +340,51 @@ public class Finance
 	}
 }
 	
-	class NameComparator implements Comparator<Finance> {
-	    @Override
-		public int compare(Finance o1, Finance o2) {
-			return o1.name.compareTo(o2.name);
-		}
-	}
+class NameComparator implements Comparator<Finance> {
+
+    @Override
+    public int compare(Finance o1, Finance o2)
+    {
+        return o1.getStockSymbol().compareTo(o2.getStockSymbol());
+    }
+}
 	
-	class ValueComparator implements Comparator<Finance> {
-	    @Override
-		public int compare(Finance o1, Finance o2) {
-			
-				if (o1.last > o2.last) {
-					return -1;
-				} else if (o1.last == o2.last) {
-					return 0;
-				} else {
-					return 1;
-				}
-		}
-	}
-	
-	class TotalComparator implements Comparator<Finance> {
-	    @Override
-		public int compare(Finance o1, Finance o2) {
-			
-				if ((o1.total)> (o2.total)) {
-					return -1;
-				} else if ((o1.total) == (o2.total)) {
-					return 0;
-				} else {
-					return 1;
-				}
-		}
-	}
+class ValueComparator implements Comparator<Finance> {
+
+    @Override
+    public int compare(Finance o1, Finance o2)
+    {
+        if(o1.getLastValue() > o2.getLastValue())
+        {
+            return -1;
+        }
+        else if(o1.getLastValue() == o2.getLastValue())
+        {
+            return 0;
+        }
+        else
+        {
+            return 1;
+        }
+    }
+}
+
+class TotalComparator implements Comparator<Finance> {
+
+    @Override
+    public int compare(Finance o1, Finance o2)
+    {
+        if((o1.getTotalValue())> (o2.getTotalValue()))
+        {
+            return -1;
+        }
+        else if((o1.getTotalValue()) == (o2.getTotalValue()))
+        {
+            return 0;
+        }
+        else
+        {
+            return 1;
+        }
+    }
+}

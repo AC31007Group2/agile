@@ -42,14 +42,14 @@ public class FeedParserTest extends AndroidTestCase
 	{
 		feedparse.parseJSON(finance, "BP");
 
-		assertNotNull("failure - Close is still null",finance.getClose());
-		assertNotNull("failure - Name is still null",finance.getName());
+		assertNotNull("failure - Close is still null",finance.getClosingValue());
+		assertNotNull("failure - Name is still null",finance.getStockSymbol());
 		assertNotNull("failure - Summary is still null",finance.getSummary());
 		assertNotNull("failure - Volume is still null",finance.getInstantVolume());
-		assertNotNull("failure - Last is still null",finance.getLast());
+		assertNotNull("failure - Last is still null",finance.getLastValue());
 		assertNotNull("failure - Market Value is still null",finance.getMarket());
 				
-		Assert.assertEquals("failure - The name is not BP as it should be",(String)finance.getName(), "BP");
+		Assert.assertEquals("failure - The stockSymbol is not BP as it should be",(String)finance.getStockSymbol(), "BP");
 	}
 
 	/**
@@ -59,13 +59,13 @@ public class FeedParserTest extends AndroidTestCase
 	public void testGetHistoricNull() throws Throwable
 	{
 		Assert.assertNotNull("failure - finance is still null",finance);
-		finance.setName(null);
-		Assert.assertEquals("failure - Name should be null but isnt",(String)finance.getName(), null);
+		finance.setStockSymbol(null);
+		Assert.assertEquals("failure - Name should be null but isnt",(String)finance.getStockSymbol(), null);
 
 		Assert.assertEquals("failure - Historic data should be null but isnt",feedparse.getHistoric(finance, null), false);
 		
-		Assert.assertSame("failure - volume should be 0",finance.getVolume(),0);
-		Assert.assertEquals("failure - close should be 0",finance.getClose(), 0.0, 0.0);
+		Assert.assertSame("failure - volumeHistoric should be 0",finance.getVolumeHistoric(),0);
+		Assert.assertEquals("failure - closingValue should be 0",finance.getClosingValue(), 0.0, 0.0);
 	}
 	
 	/**
@@ -75,13 +75,13 @@ public class FeedParserTest extends AndroidTestCase
 	public void testGetHistoricExisting() throws Throwable
 	{
 		Assert.assertNotNull("failure - is null but should be initialised",finance);
-		finance.setName("BP");
-		Assert.assertEquals("failure - name should be BP",(String)finance.getName(), "BP");
+		finance.setStockSymbol("BP");
+		Assert.assertEquals("failure - stockSymbol should be BP",(String)finance.getStockSymbol(), "BP");
 
 		Assert.assertEquals("failure - historic is null/false",feedparse.getHistoric(finance, "BP"), true);
 		
-		Assert.assertNotNull("failure - volume is null!",finance.getVolume());
-		Assert.assertNotNull("failure - close is null!",finance.getClose());
+		Assert.assertNotNull("failure - volumeHistoric is null!",finance.getVolumeHistoric());
+		Assert.assertNotNull("failure - closingValue is null!",finance.getClosingValue());
 	}
 	
 	/**
@@ -91,13 +91,13 @@ public class FeedParserTest extends AndroidTestCase
 	public void testGetHistoricNotExisting() throws Throwable
 	{
 		Assert.assertNotNull("failure - finance is null",finance);
-		finance.setName("THIS STOCK DOES NOT EXIST");
-		Assert.assertEquals("failure - setName did not run correctly",(String)finance.getName(), "THIS STOCK DOES NOT EXIST");
+		finance.setStockSymbol("THIS STOCK DOES NOT EXIST");
+		Assert.assertEquals("failure - setStockSymbol did not run correctly",(String)finance.getStockSymbol(), "THIS STOCK DOES NOT EXIST");
 
 		Assert.assertEquals("failure - Getting stock data should have failed using broken data",feedparse.getHistoric(finance, "THIS STOCK DOES NOT EXIST"), false);
 		
-		Assert.assertNotNull("failure - volume is null!",finance.getVolume());
-		Assert.assertNotNull("failure - close is null!",finance.getClose());
+		Assert.assertNotNull("failure - volumeHistoric is null!",finance.getVolumeHistoric());
+		Assert.assertNotNull("failure - closingValue is null!",finance.getClosingValue());
 	}
 	
 	/**

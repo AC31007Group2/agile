@@ -35,36 +35,34 @@ public class StockManagerTest extends AndroidTestCase
 	public void testSetGetState()
 	{
 		stockManager.setState("Stock Manager State Test");
-		Assert.assertEquals("Stock Manager State Test", stockManager.getState());
+		Assert.assertEquals("failure - setState or getState did not work", "Stock Manager State Test", stockManager.getState());
 	
-		Assert.assertNotNull(stockManager.newParse);
+		Assert.assertNotNull("failure -newParse is null! ", stockManager.newParse);
 	}	
 
 	public void testAddPortfolioEntry() throws IOException, JSONException
 	{
-		Assert.assertTrue(stockManager.addPortfolioEntry("BP", "BP Amaco", 1234));		
+		Assert.assertTrue("failure - adding a portfolioentry failed", stockManager.addPortfolioEntry("BP", "BP Amaco", 1234));		
 	}
 	
 	public void testGetPortfolioTotal() throws IOException, JSONException
 	{
-		Assert.assertTrue(stockManager.addPortfolioEntry("BP", "BP Amaco", 1234));
-		Assert.assertTrue(stockManager.getPortfolioTotal() != 0f);
+		Assert.assertTrue("failure - failed to insert portfolioentry", stockManager.addPortfolioEntry("BP", "BP Amaco", 1234));
+		Assert.assertTrue("failure - failed to get portfolioentry", stockManager.getPortfolioTotal() != 0f);
 	}
 
 	public void testClearPortfolio() throws IOException, JSONException
 	{
-		Assert.assertTrue(stockManager.addPortfolioEntry("BP", "BP Amaco", 1234));
+		Assert.assertTrue("failure - failed to add portfolioentry", stockManager.addPortfolioEntry("BP", "BP Amaco", 1234));
 		stockManager.clearPortfolio();
-		Assert.assertTrue(stockManager.getPortfolioTotal() == 0f);
+		Assert.assertTrue("failure - failed to get portfolioentry", stockManager.getPortfolioTotal() == 0f);
 	}
 
 	public void testCreateFinanceObject() throws IOException, JSONException
 	{
 		Finance finance;
 		finance = stockManager.createFinanceObject("BP");
-		Assert.assertNotNull(finance);
-		Assert.assertEquals("BP", finance.getName());
-		
-		
+		Assert.assertNotNull("failure - finance object is null!", finance);
+		Assert.assertEquals("failure - finance name is not as expected", "BP", finance.getName());
 	}
 }

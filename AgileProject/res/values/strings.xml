@@ -26,6 +26,14 @@
 	
 	<string name="editPLUMMET_CONSTTitle">Adjust Plummet warning value</string>
 	<string name="editPLUMMET_CONSTDescr">Send warning if stock plumments by % \nplease ensure that value is greater than 0 and less than 100</string>
-     	 
-	
+    <string name="google_finance_url"><![CDATA[http://finance.google.com/finance/info?client=ig&infotype=infoquoteall&q=LON:]]></string>
+    <string name="input_stream_char_mode">UTF-8</string>
+    <string name="last_value_json_tag">l</string>
+    <string name="name_value_json_tag">t</string>
+    <string name="market_value_json_tag">e</string>
+    <string name="instant_volume_value_json_tag">vo</string>
+    <string name="yahoo_finance_url">http://ichart.finance.yahoo.com/table.csv?s=</string>
+    <string name="test_data_url">http://beberry.lv/stocks/</string>
+
+
 </resources>

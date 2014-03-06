@@ -10,9 +10,9 @@ public class Finance
 {
     private String stockSymbol;     // Stock stockSymbol
     private float lastValue;	    // Last stock value
-    private String market; 			// Market
+    private String market;          // Market
     private float closingValue;     // The value of the share when the market was closing.
-    private int volumeHistoric;		// Looks like a historic volume from x(was set to 4) days ago, using the CSV from yahoo api.
+    private int volumeHistoric;     // Looks like a historic volume from x(was set to 4) days ago, using the CSV from yahoo api.
     private int volumeInstant;      // Current volume, set when the stock object is being created, uses the data from goole api.
     private float totalValue; 	    // Total stock value.
     private boolean is_run;

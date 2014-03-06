@@ -1,61 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-        xmlns:android="http://schemas.android.com/apk/res/android"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tableLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:shrinkColumns="*"
+    android:stretchColumns="*" >
+
+    <TableRow
+        android:id="@+id/tableRow1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    <TableLayout
-        android:id="@+id/tableLayout1"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:shrinkColumns="*"
-        android:stretchColumns="*" >
-
-        <TableRow
-            android:id="@+id/tableRow1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
-
-            <TextView
-                android:id="@+id/summaryNameHeader"
-                android:layout_height="match_parent"
-                android:text="@string/name"
-                android:textStyle="bold"
-                android:visibility="gone" />
-
-            <TextView
-                android:id="@+id/summarySharesHeader"
-                android:gravity="right"
-                android:text="@string/Shares"
-                android:textStyle="bold"
-                android:visibility="gone" />
-
-            <TextView
-                android:id="@+id/summaryValueHeader"
-                android:gravity="right"
-                android:text="@string/Value"
-                android:textStyle="bold"
-                android:visibility="gone" />
-
-            <TextView
-                android:id="@+id/summaryTotalHeader"
-                android:gravity="right"
-                android:text="@string/Total"
-                android:textStyle="bold"
-                android:visibility="gone" />
-        </TableRow>
-
-        <ProgressBar
-            android:id="@+id/progressBar1"
-            style="?android:attr/progressBarStyleLarge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+        android:layout_height="wrap_content" >
 
         <TextView
-            android:id="@+id/errorText"
-            android:text="@string/warningMessage"
-            android:textColor="#FF0000"
+            android:id="@+id/summaryNameHeader"
+            android:layout_height="match_parent"
+            android:text="@string/name"
+            android:textStyle="bold"
             android:visibility="gone" />
-    </TableLayout>
 
-</ScrollView>
+        <TextView
+            android:id="@+id/summarySharesHeader"
+            android:gravity="right"
+            android:text="@string/Shares"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/summaryValueHeader"
+            android:gravity="right"
+            android:text="@string/Value"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/summaryTotalHeader"
+            android:gravity="right"
+            android:text="@string/Total"
+            android:textStyle="bold"
+            android:visibility="gone" />
+    </TableRow>
+
+    <ProgressBar
+        android:id="@+id/progressBar1"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/errorText"
+        android:text="@string/warningMessage"
+        android:textColor="#FF0000"
+        android:visibility="gone" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <TableLayout 
+            android:id="@+id/tableLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+        </TableLayout>
+    </ScrollView>
+
+</TableLayout>

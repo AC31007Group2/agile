@@ -120,7 +120,7 @@ public class StockManager extends Application {
 	public void summaryTable(Activity contextActivity, SortParameter sortBy) {
 		// Find TableLayout defined in main.xml
 		TableLayout table = (TableLayout) contextActivity
-				.findViewById(R.id.tableLayout1);
+				.findViewById(R.id.tableLayout2);
 		
 		DisplayMetrics screenSize = ScreenSize(contextActivity);
 

@@ -27,9 +27,6 @@ import java.util.List;
 import java.util.ArrayList;
 
 
-enum status { success, failure };
-
-
 public class SummaryActivity extends Activity implements Param
 {
 

@@ -27,9 +27,6 @@ import java.util.List;
 import java.util.ArrayList;
 
 
-enum status { success, failure };
-
-
 public class SummaryActivity extends Activity implements Param
 {
 
@@ -56,8 +53,6 @@ public class SummaryActivity extends Activity implements Param
 		
 		super.onCreate(savedInstanceState);
 		
-		
-		System.out.println("summaryactivity - oncreate");
 		// Get the StockManager
 		myStockmanager = ((StockManager)getApplicationContext());
 
@@ -69,8 +64,7 @@ public class SummaryActivity extends Activity implements Param
 	
 	
 	public void update() {
-		System.out.println("summaryactivity - update");
-		table = (TableLayout) this.findViewById(R.id.tableLayout1); 
+		table = (TableLayout) this.findViewById(R.id.tableLayout1);
 
 		
 		if (taskWaiting == null) {
@@ -81,9 +75,7 @@ public class SummaryActivity extends Activity implements Param
                     error1 = new TextView(this);
                     params = new TableRow.LayoutParams();
                     params.span = 4;
-                    System.out.println("do this!");
                     onClick();
-                    System.out.println("and this!");
 
                 } catch(Exception e) {
                     /* Parse Error */
@@ -116,7 +108,6 @@ public class SummaryActivity extends Activity implements Param
 		protected List<String> doInBackground(Activity... params) {
 			// TODO Auto-generated method stub
 			parent = (SummaryActivity) params[0];
-			System.out.println("summaryactivity - onclick");
 
 			myStockmanager.clearPortfolio();
 			SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
@@ -226,15 +217,11 @@ public class SummaryActivity extends Activity implements Param
 	/* Click Refresh */
 	public void onClick() throws IOException, JSONException {
 
-        Log.d("Summary", "begin");
         if (SummaryActivity.taskWaiting == null)
         {
-            Log.d("Summary", "spawn - " + (SummaryActivity.taskWaiting == null));
             SummaryActivity.taskWaiting = new CreateFinanceObjectAsync().execute(this, null, null);
-            Log.d("Summary", "spawn - " + (SummaryActivity.taskWaiting == null));
         }
-        Log.d("Summary", "end");
-	}
+    }
 	
 	private boolean checkInternetConnection() {
 		ConnectivityManager conMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);

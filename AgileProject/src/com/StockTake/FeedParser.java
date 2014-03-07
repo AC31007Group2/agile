@@ -30,18 +30,22 @@ public class FeedParser {
     public static final String THOUSANDS = "K";
     private Context m_context;
 
+    /**
+     * Method that get the context of the activity
+     */
     public FeedParser(Context m_context) {
         this.m_context = m_context;
     }
 
-
+/**
+ * Gets the Stock information from Google as a JSON object and populate the Finance Objects.
+ * @param toPopulate - The Finance Object to populate
+ * @param currentStock - The current stock string value
+ */
     public void parseJSON(Finance toPopulate, String currentStock) throws IOException, JSONException {
-        // Create JSON and Finance objects
         JSONObject jObject;
 
-        // Generate URL
         URL feedUrl = new URL(m_context.getString(R.string.google_finance_url) + currentStock);
-        // Read JSON
         InputStream is = feedUrl.openStream();
         BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName(m_context.getString(R.string.input_stream_char_mode))));
         StringBuilder sb = new StringBuilder();
@@ -52,30 +56,28 @@ public class FeedParser {
         String jsonText = sb.toString();
         jsonText = jsonText.substring(5, jsonText.length() - 2);
         is.close();
-        // Init object
 
         jObject = new JSONObject(jsonText);
-
-        // Use this, just because some shares (expn) use comma to separate large values.
         String tmpString = jObject.getString(m_context.getString(R.string.last_value_json_tag));
         tmpString = tmpString.replace(TARGET_STRING, REPLACEMENT_STRING);
 
-        // Set 'Last' value
         toPopulate.setLastValue(Float.parseFloat(tmpString) / C_DIV_AMOUNT);
-
-        // Set 'Company' name
         toPopulate.setStockSymbol(jObject.getString(m_context.getString(R.string.name_value_json_tag)));
-
-        // Set 'Market'
         toPopulate.setMarket(jObject.getString(m_context.getString(R.string.market_value_json_tag)));
-        // Set 'Instant Volume'
+
         int instantVolume = volCharToInt(jObject.getString(m_context.getString(R.string.instant_volume_value_json_tag)));
         toPopulate.setInstantVolume(instantVolume);
     }
 
+
+    /**
+     * Gets the Stock information from Buffer populate the Finance Objects with historic data
+     * @param toPopulate - The Finance Object to populate
+     * @param stockToGet - The stock code for the to
+     */
     public boolean getHistoric(Finance toPopulate, String stockToGet) {
         BufferedReader csvBr;
-        String csvData[] = null;
+        String csvData[];
         try {
             csvBr = getCsvFeed(stockToGet);
             csvData = parseCsvString(csvBr);
@@ -148,9 +150,9 @@ public class FeedParser {
     }
 
     public int volCharToInt(String amount) {
-        float convertedVal = 0;
+        float convertedVal;
         int multiplier = 1;
-        int returnValue = 0;
+        int returnValue;
 
         try {
             amount = amount.replaceAll(TARGET_STRING, REPLACEMENT_STRING);

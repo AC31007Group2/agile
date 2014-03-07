@@ -192,75 +192,7 @@ public class StockManager extends Application {
 		}
 
 		for (Finance stockObj : portfolioList) {
-			rowStock[stockCounter] = new TableRow(contextActivity);
-			stockName[stockCounter] = new TextView(contextActivity);
-			stockShares[stockCounter] = new TextView(contextActivity);
-			stockValue[stockCounter] = new TextView(contextActivity);
-			stockTotal[stockCounter] = new TextView(contextActivity);
-
-			float thisStockValue = stockObj.getLastValue();
-
-			// half up rounding mode - so reduces errors to +/- £1
-			BigDecimal stockValueRounded = new BigDecimal(
-					Double.toString(thisStockValue));
-			stockValueRounded = stockValueRounded.setScale(2,
-					BigDecimal.ROUND_DOWN);
-
-			float thisStockTotal = stockObj.getTotalValue();
-
-			// rounding down the stock totalValue.
-			BigDecimal stockTotalRounded = new BigDecimal(
-					Double.toString(thisStockTotal));
-			stockTotalRounded = stockTotalRounded.setScale(0,
-					BigDecimal.ROUND_DOWN);
-
-			// float subTotal = portfolio.get(stockObj) * thisStockValue;
-
-			String longName = stockNamesLong.get(stockObj.getStockSymbol().toString());
-
-			stockName[stockCounter].setText(longName);
-			stockName[stockCounter].setTypeface(Typeface.DEFAULT);
-			stockName[stockCounter].setTextColor(Color.rgb(58, 128, 255));
-			stockName[stockCounter].setTextSize(20f);
-			stockName[stockCounter].setHeight(80);
-			// stockName[stockCounter].setWidth(200);
-			stockName[stockCounter].setGravity(Gravity.LEFT
-					| Gravity.CENTER_VERTICAL);
-
-			if(screenSize.widthPixels > 480){
-				stockShares[stockCounter].setText(String.format("%,3.0f",
-						(float) stockObj.getNumberOfShares()));
-				stockShares[stockCounter].setGravity(Gravity.RIGHT
-						| Gravity.CENTER_VERTICAL);
-				stockShares[stockCounter].setTextSize(20f);
-				stockShares[stockCounter].setSingleLine(true);
-
-				stockValue[stockCounter].setText("£"
-						+ String.format("%.2f", stockValueRounded));
-				stockValue[stockCounter].setGravity(Gravity.RIGHT
-						| Gravity.CENTER_VERTICAL);
-				stockValue[stockCounter].setTextSize(20f);
-				stockValue[stockCounter].setSingleLine(true);
-			}
-
-			stockTotal[stockCounter].setText("£"
-					+ String.format("%,3.0f", stockTotalRounded));
-			stockTotal[stockCounter].setGravity(Gravity.RIGHT
-					| Gravity.CENTER_VERTICAL);
-			stockTotal[stockCounter].setTextSize(20f);
-			stockTotal[stockCounter].setSingleLine(true);
-
-
-			rowStock[stockCounter].addView(stockName[stockCounter]);
-			if(screenSize.widthPixels >= 480){
-				rowStock[stockCounter].addView(stockShares[stockCounter]);
-				rowStock[stockCounter].addView(stockValue[stockCounter]);
-				}
-			rowStock[stockCounter].addView(stockTotal[stockCounter]);
-
-			table.addView(rowStock[stockCounter]);
-
-			stockCounter++;
+            stockCounter = generateUiRow(contextActivity, table, screenSize, stockCounter, rowStock, stockName, stockShares, stockValue, stockTotal, stockObj);
 		}
 
 		float potfolioTotal = getPortfolioTotal();
@@ -285,7 +217,83 @@ public class StockManager extends Application {
 		table.addView(rowTotal);
 	}
 
-	public int volumeTable(Activity contextActivity) {
+    private BigDecimal stockRound(float stockvalue, int rounding)
+    {
+        BigDecimal stockValueRounded = new BigDecimal(
+                Double.toString(stockvalue));
+        stockValueRounded = stockValueRounded.setScale(rounding,
+                BigDecimal.ROUND_DOWN);
+
+        return stockValueRounded;
+    }
+
+    private int generateUiRow(Activity contextActivity, TableLayout table, DisplayMetrics screenSize, int stockCounter, TableRow[] rowStock, TextView[] stockName, TextView[] stockShares, TextView[] stockValue, TextView[] stockTotal, Finance stockObj) {
+        rowStock[stockCounter] = new TableRow(contextActivity);
+        stockName[stockCounter] = new TextView(contextActivity);
+        stockShares[stockCounter] = new TextView(contextActivity);
+        stockValue[stockCounter] = new TextView(contextActivity);
+        stockTotal[stockCounter] = new TextView(contextActivity);
+
+        float thisStockValue = stockObj.getLastValue();
+        // half up rounding mode - so reduces errors to +/- £1
+        BigDecimal stockValueRounded = stockRound(thisStockValue, 2);
+
+        float thisStockTotal = stockObj.getTotalValue();
+
+        // rounding down the stock totalValue.
+        BigDecimal stockTotalRounded = stockRound(thisStockTotal, 0);
+
+        // float subTotal = portfolio.get(stockObj) * thisStockValue;
+
+        String longName = stockNamesLong.get(stockObj.getStockSymbol().toString());
+
+        stockName[stockCounter].setText(longName);
+        stockName[stockCounter].setTypeface(Typeface.DEFAULT);
+        stockName[stockCounter].setTextColor(Color.rgb(58, 128, 255));
+        stockName[stockCounter].setTextSize(20f);
+        stockName[stockCounter].setHeight(80);
+        // stockName[stockCounter].setWidth(200);
+        stockName[stockCounter].setGravity(Gravity.LEFT
+                | Gravity.CENTER_VERTICAL);
+
+        if(screenSize.widthPixels > 480){
+            stockShares[stockCounter].setText(String.format("%,3.0f",
+                    (float) stockObj.getNumberOfShares()));
+            stockShares[stockCounter].setGravity(Gravity.RIGHT
+                    | Gravity.CENTER_VERTICAL);
+            stockShares[stockCounter].setTextSize(20f);
+            stockShares[stockCounter].setSingleLine(true);
+
+            stockValue[stockCounter].setText("£"
+                    + String.format("%.2f", stockValueRounded));
+            stockValue[stockCounter].setGravity(Gravity.RIGHT
+                    | Gravity.CENTER_VERTICAL);
+            stockValue[stockCounter].setTextSize(20f);
+            stockValue[stockCounter].setSingleLine(true);
+        }
+
+        stockTotal[stockCounter].setText("£"
+                + String.format("%,3.0f", stockTotalRounded));
+        stockTotal[stockCounter].setGravity(Gravity.RIGHT
+                | Gravity.CENTER_VERTICAL);
+        stockTotal[stockCounter].setTextSize(20f);
+        stockTotal[stockCounter].setSingleLine(true);
+
+
+        rowStock[stockCounter].addView(stockName[stockCounter]);
+        if(screenSize.widthPixels >= 480){
+            rowStock[stockCounter].addView(stockShares[stockCounter]);
+            rowStock[stockCounter].addView(stockValue[stockCounter]);
+            }
+        rowStock[stockCounter].addView(stockTotal[stockCounter]);
+
+        table.addView(rowStock[stockCounter]);
+
+        stockCounter++;
+        return stockCounter;
+    }
+
+    public int volumeTable(Activity contextActivity) {
 		// Find TableLayout defined in main.xml
 		TableLayout table = (TableLayout) contextActivity
 				.findViewById(R.id.tableLayout2);

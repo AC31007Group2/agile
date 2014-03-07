@@ -181,6 +181,4 @@ public class FeedParser {
             return returnValue;
         }
     }
-
-
 }

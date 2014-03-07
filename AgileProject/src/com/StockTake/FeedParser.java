@@ -37,11 +37,11 @@ public class FeedParser {
         this.m_context = m_context;
     }
 
-/**
- * Gets the Stock information from Google as a JSON object and populate the Finance Objects.
- * @param toPopulate - The Finance Object to populate
- * @param currentStock - The current stock string value
- */
+    /**
+     * Gets the Stock information from Google as a JSON object and populate the Finance Objects.
+     * @param toPopulate - The Finance Object to populate
+     * @param currentStock - The current stock string value
+     */
     public void parseJSON(Finance toPopulate, String currentStock) throws IOException, JSONException {
         JSONObject jObject;
 
@@ -69,11 +69,11 @@ public class FeedParser {
         toPopulate.setInstantVolume(instantVolume);
     }
 
-
     /**
      * Gets the Stock information from Buffer populate the Finance Objects with historic data
      * @param toPopulate - The Finance Object to populate
-     * @param stockToGet - The stock code for the to
+     * @param stockToGet - The stock code for the to get the CSV feed.
+     * @return true if populate the finance object, otherwise return false.
      */
     public boolean getHistoric(Finance toPopulate, String stockToGet) {
         BufferedReader csvBr;
@@ -94,6 +94,12 @@ public class FeedParser {
         }
     }
 
+    /**
+     * Reads the CSV file of the specific Stock to a buffer.
+     * @param stockSymbol - The Finance Object to populate
+     * @return a new BufferReader
+     * @throws IOException
+     */
     public BufferedReader getCsvFeed(String stockSymbol) throws IOException {
 
         // Check dates
@@ -115,6 +121,12 @@ public class FeedParser {
         return new BufferedReader(new InputStreamReader(is, Charset.forName(m_context.getString(R.string.input_stream_char_mode))));
     }
 
+    /**
+     * Paser the CSV to a string array.
+     * @param csvToParse - The Finance Object to populate
+     * @return the csvdata string array
+     * @throws IOException
+     */
     public String[] parseCsvString(BufferedReader csvToParse) throws IOException {
         String strLine;
         StringTokenizer st;
@@ -149,6 +161,11 @@ public class FeedParser {
         return csvdata;
     }
 
+    /**
+     * Convert the string amount in to a integer amount.
+     * @param amount - the amount as a string
+     * @return converted integer value
+     */
     public int volCharToInt(String amount) {
         float convertedVal;
         int multiplier = 1;

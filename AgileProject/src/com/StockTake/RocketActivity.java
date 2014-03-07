@@ -14,10 +14,9 @@ public class RocketActivity extends Activity
 		StockManager myStockmanager;
 		
 		@Override
-		/*
-		 * (non-Javadoc)
-		in pro * @see android.app.Activity#onCreate(android.os.Bundle)
-		 */
+        /**
+         * Method called by android on activity creation
+         */
 		public void onCreate(Bundle savedInstanceState)
 		{
 			super.onCreate(savedInstanceState);
@@ -41,10 +40,9 @@ public class RocketActivity extends Activity
 			}
 		}
 
-		/*
+		/**
 		 * Creates a error message for the user
-		 * 
-		 * @param String Message - message to write in error
+		 * @param message - message to write in error
 		 */
 		private void writeError(String message) {
 			/* Create Error Messages */
@@ -58,9 +56,9 @@ public class RocketActivity extends Activity
 			table.addView(errorRow);
 		}
 
-		/*
+		/**
 		 * Checks for a active internet connection
-		 * @return boolean connection
+		 * @return connection
 		 */
 		private boolean checkInternetConnection() {
 			System.out.println("rocketactivity - checkinternetconnection");

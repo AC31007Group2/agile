@@ -87,10 +87,8 @@ public class StockManager extends Application {
     public Finance createFinanceObject(String stockCode) throws IOException,
             JSONException {
         Finance newStock = new Finance(StockManager.this);
-        // create a new parser with the new Finance Object
         this.newParse.parseJSON(newStock, stockCode);
         this.newParse.getHistoric(newStock, stockCode);
-        // initialise newStock
         newStock.calcRun();
         newStock.calcRocketPlummet();
         return newStock;
@@ -147,12 +145,10 @@ public class StockManager extends Application {
 
     /**
      * Builds a table in the GUI
-     *
-     * @param contextActivity
-     * @param sortBy
+     * @param contextActivity the Application or activity context
+     * @param sortBy the SortParameter enum
      */
     public void summaryTable(Activity contextActivity, SortParameter sortBy) {
-        // Find TableLayout defined in main.xml
         TableLayout table = (TableLayout) contextActivity
                 .findViewById(R.id.tableLayout2);
 

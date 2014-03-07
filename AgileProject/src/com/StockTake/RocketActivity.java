@@ -9,66 +9,59 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-
 public class RocketActivity extends Activity
 {
-
-
-		/** Called when the activity is first created. */
-
 		StockManager myStockmanager;
-		//((MyApplication) context.getApplicationContext())
 		
 		@Override
+		/*
+		 * (non-Javadoc)
+		 * @see android.app.Activity#onCreate(android.os.Bundle)
+		 */
 		public void onCreate(Bundle savedInstanceState)
 		{
 			super.onCreate(savedInstanceState);
-			System.out.println("rocketactivity - oncreate");
-			// Get the StockManager
 			myStockmanager = ((StockManager)getApplicationContext());
-			
 			setContentView(R.layout.rocket);
 			
+			if (checkInternetConnection()) {
+				try {
+					int rocketplummet = myStockmanager.rocketTable(this);
+					if (rocketplummet == 0) { 
+						writeError(" <big>No Alerts</big><br/><br/>There are no rockets or plummets on any of your share portfolio today.");
+					}
+				} catch(Exception e) {
+					/* Parse Error */ 
+					writeError(" <big>Oops!</big><br/><br/> Something went wrong when we tried to retrieve your share portfolio.<br/><br/> Please try again later.");
+				}
+					
+			} else {
+				/* No Internet Connection */
+				writeError(" <big>Oops!</big><br/><br/> It seems there is a problem with your internet connection.");
+			}
+		}
+
+		/*
+		 * Creates a error message for the user
+		 * 
+		 * @param String Message - message to write in error
+		 */
+		private void writeError(String message) {
 			/* Create Error Messages */
 			TableLayout table = (TableLayout) this.findViewById(R.id.tableLayout3); 
 			TableRow errorRow = new TableRow(this);
 			TextView error1 = new TextView(this);
 			TableRow.LayoutParams params = new TableRow.LayoutParams();  
 		    params.span = 4;
-
-			/* Init refresh button */
-			//Button button = (Button) findViewById(R.id.btnRefresh);
-			//button.setOnClickListener(this);
-
-			if (checkInternetConnection()) {
-				try {
-					
-					
-					int rocketplummet = myStockmanager.rocketTable(this);
-					if (rocketplummet == 0) { 
-						
-						error1.setText(Html.fromHtml(" <big>No Alerts</big><br/><br/>There are no rockets or plummets on any of your share portfolio today."));
-		        		errorRow.addView(error1, params);
-		                table.addView(errorRow);
-					}
-					
-				} catch(Exception e) {
-					/* Parse Error */ 
-	        		error1.setText(Html.fromHtml(" <big>Oops!</big><br/><br/> Something went wrong when we tried to retrieve your share portfolio.<br/><br/> Please try again later."));
-	        		errorRow.addView(error1, params);
-	                table.addView(errorRow);
-				}
-					
-			} else {
-				/* No Internet Connection */
-				error1.setText(Html.fromHtml(" <big>Oops!</big><br/><br/> It seems there is a problem with your internet connection."));
-				errorRow.addView(error1, params);
-	            table.addView(errorRow);
-			}
-
+			error1.setText(Html.fromHtml(message));
+			errorRow.addView(error1, params);
+			table.addView(errorRow);
 		}
 
-		
+		/*
+		 * Checks for a active internet connection
+		 * @return boolean connection
+		 */
 		private boolean checkInternetConnection() {
 			System.out.println("rocketactivity - checkinternetconnection");
 			ConnectivityManager conMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -79,7 +72,5 @@ public class RocketActivity extends Activity
 			} else {
 				return false;
 			}
-		
 		}
-		
 	}

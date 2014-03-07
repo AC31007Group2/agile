@@ -19,7 +19,6 @@ public class Finance
     private boolean is_rocket;
     private boolean is_plummet;
 	private int numberOfShares;
-	
 	private float RUN_CONST;       // Looks like some kind of a coeff for RUNs
 	private float ROCKET_CONST;    // Looks like some kind of a coeff for ROCKETs
 	private float PLUMMET_CONST;

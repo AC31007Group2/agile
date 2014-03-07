@@ -29,9 +29,7 @@ public class SummaryActivity extends Activity implements Param
 	private static AsyncTask<Activity, Void, List<String>> taskWaiting = null;
 	
 	@Override
-	/*
-	 * (non-Javadoc)
-	 * @see com.StockTake.Param#getParam()
+	/**
 	 * @return sortParameter for sorting by name
 	 */
 	public StockManager.SortParameter getParam() {
@@ -39,9 +37,8 @@ public class SummaryActivity extends Activity implements Param
 	}
 	
 	@Override
-	/*
-	 * (non-Javadoc)
-	 * @see android.app.Activity#onCreate(android.os.Bundle)
+	/**
+     * Called by android on activity creation
 	 */
 	public void onCreate(Bundle savedInstanceState)
 	{
@@ -51,7 +48,7 @@ public class SummaryActivity extends Activity implements Param
 	    update();
 	}
 	
-	/*
+	/**
 	 * Updates the visible tab
 	 */
 	public void update() {
@@ -79,7 +76,7 @@ public class SummaryActivity extends Activity implements Param
         }
 	}
 	
-	/*
+	/**
 	 * Refreshes the page
 	 */
 	public void onClick() throws IOException, JSONException {
@@ -89,7 +86,7 @@ public class SummaryActivity extends Activity implements Param
         }
     }
 	
-	/*
+	/**
 	 * Checks for an active internet connection
 	 */
 	private boolean checkInternetConnection() {
@@ -102,7 +99,7 @@ public class SummaryActivity extends Activity implements Param
 		}
 	}
 	
-	/*
+	/**
 	 * This class creates an Async finance object within the Tabactivity
 	 */
 	private class CreateFinanceObjectAsync extends AsyncTask<Activity, Void, List<String>>
@@ -110,21 +107,19 @@ public class SummaryActivity extends Activity implements Param
 		private SummaryActivity parent;
 		
 		@Override
-		/*
-		 * (non-Javadoc)
-		 * @see android.os.AsyncTask#onPreExecute()
+		/**
+		 * Called by android before AsyncTask Execution
 		 */
 		protected void onPreExecute() {
-			// TODO Auto-generated method stub
 			ProgressBar pb = (ProgressBar)findViewById(R.id.progressBar1);
 			pb.setVisibility(View.VISIBLE);
 			super.onPreExecute();
 		}
 
 		@Override
-		/*
-		 * (non-Javadoc)
-		 * @see android.os.AsyncTask#onPreExecute()
+		/**
+         * The method to run in the background
+         * @param params var arg of activities, only uses the first
 		 * @return List of Problems - one problem for each Object that failed to display/parse
 		 */
 		protected List<String> doInBackground(Activity... params) {
@@ -136,8 +131,7 @@ public class SummaryActivity extends Activity implements Param
             {
                 return problems;
             }
-            
-            //test whether broken data is activated
+
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 			if (preferences.getBoolean("is_using_broken_data", false)) {
 				problems.add(checkStock("BPEEE", "BP Amoco Plc", 192));
@@ -152,9 +146,9 @@ public class SummaryActivity extends Activity implements Param
 			return deleteSpaces(problems);
 		}
 
-		/*
+		/**
 		 * Delete empty spaces in list
-		 * @param List of problems potentially containing spaces
+		 * @param problems of problems potentially containing spaces
 		 * @return List of problems without spaces
 		 */
 		private List<String> deleteSpaces(List<String> problems) {
@@ -167,46 +161,40 @@ public class SummaryActivity extends Activity implements Param
 			return list;
 		}
 
-		/*
+		/**
 		 * This method checks the availability of each stock and adds an error to the list of errors
 		 * if the stock is not available
 		 * 
-		 *  @param String name
-		 *  @param String symbol of the stock
-		 *  @param int amount of stocks
+		 *  @param  name stock name
+		 *  @param  symbol of the stock
+		 *  @param  amount of stocks
 		 *  @return String error
 		 */
 		private String checkStock(String name, String symbol, int amount) {
-			String problem = name;
-			try
+            try
             {
-                //if (this.isCancelled())
 				myStockmanager.addPortfolioEntry(name, symbol, amount);
                 return "";
 			} catch(Exception e)
 			{
-				return problem;
+				return name;
 			}
 		}
 
         @Override
-        /*
-		 * (non-Javadoc)
-		 * @see android.os.AsyncTask#onPreExecute()
+        /**
+		 * Called when task is cancelled
 		 */
         protected void onCancelled() {
             taskWaiting = null;
         }
 
 		@Override
-		/*
-		 * (non-Javadoc)
-		 * @see android.os.AsyncTask#onPreExecute()
+		/**
+		 * method run after async task has completed
 		 */
 		protected void onPostExecute(List<String> result) {
 			String theText="";
-
-			// TODO Auto-generated method stub
 			if (result.isEmpty()) {
 				TextView tv = (TextView)findViewById(R.id.errorText);
 				tv.setVisibility(View.GONE);	

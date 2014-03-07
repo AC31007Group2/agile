@@ -30,9 +30,7 @@ public class Finance
         this.lastValue = 0;
         this.volumeInstant = 0;
         this.stockSymbol = "Default";
-
 		this.context = context;
-
         this.getConstants();
 	}
 
@@ -42,7 +40,6 @@ public class Finance
 	private void getConstants()
 	{
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-		
 		this.setRocketConst(Float.parseFloat(preferences.getString("ROCKET_CONST","1.1f")));
 		this.setRunConst(Float.parseFloat(preferences.getString("RUN_CONST","1.1f")));
 		this.setPlummetConst(Float.parseFloat(preferences.getString("PLUMMET_CONST","0.8f")));

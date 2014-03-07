@@ -16,7 +16,7 @@ public class RocketActivity extends Activity
 		@Override
 		/*
 		 * (non-Javadoc)
-		 * @see android.app.Activity#onCreate(android.os.Bundle)
+		in pro * @see android.app.Activity#onCreate(android.os.Bundle)
 		 */
 		public void onCreate(Bundle savedInstanceState)
 		{
